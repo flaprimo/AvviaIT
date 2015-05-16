@@ -1,14 +1,16 @@
 package avviait.model;
 
-import avviait.StringHashing;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-@Stateless(name="startupperFacade")
+import avviait.helper.StringHashing;
+
+@Stateless
 public class StartupperFacade {
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;
@@ -24,12 +26,8 @@ public class StartupperFacade {
 
         Calendar dataIscrizione = new GregorianCalendar();
 
-        List<Giudizio> giudiziDati = new LinkedList<Giudizio>();
-        List<Giudizio> giudiziRicevuti = new LinkedList<Giudizio>();
-
         try {
-            startupper = new Startupper(nome, cognome, email, hashedPassword, saltPassword, dataIscrizione,
-                    giudiziDati, giudiziRicevuti);
+            startupper = new Startupper(nome, cognome, email, hashedPassword, saltPassword, dataIscrizione);
             em.persist(startupper);
         } catch (Exception e) {
             System.out.println("ERRORE: Persistenza nuovo Startupper fallita");
@@ -66,6 +64,7 @@ public class StartupperFacade {
         return startupper;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Startupper> getAllStartupper() {
         List<Startupper> startupperList = null;
 
@@ -125,3 +124,4 @@ public class StartupperFacade {
         }
     }
 }
+

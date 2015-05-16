@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+<body>
+<ui:composition>
+
+    <f:subview id="createStartupper">
+        <h:form>
+            <div class="row">
+                <div class="large-6 medium-6 columns">
+                    <label>Nome
+                        <h:inputText value='#{startupperController.nome}'
+                                     id="nome"
+                                     name="nome"
+                                     required="true"
+                                     requiredMessage="Il nome è necessario!"
+                                     placeholder="Inserisci il tuo nome"
+                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="nome" class="error" />
+                    </label>
+                </div>
+                <div class="large-6 medium-6 columns">
+                    <label>Cognome
+                        <h:inputText value='#{startupperController.cognome}'
+                                     name="cognome"
+                                     id="cognome"
+                                     required="true"
+                                     requiredMessage="Il cognome è necessario!"
+                                     placeholder="Inserisci il tuo cognome"
+                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="cognome" class="error" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Email
+                        <h:inputText value='#{startupperController.email}'
+                                     name="email"
+                                     id="email"
+                                     required="true"
+                                     requiredMessage="L'email è necessaria!"
+                                     placeholder="Inserisci la tua email"
+                                     type="email"
+                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="email" class="error" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Password
+                        <h:inputSecret value='#{startupperController.password}'
+                                       name="password"
+                                       id="password"
+                                       required="true"
+                                       requiredMessage="La password è necessaria!"
+                                       placeholder="Inserisci la tua password"
+                                       class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="password" class="error" />
+                    </label>
+                </div>
+            </div>
+            <h:commandButton action="#{startupperController.createStartupper}"
+                             class="button"
+                             value="Register"/>
+        </h:form>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

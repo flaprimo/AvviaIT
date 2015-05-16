@@ -61,7 +61,7 @@ public class Startupper {
 	}
 
 	public Startupper(String nome, String cognome, String email, String password, String saltPassword,
-					  Calendar dataIscrizione, List giudiziDati, List giudiziRicevuti) {
+					  Calendar dataIscrizione) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
@@ -69,10 +69,10 @@ public class Startupper {
 		this.password = password;
 		this.saltPassword = saltPassword;
 		this.dataIscrizione = dataIscrizione;
-		this.giudiziDati = giudiziDati;
-		this.giudiziRicevuti = giudiziRicevuti;
 		this.startupAmministrate = new LinkedList<Startup>();
         this.startupAttuali = new LinkedList<Startup>();
+		this.giudiziDati = new LinkedList<Giudizio>();
+		this.giudiziRicevuti = new LinkedList<Giudizio>();
 	}
 
 	public Long getId() {
