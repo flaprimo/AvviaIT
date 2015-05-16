@@ -23,13 +23,17 @@ public class AnnuncioMembri {
     @Temporal(TemporalType.TIME)
     private Calendar dataCreazione;
 
+    @ManyToOne
+    private Startup autrice;
+
     public AnnuncioMembri() {
     }
 
-    public AnnuncioMembri(String mansione, String descrizione) {
+    public AnnuncioMembri(String mansione, String descrizione, Startup autrice) {
         this.mansione = mansione;
         this.descrizione = descrizione;
         this.dataCreazione = new GregorianCalendar();
+        this.autrice = autrice;
     }
 
     public Long getId() {

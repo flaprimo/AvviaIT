@@ -39,7 +39,10 @@ public class Startup {
     private List<Startupper> membri;
 
     @ManyToMany(mappedBy = "startupPassate")
-    private List<Startupper> membrPassati;
+    private List<Startupper> membriPassati;
+
+    @OneToMany(mappedBy = "autrice")
+    private List<AnnuncioMembri> annunci;
 
     public Startup() {}
 
@@ -48,6 +51,8 @@ public class Startup {
         this.descrizione = descrizione;
         this.dataFondazione = dataFondazione;
         this.attiva = true;
+        this.amministratori = new LinkedList<Startupper>();
+        this.membri = new LinkedList<Startupper>();
     }
 
     public Long getId() {
@@ -70,6 +75,22 @@ public class Startup {
         return attiva;
     }
 
+    public List<Startupper> getAmministratori() {
+        return amministratori;
+    }
+
+    public List<Startupper> getMembri() {
+        return membri;
+    }
+
+    public List<Startupper> getMembriPassati() {
+        return membriPassati;
+    }
+
+    public List<AnnuncioMembri> getAnnunci() {
+        return annunci;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -86,19 +107,4 @@ public class Startup {
         this.attiva = attiva;
     }
 
-    public void addAmministratore(Startupper startupper) {
-        if (this.amministratori == null)
-            this.amministratori = new LinkedList<Startupper>();
-        this.amministratori.add(startupper);
-    }
-
-    public void addMembro(Startupper startupper) {
-        if (this.membri == null)
-            this.membri = new LinkedList<Startupper>();
-        this.membri.add(startupper);
-    }
-
-    public void addMembriPassati(Startupper startupper) {
-        //TODO
-    }
 }

@@ -21,10 +21,10 @@ public class StartupFacade {
         Startup startup = null;
         try {
             startup = new Startup(nome,descrizione,dataFondazione);
-            startup.addAmministratore(startupper);
-            startup.addMembro(startupper);
-            startupper.addStartupAttuale(startup);
-            startupper.addStartupAmministrata(startup);
+            startup.getAmministratori().add(startupper);
+            startup.getMembri().add(startupper);
+            startupper.getStartupAmministrate().add(startup);
+            startupper.getStartupAttuali().add(startup);
             em.persist(startup);
             em.merge(startupper);
         } catch (Exception e) {
