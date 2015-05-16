@@ -42,10 +42,10 @@ public class Startupper {
 	@Column(nullable = false)
 	private Boolean attivo;
 
-	@OneToMany(mappedBy = "autore", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "autore")
 	private List<Giudizio> giudiziDati;
 
-	@OneToMany(mappedBy = "giudicato", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "giudicato")
 	private List<Giudizio> giudiziRicevuti;
 
     @ManyToMany
@@ -152,5 +152,40 @@ public class Startupper {
     public void addStartupPassate(Startup startup) {
         //TODO
     }
+
+	@Override
+	public String toString() {
+		String startupper = "Startupper [\n" +
+				"id: " + id + "\n" +
+				"nome: " + nome + "\n" +
+				"cognome: " + cognome + "\n" +
+				"email: " + email + "\n" +
+				"password: " + password + "\n" +
+				"saltPassword: " + saltPassword + "\n" +
+				"dataIscrizione: " + dataIscrizione.getTime() + "\n" +
+				"descrizione: " + descrizione + "\n";
+
+		startupper += "giudiziDati: " + "\n";
+		if (giudiziDati != null) {
+			for (Giudizio giudizioDato : giudiziDati) {
+				startupper += "  -  " + giudizioDato.getId() + " " + giudizioDato.getTitolo() + "\n";
+			}
+		} else {
+			startupper += "  - lista non inizializzata\n";
+		}
+
+		startupper += "giudiziRicevuti: " + "\n";
+		if (giudiziRicevuti != null) {
+			for (Giudizio giudizioDato : giudiziRicevuti) {
+				startupper += "  -  " + giudizioDato.getId() + " " + giudizioDato.getTitolo() + "\n";
+			}
+		} else {
+			startupper += "  - lista non inizializzata\n";
+		}
+
+		startupper += "]\n";
+
+		return startupper;
+	}
 
 }
