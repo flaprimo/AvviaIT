@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+<body>
+<ui:composition>
+
+    <f:subview id="loginStartupper">
+        <h:form>
+            <li class="has-form show-for-small-only" style="color: white">Login</li>
+            <li class="has-form">
+                <h:inputText value='#{startupperController.email}'
+                         id="email"
+                         name="email"
+                         required="true"
+                         placeholder="email"
+                         style="#{component.valid ? '' : 'border-color: #DE2D0F;'}" />
+            </li>
+            <li class="has-form">
+                <h:inputSecret value='#{startupperController.password}'
+                             id="password"
+                             name="password"
+                             required="true"
+                             placeholder="password"
+                             style="#{component.valid ? '' : 'border-color: #DE2D0F;'}" />
+            </li>
+            <li class="has-form">
+                <h:commandButton action="#{startupperController.loginStartupper}"
+                                 class="button"
+                                 value="Login"/>
+            </li>
+        </h:form>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

@@ -48,20 +48,20 @@ public class Startupper {
 	@OneToMany(mappedBy = "giudicato")
 	private List<Giudizio> giudiziRicevuti;
 
-    @ManyToMany
-    private List<Startup> startupAmministrate;
+	@ManyToMany
+	private List<Startup> startupAmministrate;
 
-    @ManyToMany
-    private List<Startup> startupAttuali;
+	@ManyToMany
+	private List<Startup> startupAttuali;
 
-    @ManyToMany
-    private List<Startup> startupPassate;
+	@ManyToMany
+	private List<Startup> startupPassate;
 
 	public Startupper() {
 	}
 
 	public Startupper(String nome, String cognome, String email, String password, String saltPassword,
-					  Calendar dataIscrizione, List giudiziDati, List giudiziRicevuti) {
+					  Calendar dataIscrizione) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
@@ -69,8 +69,8 @@ public class Startupper {
 		this.password = password;
 		this.saltPassword = saltPassword;
 		this.dataIscrizione = dataIscrizione;
-		this.giudiziDati = giudiziDati;
-		this.giudiziRicevuti = giudiziRicevuti;
+		this.giudiziDati = new LinkedList<Giudizio>();
+		this.giudiziRicevuti = new LinkedList<Giudizio>();
 	}
 
 	public Long getId() {
@@ -137,21 +137,21 @@ public class Startupper {
 		return giudiziRicevuti;
 	}
 
-    public void addStartupAmministrata(Startup startup) {
-        if (this.startupAmministrate == null)
-            this.startupAmministrate = new LinkedList<Startup>();
-        this.startupAmministrate.add(startup);
-    }
+	public void addStartupAmministrata(Startup startup) {
+		if (this.startupAmministrate == null)
+			this.startupAmministrate = new LinkedList<Startup>();
+		this.startupAmministrate.add(startup);
+	}
 
-    public void addStartupAttuale(Startup startup) {
-        if (this.startupAttuali == null)
-            this.startupAttuali = new LinkedList<Startup>();
-        this.startupAttuali.add(startup);
-    }
+	public void addStartupAttuale(Startup startup) {
+		if (this.startupAttuali == null)
+			this.startupAttuali = new LinkedList<Startup>();
+		this.startupAttuali.add(startup);
+	}
 
-    public void addStartupPassate(Startup startup) {
-        //TODO
-    }
+	public void addStartupPassate(Startup startup) {
+		//TODO
+	}
 
 	@Override
 	public String toString() {

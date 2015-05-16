@@ -1,4 +1,4 @@
-package avviait;
+package avviait.helper;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <ui:include src="/template/layout/head.xhtml" />
+    <title>AvviaIT</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <ui:include src="/template/layout/nav.xhtml" />
+
+        <section class="main-content">
+            <br/>
+            <div class="row">
+                <div class="large-6 columns">
+                    <h1>AvviaIT</h1>
+                    <p>Network sociale universitario nel quale gli studenti possono iscriversi e semplificare la possibilità di associazione per creare progetti innovativi (startup).</p>
+                </div>
+
+                <div class="large-6 columns">
+                    <ui:include src="/template/pages/index/startupperRegistrationForm.xhtml" />
+                </div>
+            </div>
+
+        </section>
+
+        <ui:include src="/template/layout/footer.xhtml" />
+    </f:view>
+</h:body>
+
+</html>
