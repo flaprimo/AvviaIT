@@ -66,6 +66,7 @@ public class AnnuncioMembriFacadeTest {
         assertEquals(persistedAnnuncio.getMansione(), annuncioMembri.getMansione());
         assertEquals(persistedAnnuncio.getDescrizione(), annuncioMembri.getDescrizione());
         assertNotNull(persistedAnnuncio.getDataCreazione());
+        assertNotNull(persistedAnnuncio.getAutrice());
     }
 
     @Test

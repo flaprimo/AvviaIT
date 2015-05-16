@@ -52,6 +52,10 @@ public class AnnuncioMembri {
         return dataCreazione;
     }
 
+    public Startup getAutrice() {
+        return autrice;
+    }
+
     public void setMansione(String mansione) {
         this.mansione = mansione;
     }
