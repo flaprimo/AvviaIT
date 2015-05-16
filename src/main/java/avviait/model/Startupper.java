@@ -71,6 +71,8 @@ public class Startupper {
 		this.dataIscrizione = dataIscrizione;
 		this.giudiziDati = giudiziDati;
 		this.giudiziRicevuti = giudiziRicevuti;
+		this.startupAmministrate = new LinkedList<Startup>();
+        this.startupAttuali = new LinkedList<Startup>();
 	}
 
 	public Long getId() {
@@ -137,20 +139,16 @@ public class Startupper {
 		return giudiziRicevuti;
 	}
 
-    public void addStartupAmministrata(Startup startup) {
-        if (this.startupAmministrate == null)
-            this.startupAmministrate = new LinkedList<Startup>();
-        this.startupAmministrate.add(startup);
+    public List<Startup> getStartupAmministrate() {
+        return startupAmministrate;
     }
 
-    public void addStartupAttuale(Startup startup) {
-        if (this.startupAttuali == null)
-            this.startupAttuali = new LinkedList<Startup>();
-        this.startupAttuali.add(startup);
+    public List<Startup> getStartupAttuali() {
+        return startupAttuali;
     }
 
-    public void addStartupPassate(Startup startup) {
-        //TODO
+    public List<Startup> getStartupPassate() {
+        return startupPassate;
     }
 
 	@Override
