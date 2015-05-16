@@ -39,29 +39,31 @@ public class AnnuncioMembriFacadeTest {
     @EJB
     private StartupFacade startupFacade;
 
-    @Test
-    @Transactional(TransactionMode.ROLLBACK)
-    public void testCreateAnnuncioMembri() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
+    private Startupper startupper;
+    private Startup startup;
+    private AnnuncioMembri annuncioMembri;
+
+    public void setUp() {
+        startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
+        startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
                         "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
                         "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
                 startupper);
-        AnnuncioMembri annuncioMembri =
+        annuncioMembri =
                 annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup);
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testCreateAnnuncioMembri() throws Exception {
+        setUp();
         assertNotNull(annuncioMembri.getId());
     }
 
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void testGetAnnuncioMembri() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
-        AnnuncioMembri annuncioMembri =
-                annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup);
+        setUp();
         AnnuncioMembri persistedAnnuncio = annuncioMembriFacade.getAnnuncioMembri(annuncioMembri.getId());
         assertEquals(persistedAnnuncio.getMansione(), annuncioMembri.getMansione());
         assertEquals(persistedAnnuncio.getDescrizione(), annuncioMembri.getDescrizione());
@@ -72,12 +74,7 @@ public class AnnuncioMembriFacadeTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void testGetAllAnnuncioMembri() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
-        annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup);
+        setUp();
         List<AnnuncioMembri> annuncioMembriList = annuncioMembriFacade.getAllAnnuncioMembri();
         assertFalse(annuncioMembriList.isEmpty());
     }
