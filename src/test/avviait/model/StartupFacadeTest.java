@@ -35,25 +35,28 @@ public class StartupFacadeTest {
     @EJB
     private StartupperFacade startupperFacade;
 
-    @Test
-    @Transactional(TransactionMode.ROLLBACK)
-    public void testCreateStartup() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
+    private Startupper startupper;
+    private Startup startup;
+
+    public void setUp() {
+        startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
+        startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
                         "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
                         "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
                 startupper);
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testCreateStartup() throws Exception {
+        setUp();
         assertNotNull(startup.getId());
     }
 
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void testGetStartup() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
+        setUp();
         Startup persistedStartup = startupFacade.getStartup(startup.getId());
         assertNotNull(persistedStartup);
         assertEquals(persistedStartup.getNome(), startup.getNome());
@@ -65,11 +68,7 @@ public class StartupFacadeTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void testGetAllStartup() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
+        setUp();
         List<Startup> startupList = startupFacade.getAllStartup();
         assertFalse(startupList.isEmpty());
     }
@@ -77,11 +76,7 @@ public class StartupFacadeTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void testGetAllAmministratori() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
+        setUp();
         List<Startupper> amministratori = startupFacade.getAmministratori(startup);
         assertFalse(amministratori.isEmpty());
     }
@@ -89,11 +84,7 @@ public class StartupFacadeTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public  void testGetAllMembri() throws Exception {
-        Startupper startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
-        Startup startup = startupFacade.createStartup("AvviaIT", "Network sociale universitario " +
-                        "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
-                        "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
-                startupper);
+        setUp();
         List<Startupper> membri = startupFacade.getMembri(startup);
         assertFalse(membri.isEmpty());
     }

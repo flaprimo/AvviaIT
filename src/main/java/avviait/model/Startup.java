@@ -53,6 +53,7 @@ public class Startup {
         this.attiva = true;
         this.amministratori = new LinkedList<Startupper>();
         this.membri = new LinkedList<Startupper>();
+        this.annunci = new LinkedList<AnnuncioMembri>();
     }
 
     public Long getId() {

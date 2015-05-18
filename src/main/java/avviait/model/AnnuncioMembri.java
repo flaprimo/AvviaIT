@@ -29,11 +29,10 @@ public class AnnuncioMembri {
     public AnnuncioMembri() {
     }
 
-    public AnnuncioMembri(String mansione, String descrizione, Startup autrice) {
+    public AnnuncioMembri(String mansione, String descrizione) {
         this.mansione = mansione;
         this.descrizione = descrizione;
         this.dataCreazione = new GregorianCalendar();
-        this.autrice = autrice;
     }
 
     public Long getId() {
@@ -68,4 +67,7 @@ public class AnnuncioMembri {
         this.dataCreazione = dataCreazione;
     }
 
+    public void setAutrice(Startup autrice) {
+        this.autrice = autrice;
+    }
 }

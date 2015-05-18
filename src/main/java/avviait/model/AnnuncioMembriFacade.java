@@ -18,9 +18,10 @@ public class AnnuncioMembriFacade {
     public AnnuncioMembri createAnnuncioMembri(String mansione, String descrizione, Startup autrice){
         AnnuncioMembri annuncioMembri = null;
         try {
-            annuncioMembri = new AnnuncioMembri(mansione, descrizione, autrice);
-            em.persist(annuncioMembri);
+            annuncioMembri = new AnnuncioMembri(mansione, descrizione);
+            annuncioMembri.setAutrice(autrice);
             autrice.getAnnunci().add(annuncioMembri);
+            em.persist(annuncioMembri);
             em.merge(autrice);
         } catch (Exception e) {
             System.out.println("ERRORE: Persistenza nuovo AnnuncioMembri fallito");
