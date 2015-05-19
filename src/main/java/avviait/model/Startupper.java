@@ -57,6 +57,16 @@ public class Startupper {
     @ManyToMany
     private List<Startup> startupPassate;
 
+	// Skill e voti skill
+	@ManyToMany
+	private List<Startup> skillApprese;
+
+	@OneToMany(mappedBy = "espressoDa")
+	private List<VotoSkill> votiSkillDati;
+
+	@OneToMany(mappedBy = "ricevutoDa")
+	private List<VotoSkill> votiSkillRicevuti;
+
 	public Startupper() {
 	}
 

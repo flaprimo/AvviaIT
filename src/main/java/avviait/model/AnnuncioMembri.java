@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Entity
 @NamedQuery(name = "findAllAnnuncioMembri", query = "SELECT a FROM AnnuncioMembri a")
@@ -25,6 +26,9 @@ public class AnnuncioMembri {
 
     @ManyToOne
     private Startup autrice;
+
+    @ManyToMany
+    private List<Skill> skillRichieste;
 
     public AnnuncioMembri() {
     }
