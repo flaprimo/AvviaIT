@@ -59,7 +59,7 @@ public class Startupper {
 
 	// Skill e voti skill
 	@ManyToMany
-	private List<Startup> skillApprese;
+	private List<Skill> skillApprese;
 
 	@OneToMany(mappedBy = "autore")
 	private List<VotoSkill> votiSkillDati;
@@ -83,6 +83,9 @@ public class Startupper {
         this.startupAttuali = new LinkedList<Startup>();
 		this.giudiziDati = new LinkedList<Giudizio>();
 		this.giudiziRicevuti = new LinkedList<Giudizio>();
+        this.skillApprese = new LinkedList<Skill>();
+        this.votiSkillDati = new LinkedList<VotoSkill>();
+        this.votiSkillRicevuti = new LinkedList<VotoSkill>();
 	}
 
 	public Long getId() {
@@ -161,7 +164,19 @@ public class Startupper {
         return startupPassate;
     }
 
-	@Override
+    public List<Skill> getSkillApprese() {
+        return skillApprese;
+    }
+
+    public List<VotoSkill> getVotiSkillDati() {
+        return votiSkillDati;
+    }
+
+    public List<VotoSkill> getVotiSkillRicevuti() {
+        return votiSkillRicevuti;
+    }
+
+    @Override
 	public String toString() {
 		String startupper = "Startupper [\n" +
 				"id: " + id + "\n" +

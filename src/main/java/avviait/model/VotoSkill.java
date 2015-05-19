@@ -30,6 +30,9 @@ public class VotoSkill {
     @ManyToOne(cascade={CascadeType.ALL})
     private Skill skillAssociata;
 
+    public VotoSkill() {
+    }
+
     public VotoSkill(String titolo, String testo, Calendar dataCreazione, Startupper autore, Startupper giudicato,
                      Skill skillAssociata) {
         this.titolo = titolo;

@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="findAllSkill", query="SELECT s FROM Skill s"),
+        @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id"),
+        @NamedQuery(name="findSkillOfAnnuncio", query="SELECT s FROM Skill s " +
+                "WHERE s.richiestaDaAnnuncioMembri.id = :id")
+})
 public class Skill {
 
     @Id
