@@ -19,7 +19,38 @@ public class Skill {
     @ManyToMany(mappedBy = "skillRichieste")
     private List<AnnuncioMembri> richiestaDaAnnuncioMembri;
 
-    @OneToMany(mappedBy = "skillAssociata")
-    private List<VotoSkill> associataAVotoSkill;
+    public Skill() {
+    }
 
+    public Skill(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Startupper> getAppresaDa() {
+        return appresaDa;
+    }
+
+    public List<AnnuncioMembri> getRichiestaDaAnnuncioMembri() {
+        return richiestaDaAnnuncioMembri;
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

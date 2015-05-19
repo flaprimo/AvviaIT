@@ -61,10 +61,10 @@ public class Startupper {
 	@ManyToMany
 	private List<Startup> skillApprese;
 
-	@OneToMany(mappedBy = "espressoDa")
+	@OneToMany(mappedBy = "autore")
 	private List<VotoSkill> votiSkillDati;
 
-	@OneToMany(mappedBy = "ricevutoDa")
+	@OneToMany(mappedBy = "giudicato")
 	private List<VotoSkill> votiSkillRicevuti;
 
 	public Startupper() {
