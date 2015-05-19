@@ -35,14 +35,27 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>createStartupperSuccess</from-outcome>
+            <to-view-id>/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createStartupperFailure</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loginStartupperSuccess</from-outcome>
+            <to-view-id>/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loginStartupperFailure</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
+    <!-- Redirect after logout -->
     <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
+        <from-view-id>/*</from-view-id>
         <navigation-case>
-            <from-outcome>createStartupperFailure</from-outcome>
+            <if>#{startupperController.startupper == null}</if>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

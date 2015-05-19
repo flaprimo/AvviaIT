@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 import avviait.helper.StringHashing;
 
 @Stateless
-public class StartupperFacade {
+public class StartupperFacade  implements Serializable {
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;
 

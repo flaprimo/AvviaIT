@@ -153,37 +153,22 @@ public class Startupper {
 
 	@Override
 	public String toString() {
-		String startupper = "Startupper [\n" +
-				"id: " + id + "\n" +
-				"nome: " + nome + "\n" +
-				"cognome: " + cognome + "\n" +
-				"email: " + email + "\n" +
-				"password: " + password + "\n" +
-				"saltPassword: " + saltPassword + "\n" +
-				"dataIscrizione: " + dataIscrizione.getTime() + "\n" +
-				"descrizione: " + descrizione + "\n";
-
-		startupper += "giudiziDati: " + "\n";
-		if (giudiziDati != null) {
-			for (Giudizio giudizioDato : giudiziDati) {
-				startupper += "  -  " + giudizioDato.getId() + " " + giudizioDato.getTitolo() + "\n";
-			}
-		} else {
-			startupper += "  - lista non inizializzata\n";
-		}
-
-		startupper += "giudiziRicevuti: " + "\n";
-		if (giudiziRicevuti != null) {
-			for (Giudizio giudizioDato : giudiziRicevuti) {
-				startupper += "  -  " + giudizioDato.getId() + " " + giudizioDato.getTitolo() + "\n";
-			}
-		} else {
-			startupper += "  - lista non inizializzata\n";
-		}
-
-		startupper += "]\n";
-
-		return startupper;
+		return "Startupper{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", cognome='" + cognome + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", saltPassword='" + saltPassword + '\'' +
+				", dataIscrizione=" + dataIscrizione.getTime() +
+				", descrizione='" + descrizione + '\'' +
+				", attivo=" + attivo +
+				", giudiziDati=" + giudiziDati +
+				", giudiziRicevuti=" + giudiziRicevuti +
+				", startupAmministrate=" + startupAmministrate +
+				", startupAttuali=" + startupAttuali +
+				", startupPassate=" + startupPassate +
+				'}';
 	}
 
 }

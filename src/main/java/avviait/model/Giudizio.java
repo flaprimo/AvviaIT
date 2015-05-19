@@ -91,14 +91,14 @@ public class Giudizio {
 
     @Override
     public String toString() {
-        return "Giudizio [\n" +
-                "id: " + id + "\n" +
-                "voto: " + voto + "\n" +
-                "titolo: " + titolo + "\n" +
-                "testo: " + testo + "\n" +
-                "dataCreazione: " + dataCreazione.getTime() + "\n" +
-                "autore: " + autore.getId() + " " + autore.getNome() + "\n" +
-                "giudicato: " + giudicato.getId() + " " + giudicato.getNome() + "\n" +
-                "]\n";
+        return "Giudizio{" +
+                "id=" + id +
+                ", voto=" + voto +
+                ", titolo='" + titolo + '\'' +
+                ", testo='" + testo + '\'' +
+                ", dataCreazione=" + dataCreazione +
+                ", autore=" + autore +
+                ", giudicato=" + giudicato +
+                '}';
     }
 }

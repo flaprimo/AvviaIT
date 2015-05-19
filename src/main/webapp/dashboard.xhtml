@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <ui:include src="/template/layout/head.xhtml" />
+    <title>Dashboard | AvviaIT</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <ui:include src="/template/layout/nav.xhtml" />
+
+        <section class="main-content">
+            <br/>
+            <div class="row">
+                <div class="large-6 columns">
+                    <h1>Benvenuto ${startupperController.startupper.nome}!</h1>
+                    <p>Crea una Startup o entra in contatto con altre startup, non dimenticare di potenziare il tuo profilo, per essere più facilmente raggiungibile!</p>
+                </div>
+
+                <div class="large-6 columns">
+                    <h2>Dati profilo:</h2>
+                    <ul class="no-bullet">
+                        <li><strong>Nome:</strong> ${startupperController.startupper.nome}</li>
+                        <li><strong>Cognome:</strong> ${startupperController.startupper.cognome}</li>
+                        <li><strong>Email:</strong> ${startupperController.startupper.email}</li>
+                        <li><strong>Descrizione:</strong> ${startupperController.startupper.descrizione}</li>
+                        <li><strong>Data Iscrizione:</strong> ${startupperController.startupper.dataIscrizione.time}</li>
+                        <li><strong>Account Attivo:</strong> ${startupperController.startupper.attivo}</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <ui:include src="/template/layout/footer.xhtml" />
+    </f:view>
+</h:body>
+
+</html>
