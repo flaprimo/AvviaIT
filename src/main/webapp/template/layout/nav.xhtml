@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <body>
 <ui:composition>
 
@@ -17,9 +18,19 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li class="has-form">
-                    <ui:include src="${pageContext.request.contextPath}/template/pages/index/startupperLoginForm.xhtml" />
-                </li>
+                <c:if test="#{startupperController.startupper != null}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/dashboard.xhtml">Dashboard</a>
+                    </li>
+                    <li class="has-form">
+                        <ui:include src="${pageContext.request.contextPath}/template/layout/nav/startupperLogoutForm.xhtml" />
+                    </li>
+                </c:if>
+                <c:if test="#{startupperController.startupper == null}">
+                    <li class="has-form">
+                        <ui:include src="${pageContext.request.contextPath}/template/layout/nav/startupperLoginForm.xhtml" />
+                    </li>
+                </c:if>
             </ul>
         </section>
     </nav>

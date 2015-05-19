@@ -3,11 +3,14 @@ package avviait.controller;
 import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
-public class StartupperController {
+@SessionScoped
+public class StartupperController implements Serializable {
     @Inject
     private StartupperFacade startupperFacade;
 
@@ -19,7 +22,7 @@ public class StartupperController {
     private Startupper startupper;
 
     public String createStartupper() {
-        if (startupperFacade.getStartupperByEmail(email) != null) {
+        if (startupperFacade.getStartupperByEmail(email) == null) {
             this.startupper = startupperFacade.createStartupper(nome, cognome, email, password);
             return "createStartupperSuccess";
         } else {
@@ -28,13 +31,18 @@ public class StartupperController {
     }
 
     public String loginStartupper() {
-        startupper = startupperFacade.getStartupperByEmail(email);
-        if (startupper != null && startupperFacade.checkPassword(startupper, password)) {
-
+        Startupper startupperAttempt = startupperFacade.getStartupperByEmail(email);
+        if (startupperAttempt != null && startupperFacade.checkPassword(startupperAttempt, password)) {
+            this.startupper = startupperAttempt;
             return "loginStartupperSuccess";
         } else {
             return "loginStartupperFailure";
         }
+    }
+
+    public String logoutStartupper() {
+        startupper = null;
+        return "logoutStartupperSuccess";
     }
 
     public String getNome() {
