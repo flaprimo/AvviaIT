@@ -97,8 +97,8 @@ public class Giudizio {
                 ", titolo='" + titolo + '\'' +
                 ", testo='" + testo + '\'' +
                 ", dataCreazione=" + dataCreazione +
-                ", autore=" + autore +
-                ", giudicato=" + giudicato +
+                ", autore=" + autore.getId() + " " + autore.getNome() +
+                ", giudicato=" + autore.getId() + " " + giudicato.getNome() +
                 '}';
     }
 }
