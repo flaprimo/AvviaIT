@@ -5,6 +5,10 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="findAllVotoSkillForAutore", query="SELECT v FROM VotoSkill v WHERE v.autore.id = :id"),
+        @NamedQuery(name="findAllVotoSkillForGiudicato", query="SELECT v FROM VotoSkill v WHERE v.giudicato.id = :id")
+})
 public class VotoSkill {
 
     @Id
