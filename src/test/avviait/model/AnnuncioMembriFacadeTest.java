@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -26,7 +27,8 @@ public class AnnuncioMembriFacadeTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(AnnuncioMembriFacade.class, AnnuncioMembri.class,
-                        StartupFacade.class, Startup.class, StartupperFacade.class, Startupper.class)
+                        StartupFacade.class, Startup.class, StartupperFacade.class, Startupper.class,
+                        SkillFacade.class, Skill.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("META-INF/resources.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -38,10 +40,15 @@ public class AnnuncioMembriFacadeTest {
     private StartupperFacade startupperFacade;
     @EJB
     private StartupFacade startupFacade;
+    @EJB
+    private SkillFacade skillFacade;
 
     private Startupper startupper;
     private Startup startup;
     private AnnuncioMembri annuncioMembri;
+    private Skill skill1;
+    private Skill skill2;
+    private List<Skill> skillRichieste;
 
     public void setUp() {
         startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
@@ -49,8 +56,13 @@ public class AnnuncioMembriFacadeTest {
                         "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
                         "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
                 startupper);
+        skill1 = skillFacade.createSkill("JSF");
+        skill2 = skillFacade.createSkill("JavaEE");
+        skillRichieste = new LinkedList<Skill>();
+        skillRichieste.add(skill1);
+        skillRichieste.add(skill2);
         annuncioMembri =
-                annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup);
+                annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup, skillRichieste);
     }
 
     @Test
@@ -69,6 +81,8 @@ public class AnnuncioMembriFacadeTest {
         assertEquals(persistedAnnuncio.getDescrizione(), annuncioMembri.getDescrizione());
         assertNotNull(persistedAnnuncio.getDataCreazione());
         assertNotNull(persistedAnnuncio.getAutrice());
+        assertEquals(persistedAnnuncio.getSkillRichieste().get(0).getId(),skill1.getId());
+        assertEquals(persistedAnnuncio.getSkillRichieste().get(1).getId(),skill2.getId());
     }
 
     @Test
@@ -77,5 +91,6 @@ public class AnnuncioMembriFacadeTest {
         setUp();
         List<AnnuncioMembri> annuncioMembriList = annuncioMembriFacade.getAllAnnuncioMembri();
         assertFalse(annuncioMembriList.isEmpty());
+        assertTrue(annuncioMembriList.contains(annuncioMembriFacade.getAnnuncioMembri(annuncioMembri.getId())));
     }
 }

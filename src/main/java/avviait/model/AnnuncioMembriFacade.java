@@ -15,10 +15,11 @@ public class AnnuncioMembriFacade {
     public AnnuncioMembriFacade() {
     }
 
-    public AnnuncioMembri createAnnuncioMembri(String mansione, String descrizione, Startup autrice){
+    public AnnuncioMembri createAnnuncioMembri(String mansione, String descrizione, Startup autrice,
+                                               List<Skill> skillRichieste){
         AnnuncioMembri annuncioMembri = null;
         try {
-            annuncioMembri = new AnnuncioMembri(mansione, descrizione);
+            annuncioMembri = new AnnuncioMembri(mansione, descrizione, skillRichieste);
             annuncioMembri.setAutrice(autrice);
             autrice.getAnnunci().add(annuncioMembri);
             em.persist(annuncioMembri);

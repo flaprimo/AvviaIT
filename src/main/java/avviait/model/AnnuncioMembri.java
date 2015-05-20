@@ -28,17 +28,17 @@ public class AnnuncioMembri {
     @ManyToOne
     private Startup autrice;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Skill> skillRichieste;
 
     public AnnuncioMembri() {
     }
 
-    public AnnuncioMembri(String mansione, String descrizione) {
+    public AnnuncioMembri(String mansione, String descrizione, List<Skill> skillRichieste) {
         this.mansione = mansione;
         this.descrizione = descrizione;
         this.dataCreazione = new GregorianCalendar();
-        this.skillRichieste = new LinkedList<Skill>();
+        this.skillRichieste = skillRichieste;
     }
 
     public Long getId() {
