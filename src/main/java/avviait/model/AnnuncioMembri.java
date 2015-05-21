@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @NamedQuery(name = "findAllAnnuncioMembri", query = "SELECT a FROM AnnuncioMembri a")
@@ -26,13 +28,17 @@ public class AnnuncioMembri {
     @ManyToOne
     private Startup autrice;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Skill> skillRichieste;
+
     public AnnuncioMembri() {
     }
 
-    public AnnuncioMembri(String mansione, String descrizione) {
+    public AnnuncioMembri(String mansione, String descrizione, List<Skill> skillRichieste) {
         this.mansione = mansione;
         this.descrizione = descrizione;
         this.dataCreazione = new GregorianCalendar();
+        this.skillRichieste = skillRichieste;
     }
 
     public Long getId() {
@@ -69,5 +75,9 @@ public class AnnuncioMembri {
 
     public void setAutrice(Startup autrice) {
         this.autrice = autrice;
+    }
+
+    public List<Skill> getSkillRichieste() {
+        return skillRichieste;
     }
 }

@@ -26,6 +26,8 @@
         <class>avviait.model.Giudizio</class>
         <class>avviait.model.Startup</class>
         <class>avviait.model.AnnuncioMembri</class>
+        <class>avviait.model.Skill</class>
+        <class>avviait.model.VotoSkill</class>
         <properties>
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
             <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
