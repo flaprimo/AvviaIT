@@ -19,11 +19,23 @@
             <!-- Right Nav Section -->
             <ul class="right">
                 <c:if test="#{startupperController.startupper != null}">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/dashboard.xhtml">Dashboard</a>
-                    </li>
-                    <li class="has-form">
-                        <ui:include src="${pageContext.request.contextPath}/template/layout/nav/startupperLogoutForm.xhtml" />
+                    <li class="has-dropdown">
+                        <a href="#">#{startupperController.startupper.nome} #{startupperController.startupper.cognome}</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml">
+                                    <i class="fa fa-user"></i> Profilo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/startupper/settings.xhtml">
+                                    <i class="fa fa-cog"></i> Impostazioni
+                                </a>
+                            </li>
+                            <li class="has-form">
+                                <ui:include src="${pageContext.request.contextPath}/template/layout/nav/startupperLogoutForm.xhtml" />
+                            </li>
+                        </ul>
                     </li>
                 </c:if>
                 <c:if test="#{startupperController.startupper == null}">

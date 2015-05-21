@@ -1,0 +1,27 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">Profilo | AvviaIT</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="large-6 columns">
+                <h1>Benvenuto ${startupperController.nome}!</h1>
+                <p>Crea o entra in contatto con altre Startup, non dimenticare di potenziare il tuo profilo, per essere più facilmente raggiungibile!</p>
+            </div>
+
+            <div class="large-6 columns">
+                <h2>Dati profilo:</h2>
+                <ul class="no-bullet">
+                    <li><strong>Nome:</strong> ${startupperController.nome}</li>
+                    <li><strong>Cognome:</strong> ${startupperController.cognome}</li>
+                    <li><strong>Email:</strong> ${startupperController.email}</li>
+                    <li><strong>Descrizione:</strong> ${startupperController.descrizione}</li>
+                    <li><strong>Data Iscrizione:</strong> ${startupperController.dataIscrizione.time}</li>
+                    <li><strong>Account Attivo:</strong> ${startupperController.startupper.attivo}</li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
