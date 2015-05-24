@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
     @Inject
-    private StartupperController startupperController;
+    private StartupperLoginController startupperLoginController;
 
     /**
      * Checks if user is logged in. If not it redirects to the index page.
@@ -18,7 +18,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String path = ((HttpServletRequest) request).getRequestURI();
 
-        if (!(path.startsWith("/index") || path.startsWith("/assets")) && startupperController.getStartupper() == null) {
+        if (!(path.startsWith("/index") || path.startsWith("/assets")) && !startupperLoginController.isStartupperLoggedIn()) {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 

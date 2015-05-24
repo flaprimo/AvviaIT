@@ -12,9 +12,9 @@
     <f:subview id="settingsStartupper">
         <h:form>
             <div class="row">
-                <div class="large-12 columns">
+                <div class="small-12 medium-8 medium-offset-2 columns">
                     <label>Email
-                        <h:inputText value='#{startupperController.email}'
+                        <h:inputText value='#{startupperSettingsController.email}'
                                      name="email"
                                      id="email"
                                      required="true"
@@ -24,46 +24,36 @@
                                      class="#{component.valid ? '' : 'error'}" />
                         <h:message for="email" class="error" />
                     </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
+
                     <label>Descrizione
-                        <h:inputText value='#{startupperController.descrizione}'
-                                     name="descrizione"
-                                     id="descrizione"
-                                     type="text"
-                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:inputTextarea value='#{startupperSettingsController.descrizione}'
+                                         name="descrizione"
+                                         id="descrizione"
+                                         class="#{component.valid ? '' : 'error'}" />
                         <h:message for="descrizione" class="error" />
                     </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
+
                     <label>Password
-                        <h:inputSecret value='#{startupperController.password}'
-                                     name="password"
-                                     id="password"
-                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:inputSecret value='#{startupperSettingsController.password}'
+                                       name="password"
+                                       id="password"
+                                       class="#{component.valid ? '' : 'error'}" />
                         <h:message for="password" class="error" />
                     </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
+
                     <label>Attivo</label>
                     <div class="switch">
-                        <h:selectBooleanCheckbox value="#{startupperController.attivo}"
-                                                 itemLabel="prova"
+                        <h:selectBooleanCheckbox value="#{startupperSettingsController.attivo}"
                                                  id="attivo"
                                                  name="attivo"/>
                         <h:outputLabel value="" for="attivo" />
                     </div>
+
+                    <h:commandButton action="#{startupperSettingsController.updateStartupper}"
+                                     class="button"
+                                     value="Save" />
                 </div>
             </div>
-            <h:commandButton action="#{startupperController.updateStartupper}"
-                             class="button"
-                             value="Save"/>
         </h:form>
     </f:subview>
 

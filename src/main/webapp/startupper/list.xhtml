@@ -1,0 +1,27 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="title">Startuppers | AvviaIT</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>Startuppers</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <c:forEach var="startupper" items="#{startupperListController.getStartupperList()}">
+                    <div class="panel">
+                        <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${startupper.id}">
+                            <h3>${startupper.nome} ${startupper.cognome}</h3>
+                        </a>
+                        <span>${startupper.descrizione}</span>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

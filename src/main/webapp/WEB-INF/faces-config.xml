@@ -34,12 +34,36 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>createStartupperSuccess</from-outcome>
+            <from-action>#{startupperRegistrationController.createStartupper}</from-action>
+            <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{startupperLoginController.startupper.id}</value>
+                </view-param>
+            </redirect>
         </navigation-case>
         <navigation-case>
-            <from-outcome>loginStartupperSuccess</from-outcome>
+            <from-action>#{startupperLoginController.loginStartupper}</from-action>
+            <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{startupperLoginController.startupper.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Settings -->
+    <navigation-rule>
+        <from-view-id>/startupper/settings.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupperSettingsController.updateStartupper}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startupper/settings.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
@@ -47,7 +71,7 @@
     <navigation-rule>
         <from-view-id>/*</from-view-id>
         <navigation-case>
-            <if>#{startupperController.startupper == null}</if>
+            <if>#{!startupperLoginController.isStartupperLoggedIn()}</if>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

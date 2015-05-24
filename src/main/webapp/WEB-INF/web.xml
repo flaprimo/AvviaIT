@@ -8,7 +8,7 @@
     <display-name>avviait</display-name>
 
     <welcome-file-list>
-        <welcome-file>index</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- For nice urls -->
@@ -16,4 +16,9 @@
         <param-name>org.omnifaces.FACES_VIEWS_SCAN_PATHS</param-name>
         <param-value>/*.xhtml</param-value>
     </context-param>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.xhtml</location>
+    </error-page>
 </web-app>

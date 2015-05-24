@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="large-6 medium-6 columns">
                     <label>Nome
-                        <h:inputText value='#{startupperController.nome}'
+                        <h:inputText value='#{startupperRegistrationController.nome}'
                                      id="nome"
                                      name="nome"
                                      required="true"
@@ -26,7 +26,7 @@
                 </div>
                 <div class="large-6 medium-6 columns">
                     <label>Cognome
-                        <h:inputText value='#{startupperController.cognome}'
+                        <h:inputText value='#{startupperRegistrationController.cognome}'
                                      name="cognome"
                                      id="cognome"
                                      required="true"
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <label>Email
-                        <h:inputText value='#{startupperController.email}'
+                        <h:inputText value='#{startupperRegistrationController.email}'
                                      name="email"
                                      id="email"
                                      required="true"
@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <label>Password
-                        <h:inputSecret value='#{startupperController.password}'
+                        <h:inputSecret value='#{startupperRegistrationController.password}'
                                        name="password"
                                        id="password"
                                        required="true"
@@ -66,7 +66,7 @@
                     </label>
                 </div>
             </div>
-            <h:commandButton action="#{startupperController.createStartupper}"
+            <h:commandButton action="#{startupperRegistrationController.createStartupper}"
                              class="button"
                              value="Register"/>
         </h:form>
