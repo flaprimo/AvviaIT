@@ -22,6 +22,7 @@ public class StartupperSettingsController {
     private Boolean attivo;
 
     private String message;
+    private String messageType;
 
     @PostConstruct
     private void initStartupper() {
@@ -32,18 +33,26 @@ public class StartupperSettingsController {
         attivo = startupper.getAttivo();
     }
 
-    public String updateStartupper() {
+    public void updateStartupper() {
         Startupper startupper = startupperLoginController.getStartupper();
 
-        startupper.setEmail(email);
-        if (password != null && !password.equals(""))
-            startupperFacade.changePassword(startupper, password);
-        startupper.setDescrizione(descrizione);
-        startupper.setAttivo(attivo);
+        Startupper startupperWithSameEmail = startupperFacade.getStartupperByEmail(email);
 
-        startupperFacade.updateStartupper(startupper);
-        message = "profilo aggiornato con successo";
-        return "success";
+        if (startupperWithSameEmail == null ||
+                startupperWithSameEmail.getId().equals(startupperLoginController.getStartupper().getId())) {
+            startupper.setEmail(email);
+            if (password != null && !password.equals(""))
+                startupperFacade.changePassword(startupper, password);
+            startupper.setDescrizione(descrizione);
+            startupper.setAttivo(attivo);
+
+            startupperFacade.updateStartupper(startupper);
+            message = "profilo aggiornato con successo";
+            messageType = "success";
+        } else {
+            message = "errore: un utente con questa email è già presente";
+            messageType = "alert";
+        }
     }
 
     /**
@@ -83,5 +92,9 @@ public class StartupperSettingsController {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getMessageType() {
+        return messageType;
     }
 }

@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
 <ui:composition>
@@ -14,11 +13,6 @@
         <h:form>
             <div class="row">
                 <div class="small-12 medium-8 medium-offset-2 columns">
-                    <c:if test="#{not empty startupperSettingsController.message}">
-                        <div class="alert-box success" data-alert="true">
-                            <h:outputText value="${startupperSettingsController.message}" />
-                        </div>
-                    </c:if>
 
                     <label>Email
                         <h:inputText value='#{startupperSettingsController.email}'

@@ -25,6 +25,7 @@ public class StartupperLoginController implements Serializable {
         if (startupperAttempt != null && startupperFacade.checkPassword(startupperAttempt, password)) {
             this.startupper = startupperAttempt;
 
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("startupperProfileMessage", "login avvenuto con successo");
             return "success";
         } else {
             return "failure";

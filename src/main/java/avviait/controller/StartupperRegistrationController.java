@@ -2,6 +2,7 @@ package avviait.controller;
 
 import avviait.model.StartupperFacade;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,6 +21,8 @@ public class StartupperRegistrationController {
     public String createStartupper() {
         if (startupperFacade.getStartupperByEmail(email) == null) {
             startupperLoginController.setStartupper(startupperFacade.createStartupper(nome, cognome, email, password));
+
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("startupperProfileMessage", "registrazione avvenuta con successo");
             return "success";
         } else {
             return "failure";

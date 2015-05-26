@@ -7,11 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Calendar;
 
 @Named
@@ -29,8 +25,12 @@ public class StartupperProfileController {
     private String descrizione;
     private Boolean attivo;
 
+    private String message;
+
     @PostConstruct
     public void initStartupper() {
+        message =  (String) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("startupperProfileMessage");
+
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
             id = Long.valueOf(req.getParameter("id"));
@@ -113,5 +113,13 @@ public class StartupperProfileController {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
