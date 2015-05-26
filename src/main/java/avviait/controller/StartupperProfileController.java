@@ -25,12 +25,8 @@ public class StartupperProfileController {
     private String descrizione;
     private Boolean attivo;
 
-    private String message;
-
     @PostConstruct
     public void initStartupper() {
-        message =  (String) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("startupperProfileMessage");
-
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
             id = Long.valueOf(req.getParameter("id"));
@@ -113,13 +109,5 @@ public class StartupperProfileController {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

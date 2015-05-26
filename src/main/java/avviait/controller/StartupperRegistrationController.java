@@ -3,6 +3,7 @@ package avviait.controller;
 import avviait.model.StartupperFacade;
 
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,7 +23,11 @@ public class StartupperRegistrationController {
         if (startupperFacade.getStartupperByEmail(email) == null) {
             startupperLoginController.setStartupper(startupperFacade.createStartupper(nome, cognome, email, password));
 
-            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("startupperProfileMessage", "registrazione avvenuta con successo");
+            // add notification for Profile page
+            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("notification", "registrazione avvenuta con successo");
+            flash.put("notificationType", "success");
+
             return "success";
         } else {
             return "failure";

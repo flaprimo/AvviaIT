@@ -5,6 +5,8 @@ import avviait.model.StartupperFacade;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,9 +23,6 @@ public class StartupperSettingsController {
     private String password;
     private Boolean attivo;
 
-    private String message;
-    private String messageType;
-
     @PostConstruct
     private void initStartupper() {
         Startupper startupper = startupperLoginController.getStartupper();
@@ -38,6 +37,8 @@ public class StartupperSettingsController {
 
         Startupper startupperWithSameEmail = startupperFacade.getStartupperByEmail(email);
 
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+
         if (startupperWithSameEmail == null ||
                 startupperWithSameEmail.getId().equals(startupperLoginController.getStartupper().getId())) {
             startupper.setEmail(email);
@@ -47,11 +48,14 @@ public class StartupperSettingsController {
             startupper.setAttivo(attivo);
 
             startupperFacade.updateStartupper(startupper);
-            message = "profilo aggiornato con successo";
-            messageType = "success";
+
+            // add notification for Profile page
+            flash.put("notification", "profilo aggiornato con successo");
+            flash.put("notificationType", "success");
         } else {
-            message = "errore: un utente con questa email è già presente";
-            messageType = "alert";
+            // add notification for Profile page
+            flash.put("notification", "errore: un utente con questa email è già presente");
+            flash.put("notificationType", "alert");
         }
     }
 
@@ -88,13 +92,5 @@ public class StartupperSettingsController {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getMessageType() {
-        return messageType;
     }
 }

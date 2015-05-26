@@ -5,6 +5,7 @@ import avviait.model.StartupperFacade;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -25,7 +26,10 @@ public class StartupperLoginController implements Serializable {
         if (startupperAttempt != null && startupperFacade.checkPassword(startupperAttempt, password)) {
             this.startupper = startupperAttempt;
 
-            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("startupperProfileMessage", "login avvenuto con successo");
+            // add notification for Profile page
+            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("notification", "login avvenuto con successo");
+            flash.put("notificationType", "success");
             return "success";
         } else {
             return "failure";

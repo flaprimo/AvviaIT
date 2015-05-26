@@ -1,18 +1,12 @@
 <ui:composition template="/template/commonLayout.xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:c="http://java.sun.com/jsp/jstl/core">
+                xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="title">Impostazioni | AvviaIT</ui:define>
 
     <ui:define name="content">
         <div class="row">
             <div class="small-12 medium-8 medium-offset-2 columns">
-                <c:if test="#{not empty startupperSettingsController.message}">
-                    <div class="alert-box ${startupperSettingsController.messageType}" data-alert="true">
-                        ${startupperSettingsController.message}
-                        <a class="close" href=""><i class="fa fa-times"></i></a>
-                    </div>
-                </c:if>
+                <ui:include src="/template/notification.xhtml" />
 
                 <h1>Impostazioni</h1>
                 <hr />

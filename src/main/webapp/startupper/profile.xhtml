@@ -7,12 +7,7 @@
     <ui:define name="content">
         <div class="row">
             <div class="small-12 columns">
-                <c:if test="#{not empty startupperProfileController.message}">
-                    <div class="alert-box success" data-alert="true">
-                        ${startupperProfileController.message}
-                        <a class="close" href=""><i class="fa fa-times"></i></a>
-                    </div>
-                </c:if>
+                <ui:include src="/template/notification.xhtml" />
 
                 <h1>${startupperProfileController.nome} ${startupperProfileController.cognome}</h1>
                 <h3 class="subheader">${startupperProfileController.descrizione}</h3>
