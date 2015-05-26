@@ -62,7 +62,6 @@
         <from-view-id>/startupper/settings.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{startupperSettingsController.updateStartupper}</from-action>
-            <from-outcome>success</from-outcome>
             <to-view-id>/startupper/settings.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
