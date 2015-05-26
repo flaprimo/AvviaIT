@@ -18,13 +18,13 @@
                                 <i class="fa fa-cog"></i> Impostazioni profilo
                             </a>
                         </li>
-                    </c:if>
-                    <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
                         <li>
                             <a href="#" class="button tiny">
-                                <i class="fa fa-user-plus"></i> Aggiungi come amico
+                                <i class="fa fa-book"></i> Aggiungi skill
                             </a>
                         </li>
+                    </c:if>
+                    <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
                         <li>
                             <a href="#" class="button tiny">
                                 <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
@@ -37,6 +37,12 @@
                     <li><strong>Data Iscrizione:</strong> ${startupperProfileController.dataIscrizione.time}</li>
                     <li><strong>Account Attivo:</strong> ${startupperProfileController.attivo}</li>
                 </ul>
+
+                <h3>Startup</h3>
+
+                <h3>Skills</h3>
+
+                <h3>Giudizi</h3>
             </div>
         </div>
     </ui:define>

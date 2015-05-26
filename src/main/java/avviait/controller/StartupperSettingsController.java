@@ -4,10 +4,12 @@ import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
+@RequestScoped
 public class StartupperSettingsController {
     @Inject
     private StartupperLoginController startupperLoginController;
@@ -18,6 +20,8 @@ public class StartupperSettingsController {
     private String descrizione;
     private String password;
     private Boolean attivo;
+
+    private String message;
 
     @PostConstruct
     private void initStartupper() {
@@ -38,6 +42,7 @@ public class StartupperSettingsController {
         startupper.setAttivo(attivo);
 
         startupperFacade.updateStartupper(startupper);
+        message = "profilo aggiornato con successo";
         return "success";
     }
 
@@ -74,5 +79,9 @@ public class StartupperSettingsController {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
