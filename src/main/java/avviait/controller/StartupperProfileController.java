@@ -5,6 +5,7 @@ import avviait.model.StartupperFacade;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,10 @@ public class StartupperProfileController {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
             id = Long.valueOf(req.getParameter("id"));
+
+            // da usare per operazioni su startupper del profilo visualizzato
+            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+            flash.put("idStartupper", id);
         } catch (NumberFormatException e) {
             id = null;
         }

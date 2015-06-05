@@ -1,6 +1,5 @@
 package avviait.controller;
 
-import avviait.model.Giudizio;
 import avviait.model.GiudizioFacade;
 import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
@@ -26,19 +25,20 @@ public class GiudizioAddController {
     private String testo;
 
     public void createGiudizio() {
-        Startupper autore = startupperLoginController.getStartupper();
-        Startupper giudicato = startupperFacade.getStartupper(startupperProfileController.getId());
+        Long id;
 
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        id = (Long) flash.get("idStartupper");
 
-        Giudizio giudizio = giudizioFacade.createGiudizio(voto, titolo, testo, autore, giudicato);
+        Startupper autore = startupperLoginController.getStartupper();
+        Startupper giudicato = startupperFacade.getStartupper(id);
 
-        if (giudizio != null) {
-            // add success notification for Profile page
+        try {
+            giudizioFacade.createGiudizio(voto, titolo, testo, autore, giudicato);
+
             flash.put("notification", "giudizio aggiunto con successo");
             flash.put("notificationType", "success");
-        } else {
-            // add success notification for Profile page
+        } catch (Exception e) {
             flash.put("notification", "errore: aggiunta giudizio fallita");
             flash.put("notificationType", "alert");
         }

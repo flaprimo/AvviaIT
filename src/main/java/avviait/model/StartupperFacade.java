@@ -124,5 +124,15 @@ public class StartupperFacade  implements Serializable {
             e.printStackTrace();
         }
     }
+
+    public List getGiudiziDati(Startupper startupper) {
+        startupper = em.merge(startupper);
+        return startupper.getGiudiziDati();
+    }
+
+    public List getGiudiziRicevuti(Startupper startupper) {
+        startupper = em.merge(startupper);
+        return startupper.getGiudiziRicevuti();
+    }
 }
 

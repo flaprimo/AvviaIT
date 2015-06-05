@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<body>
+<ui:composition>
+
+    <f:subview id="listGiudizio">
+        <h4 class="subheader">Giudizi Ricevuti</h4>
+        <c:if test="#{empty giudizioListController.giudiziRicevuti}">
+            <p>Non sono ancora presenti giudizi ricevuti</p>
+        </c:if>
+        <c:if test="#{not empty giudizioListController.giudiziRicevuti}">
+            <ul class="small-block-grid-3">
+                <c:forEach var="giudizio" items="#{giudizioListController.giudiziRicevuti}">
+                    <li>
+                        <div class="panel">
+                            <h3>${giudizio.titolo}</h3>
+                            <p>
+                                valutazione:
+                                <c:forEach begin="1" end="${giudizio.voto}">
+                                    <i class="fa fa-star"></i>
+                                </c:forEach>
+                                <c:forEach begin="${giudizio.voto}" end="4">
+                                    <i class="fa fa-star-o"></i>
+                                </c:forEach>
+                            </p>
+                            <p>${giudizio.testo}</p>
+                            <p>
+                                giudizio espresso da:
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.autore.id}">
+                                    ${giudizio.autore.nome} ${giudizio.autore.cognome}
+                                </a>
+                            </p>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </c:if>
+
+        <h4 class="subheader">Giudizi Dati</h4>
+        <c:if test="#{empty giudizioListController.giudiziDati}">
+            <p>Non sono ancora presenti giudizi dati</p>
+        </c:if>
+        <c:if test="#{not empty giudizioListController.giudiziDati}">
+            <ul class="small-block-grid-3">
+                <c:forEach var="giudizio" items="#{giudizioListController.giudiziDati}">
+                    <li>
+                        <div class="panel">
+                            <h3>${giudizio.titolo}</h3>
+                            <p>
+                                valutazione:
+                                <c:forEach begin="1" end="${giudizio.voto}">
+                                    <i class="fa fa-star"></i>
+                                </c:forEach>
+                                <c:forEach begin="${giudizio.voto}" end="4">
+                                    <i class="fa fa-star-o"></i>
+                                </c:forEach>
+                            </p>
+                            <p>${giudizio.testo}</p>
+                            <p>
+                                giudizio riferito a:
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.giudicato.id}">
+                                    ${giudizio.giudicato.nome} ${giudizio.giudicato.cognome}
+                                </a>
+                            </p>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </c:if>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

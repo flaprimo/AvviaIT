@@ -1,9 +1,8 @@
 package avviait.model;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.inject.Inject;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -12,25 +11,26 @@ public class GiudizioFacade {
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;
 
+    @Inject
+    StartupperFacade startupperFacade;
+
     public GiudizioFacade() {
     }
 
-    public Giudizio createGiudizio(int voto, String titolo, String testo, Startupper autore, Startupper giudicato) {
-        Giudizio giudizio = null;
-
+    public Giudizio createGiudizio(int voto, String titolo, String testo, Startupper autore, Startupper giudicato)
+            throws PersistenceException {
         Calendar dataCreazione = new GregorianCalendar();
 
-        try {
-            giudizio = new Giudizio(voto, titolo, testo, dataCreazione, autore, giudicato);
+        Giudizio giudizio = new Giudizio(voto, titolo, testo, dataCreazione, autore, giudicato);
 
-            autore.getGiudiziDati().add(giudizio);
-            giudicato.getGiudiziRicevuti().add(giudizio);
+        //attach entities to Entity Manager
+        autore = em.merge(autore);
+        giudicato = em.merge(giudicato);
 
-            em.persist(giudizio);
-        } catch (Exception e) {
-            System.out.println("ERRORE: Persistenza nuovo Giudizio fallita");
-            e.printStackTrace();
-        }
+        autore.getGiudiziDati().add(giudizio);
+        giudicato.getGiudiziRicevuti().add(giudizio);
+
+        em.persist(giudizio);
 
         return giudizio;
     }
