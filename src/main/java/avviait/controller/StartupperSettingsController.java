@@ -49,11 +49,11 @@ public class StartupperSettingsController {
 
             startupperFacade.updateStartupper(startupper);
 
-            // add notification for Profile page
+            // add success notification for Profile page
             flash.put("notification", "profilo aggiornato con successo");
             flash.put("notificationType", "success");
         } else {
-            // add notification for Profile page
+            // add failure notification for Profile page
             flash.put("notification", "errore: un utente con questa email è già presente");
             flash.put("notificationType", "alert");
         }

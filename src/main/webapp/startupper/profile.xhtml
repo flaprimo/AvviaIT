@@ -28,7 +28,7 @@
                     </c:if>
                     <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
                         <li>
-                            <a href="#" class="button tiny">
+                            <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">
                                 <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
                             </a>
                         </li>
@@ -47,6 +47,10 @@
                 <h3>Giudizi</h3>
             </div>
         </div>
+    </ui:define>
+
+    <ui:define name="modal">
+        <ui:include src="/template/pages/startupper/addGiudizioModal.xhtml" />
     </ui:define>
 
 </ui:composition>
