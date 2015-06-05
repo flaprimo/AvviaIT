@@ -59,6 +59,12 @@ public class Startupper {
 
 	// Skill e voti skill
 	@ManyToMany
+    @JoinTable(
+            name = "Startupper_Skill",
+            joinColumns = {@JoinColumn(name="Startupper_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="Skill_id", referencedColumnName="id")},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"Startupper_id", "Skill_id"})}
+    )
 	private List<Skill> skillApprese;
 
 	@OneToMany(mappedBy = "autore")

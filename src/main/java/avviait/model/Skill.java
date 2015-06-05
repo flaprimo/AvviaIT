@@ -8,7 +8,9 @@ import java.util.List;
         @NamedQuery(name="findAllSkill", query="SELECT s FROM Skill s"),
         @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id"),
         @NamedQuery(name="findSkillOfAnnuncio", query="SELECT s FROM Skill s " +
-                "WHERE s.richiestaDaAnnuncioMembri.id = :id")
+                "WHERE s.richiestaDaAnnuncioMembri.id = :id"),
+        @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE s.nome = :nome")
+
 })
 public class Skill {
 
@@ -16,7 +18,7 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @ManyToMany(mappedBy = "skillApprese")

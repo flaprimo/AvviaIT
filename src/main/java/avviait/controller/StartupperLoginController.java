@@ -25,7 +25,6 @@ public class StartupperLoginController implements Serializable {
         Startupper startupperAttempt = startupperFacade.getStartupperByEmail(email);
         if (startupperAttempt != null && startupperFacade.checkPassword(startupperAttempt, password)) {
             this.startupper = startupperAttempt;
-
             // add notification for Profile page
             Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
             flash.put("notification", "login avvenuto con successo");

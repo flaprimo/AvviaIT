@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
+import java.util.List;
 
 @Named
 public class StartupperProfileController {
@@ -25,6 +26,11 @@ public class StartupperProfileController {
     private Calendar dataIscrizione;
     private String descrizione;
     private Boolean attivo;
+
+    private List giudiziDati;
+    private List giudiziRicevuti;
+
+    private List skill;
 
     @PostConstruct
     public void initStartupper() {
@@ -57,6 +63,9 @@ public class StartupperProfileController {
             dataIscrizione = startupper.getDataIscrizione();
             descrizione = startupper.getDescrizione();
             attivo = startupper.getAttivo();
+            giudiziDati = startupperFacade.getGiudiziDati(startupper);
+            giudiziRicevuti = startupperFacade.getGiudiziRicevuti(startupper);
+            skill = startupperFacade.getSkillApprese(startupper);
         }
     }
 
@@ -114,5 +123,17 @@ public class StartupperProfileController {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
+    }
+
+    public List getGiudiziDati() {
+        return giudiziDati;
+    }
+
+    public List getGiudiziRicevuti() {
+        return giudiziRicevuti;
+    }
+
+    public List getSkill() {
+        return skill;
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+<ui:composition>
+
+    <f:subview id="listSkill">
+        <c:if test="#{empty startupperProfileController.skill}">
+            <p>Nessuna skill inserita</p>
+        </c:if>
+        <c:if test="#{not empty startupperProfileController.skill}">
+            <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                <c:forEach var="skill" items="#{startupperProfileController.skill}">
+                    <li>
+                        <div class="panel">
+                            <h3>${skill.nome}</h3>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </c:if>
+        <c:if test="#{startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
+            <h:form>
+                <h:inputText
+                        value="#{startupperSkillController.nomeSkill}"
+                        id="nomeSkill"
+                        name="nomeSkill"
+                        required="true"
+                        requiredMessage="Inserisci il nome della skill"
+                        placeholder="Inserisci il nome della skill" />
+                <h:commandButton
+                    action="#{startupperSkillController.addSkill}"
+                    type="submit"
+                    value="Aggiungi" />
+
+            </h:form>
+        </c:if>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

@@ -134,5 +134,16 @@ public class StartupperFacade  implements Serializable {
         startupper = em.merge(startupper);
         return startupper.getGiudiziRicevuti();
     }
+
+    public List getSkillApprese(Startupper startupper) {
+        startupper = em.merge(startupper);
+        return startupper.getSkillApprese();
+    }
+
+    public void addSkillAppresa(Startupper startupper, Skill s) {
+        startupper = getStartupper(startupper.getId());
+        startupper.getSkillApprese().add(s);
+        updateStartupper(startupper);
+    }
 }
 

@@ -2,13 +2,15 @@ package avviait.model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
 @Stateless(name = "skillFacade")
-public class SkillFacade {
+public class SkillFacade implements Serializable {
 
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;
@@ -26,6 +28,18 @@ public class SkillFacade {
             e.printStackTrace();
         }
         return skill;
+    }
+
+    public Skill getOrCreateSkillNamed(String nome) {
+        Skill ret = null;
+        Query query = em.createNamedQuery("getNamedSkill");
+        query.setParameter("nome", nome);
+        try {
+            ret = (Skill) query.getSingleResult();
+        } catch (NoResultException e) {
+            ret = createSkill(nome);
+        }
+        return ret;
     }
 
     public Skill getSkill(Long id){
