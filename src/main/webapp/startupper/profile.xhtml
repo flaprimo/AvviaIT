@@ -13,27 +13,30 @@
                 <h3 class="subheader">${startupperProfileController.descrizione}</h3>
                 <hr />
 
-                <ul class="button-group">
-                    <c:if test="#{startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/startupper/settings.xhtml" class="button tiny">
-                                <i class="fa fa-cog"></i> Impostazioni profilo
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="button tiny">
-                                <i class="fa fa-book"></i> Aggiungi skill
-                            </a>
-                        </li>
-                    </c:if>
-                    <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
-                        <li>
-                            <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">
-                                <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
-                            </a>
-                        </li>
-                    </c:if>
-                </ul>
+                <c:if test="#{startupperLoginController.startupper.attivo}">
+                    <ul class="button-group">
+                        <c:if test="#{startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/startupper/settings.xhtml" class="button tiny">
+                                    <i class="fa fa-cog"></i> Impostazioni profilo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="button tiny">
+                                    <i class="fa fa-book"></i> Aggiungi skill
+                                </a>
+                            </li>
+                        </c:if>
+                        <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id) and
+                        startupperProfileController.attivo}">
+                            <li>
+                                <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">
+                                    <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </c:if>
                 <ul class="no-bullet">
                     <li><strong>Email:</strong> ${startupperProfileController.email}</li>
                     <li><strong>Data Iscrizione:</strong> ${startupperProfileController.dataIscrizione.time}</li>

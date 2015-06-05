@@ -14,7 +14,7 @@
             <p>Non sono ancora presenti giudizi ricevuti</p>
         </c:if>
         <c:if test="#{not empty giudizioListController.giudiziRicevuti}">
-            <ul class="small-block-grid-3">
+            <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
                 <c:forEach var="giudizio" items="#{giudizioListController.giudiziRicevuti}">
                     <li>
                         <div class="panel">
@@ -28,7 +28,27 @@
                                     <i class="fa fa-star-o"></i>
                                 </c:forEach>
                             </p>
+
+                            <c:if test="#{startupperLoginController.isLoggedStartupper(giudizio.autore.id) and
+                            startupperLoginController.startupper.attivo}">
+                                <ul class="button-group">
+                                    <li>
+                                        <a href="#" class="button tiny">
+                                            <i class="fa fa-pencil-square-o"></i> modifica
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="button tiny">
+                                            <i class="fa fa-trash-o"></i> cancella
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:if>
+
                             <p>${giudizio.testo}</p>
+
+                            <hr />
+
                             <p>
                                 giudizio espresso da:
                                 <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.autore.id}">
@@ -46,7 +66,7 @@
             <p>Non sono ancora presenti giudizi dati</p>
         </c:if>
         <c:if test="#{not empty giudizioListController.giudiziDati}">
-            <ul class="small-block-grid-3">
+            <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
                 <c:forEach var="giudizio" items="#{giudizioListController.giudiziDati}">
                     <li>
                         <div class="panel">
@@ -60,7 +80,27 @@
                                     <i class="fa fa-star-o"></i>
                                 </c:forEach>
                             </p>
+
+                            <c:if test="#{startupperLoginController.isLoggedStartupper(giudizio.autore.id) and
+                            startupperLoginController.startupper.attivo}">
+                                <ul class="button-group">
+                                    <li>
+                                        <a href="#" class="button tiny">
+                                            <i class="fa fa-pencil-square-o"></i> modifica
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="button tiny">
+                                            <i class="fa fa-trash-o"></i> cancella
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:if>
+
                             <p>${giudizio.testo}</p>
+
+                            <hr />
+
                             <p>
                                 giudizio riferito a:
                                 <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.giudicato.id}">
