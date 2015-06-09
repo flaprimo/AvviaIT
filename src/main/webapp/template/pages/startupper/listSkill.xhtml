@@ -23,22 +23,6 @@
                 </c:forEach>
             </ul>
         </c:if>
-        <c:if test="#{startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
-            <h:form>
-                <h:inputText
-                        value="#{startupperSkillController.nomeSkill}"
-                        id="nomeSkill"
-                        name="nomeSkill"
-                        required="true"
-                        requiredMessage="Inserisci il nome della skill"
-                        placeholder="Inserisci il nome della skill" />
-                <h:commandButton
-                    action="#{startupperSkillController.addSkill}"
-                    type="submit"
-                    value="Aggiungi" />
-
-            </h:form>
-        </c:if>
     </f:subview>
 
 </ui:composition>
