@@ -10,12 +10,12 @@
 
     <f:subview id="listGiudizio">
         <h4 class="subheader">Giudizi Ricevuti</h4>
-        <c:if test="#{empty profileController.giudiziRicevuti}">
+        <c:if test="#{empty startupperProfileController.giudiziRicevuti}">
             <p>Non sono ancora presenti giudizi ricevuti</p>
         </c:if>
-        <c:if test="#{not empty profileController.giudiziRicevuti}">
+        <c:if test="#{not empty startupperProfileController.giudiziRicevuti}">
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                <c:forEach var="giudizio" items="#{profileController.giudiziRicevuti}">
+                <c:forEach var="giudizio" items="#{startupperProfileController.giudiziRicevuti}">
                     <li>
                         <div class="panel">
                             <h3>${giudizio.titolo}</h3>
@@ -62,12 +62,12 @@
         </c:if>
 
         <h4 class="subheader">Giudizi Dati</h4>
-        <c:if test="#{empty profileController.giudiziDati}">
+        <c:if test="#{empty startupperProfileController.giudiziDati}">
             <p>Non sono ancora presenti giudizi dati</p>
         </c:if>
-        <c:if test="#{not empty profileController.giudiziDati}">
+        <c:if test="#{not empty startupperProfileController.giudiziDati}">
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                <c:forEach var="giudizio" items="#{profileController.giudiziDati}">
+                <c:forEach var="giudizio" items="#{startupperProfileController.giudiziDati}">
                     <li>
                         <div class="panel">
                             <h3>${giudizio.titolo}</h3>
