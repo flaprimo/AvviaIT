@@ -31,10 +31,10 @@ public class Giudizio {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataCreazione;
 
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne
     private Startupper autore;
 
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne
     private Startupper giudicato;
 
     public Giudizio() {

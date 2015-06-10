@@ -31,6 +31,7 @@ public class GiudizioFacade {
         giudicato.getGiudiziRicevuti().add(giudizio);
 
         em.persist(giudizio);
+        em.flush();
 
         return giudizio;
     }
