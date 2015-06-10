@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @Named
 @SessionScoped
-public class StartupperLoginController implements Serializable {
+public class StartupperSessionController implements Serializable {
     @Inject
     private StartupperFacade startupperFacade;
 

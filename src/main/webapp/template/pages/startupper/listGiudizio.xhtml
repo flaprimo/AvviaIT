@@ -30,8 +30,8 @@
                                 </c:forEach>
                             </p>
 
-                            <c:if test="#{startupperLoginController.isLoggedStartupper(giudizio.autore.id) and
-                            startupperLoginController.startupper.attivo}">
+                            <c:if test="#{startupperSessionController.isLoggedStartupper(giudizio.autore.id) and
+                            startupperSessionController.startupper.attivo}">
                                 <ul class="button-group">
                                     <li>
                                         <a href="#" class="button tiny">
@@ -82,8 +82,8 @@
                                 </c:forEach>
                             </p>
 
-                            <c:if test="#{startupperLoginController.isLoggedStartupper(giudizio.autore.id) and
-                            startupperLoginController.startupper.attivo}">
+                            <c:if test="#{startupperSessionController.isLoggedStartupper(giudizio.autore.id) and
+                            startupperSessionController.startupper.attivo}">
                                 <ul class="button-group">
                                     <li>
                                         <a href="#" class="button tiny">

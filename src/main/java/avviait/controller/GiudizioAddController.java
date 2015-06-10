@@ -16,7 +16,7 @@ public class GiudizioAddController {
     @Inject
     private StartupperFacade startupperFacade;
     @Inject
-    private StartupperLoginController startupperLoginController;
+    private StartupperSessionController startupperSessionController;
     @Inject
     private StartupperProfileController startupperProfileController;
 
@@ -30,7 +30,7 @@ public class GiudizioAddController {
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         id = (Long) flash.get("idStartupper");
 
-        Startupper autore = startupperLoginController.getStartupper();
+        Startupper autore = startupperSessionController.getStartupper();
         Startupper giudicato = startupperFacade.getStartupper(id);
 
         try {

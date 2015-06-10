@@ -13,9 +13,9 @@
                 <h3 class="subheader">${startupperProfileController.descrizione}</h3>
                 <hr />
 
-                <c:if test="#{startupperLoginController.startupper.attivo}">
+                <c:if test="#{startupperSessionController.startupper.attivo}">
                     <ul class="button-group">
-                        <c:if test="#{startupperLoginController.isLoggedStartupper(startupperProfileController.id)}">
+                        <c:if test="#{startupperSessionController.isLoggedStartupper(startupperProfileController.id)}">
                             <li>
                                 <a href="${pageContext.request.contextPath}/startupper/settings.xhtml" class="button tiny">
                                     <i class="fa fa-cog"></i> Impostazioni profilo
@@ -27,7 +27,7 @@
                                 </a>
                             </li>
                         </c:if>
-                        <c:if test="#{!startupperLoginController.isLoggedStartupper(startupperProfileController.id) and
+                        <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperProfileController.id) and
                         startupperProfileController.attivo}">
                             <li>
                                 <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">

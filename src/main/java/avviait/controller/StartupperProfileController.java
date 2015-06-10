@@ -17,7 +17,7 @@ public class StartupperProfileController {
     @Inject
     private StartupperFacade startupperFacade;
     @Inject
-    private StartupperLoginController startupperLoginController;
+    private StartupperSessionController startupperSessionController;
 
     private Long id;
     private String nome;
@@ -49,7 +49,7 @@ public class StartupperProfileController {
 
         if (id == null) {
             // initialize logged Startupper
-            startupper = startupperLoginController.getStartupper();
+            startupper = startupperSessionController.getStartupper();
         } else {
             // initialize other Startupper
             startupper = startupperFacade.getStartupper(id);

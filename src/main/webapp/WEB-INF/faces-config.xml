@@ -40,18 +40,18 @@
             <redirect>
                 <view-param>
                     <name>id</name>
-                    <value>#{startupperLoginController.startupper.id}</value>
+                    <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>
         </navigation-case>
         <navigation-case>
-            <from-action>#{startupperLoginController.loginStartupper}</from-action>
+            <from-action>#{startupperSessionController.loginStartupper}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
                 <view-param>
                     <name>id</name>
-                    <value>#{startupperLoginController.startupper.id}</value>
+                    <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>
         </navigation-case>
@@ -62,7 +62,24 @@
         <from-view-id>/startupper/settings.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{startupperSettingsController.updateStartupper}</from-action>
-            <to-view-id>/startupper/settings.xhtml</to-view-id>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Delete Giudizio -->
+    <navigation-rule>
+        <from-view-id>/giudizio/delete.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{giudizioDeleteController.deleteGiudizio}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{startupperSessionController.startupper.id}</value>
+                </view-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
 
@@ -70,7 +87,7 @@
     <navigation-rule>
         <from-view-id>/*</from-view-id>
         <navigation-case>
-            <if>#{!startupperLoginController.isStartupperLoggedIn()}</if>
+            <if>#{!startupperSessionController.isStartupperLoggedIn()}</if>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

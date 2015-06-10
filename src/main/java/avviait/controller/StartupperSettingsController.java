@@ -14,7 +14,7 @@ import javax.inject.Named;
 @RequestScoped
 public class StartupperSettingsController {
     @Inject
-    private StartupperLoginController startupperLoginController;
+    private StartupperSessionController startupperSessionController;
     @Inject
     private StartupperFacade startupperFacade;
 
@@ -25,22 +25,22 @@ public class StartupperSettingsController {
 
     @PostConstruct
     private void initStartupper() {
-        Startupper startupper = startupperLoginController.getStartupper();
+        Startupper startupper = startupperSessionController.getStartupper();
 
         email = startupper.getEmail();
         descrizione = startupper.getDescrizione();
         attivo = startupper.getAttivo();
     }
 
-    public void updateStartupper() {
-        Startupper startupper = startupperLoginController.getStartupper();
+    public String updateStartupper() {
+        Startupper startupper = startupperSessionController.getStartupper();
 
         Startupper startupperWithSameEmail = startupperFacade.getStartupperByEmail(email);
 
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
         if (startupperWithSameEmail == null ||
-                startupperWithSameEmail.getId().equals(startupperLoginController.getStartupper().getId())) {
+                startupperWithSameEmail.getId().equals(startupperSessionController.getStartupper().getId())) {
             startupper.setEmail(email);
             if (password != null && !password.equals(""))
                 startupperFacade.changePassword(startupper, password);
@@ -57,6 +57,8 @@ public class StartupperSettingsController {
             flash.put("notification", "errore: un utente con questa email è già presente");
             flash.put("notificationType", "alert");
         }
+
+        return "success";
     }
 
     /**

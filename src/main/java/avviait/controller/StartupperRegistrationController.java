@@ -12,7 +12,7 @@ public class StartupperRegistrationController {
     @Inject
     private StartupperFacade startupperFacade;
     @Inject
-    private StartupperLoginController startupperLoginController;
+    private StartupperSessionController startupperSessionController;
 
     private String nome;
     private String cognome;
@@ -21,7 +21,7 @@ public class StartupperRegistrationController {
 
     public String createStartupper() {
         if (startupperFacade.getStartupperByEmail(email) == null) {
-            startupperLoginController.setStartupper(startupperFacade.createStartupper(nome, cognome, email, password));
+            startupperSessionController.setStartupper(startupperFacade.createStartupper(nome, cognome, email, password));
 
             // add notification for Profile page
             Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();

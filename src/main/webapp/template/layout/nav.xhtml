@@ -17,7 +17,7 @@
 
         <section class="top-bar-section">
             <!-- Left Nav Section -->
-            <c:if test="#{startupperLoginController.isStartupperLoggedIn()}">
+            <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
                 <ul class="left">
                     <li>
                         <a href="${pageContext.request.contextPath}/startupper/list.xhtml">
@@ -29,12 +29,12 @@
 
             <!-- Right Nav Section -->
             <ul class="right">
-                <c:if test="#{startupperLoginController.isStartupperLoggedIn()}">
+                <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
                     <li class="has-dropdown">
-                        <a href="#">${startupperLoginController.startupper.nome} ${startupperLoginController.startupper.cognome}</a>
+                        <a href="#">${startupperSessionController.startupper.nome} ${startupperSessionController.startupper.cognome}</a>
                         <ul class="dropdown">
                             <li>
-                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${startupperLoginController.startupper.id}">
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${startupperSessionController.startupper.id}">
                                     <i class="fa fa-user"></i> Profilo
                                 </a>
                             </li>
@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                 </c:if>
-                <c:if test="#{!startupperLoginController.isStartupperLoggedIn()}">
+                <c:if test="#{!startupperSessionController.isStartupperLoggedIn()}">
                     <li class="has-form">
                         <ui:include src="${pageContext.request.contextPath}/template/layout/nav/startupperLoginForm.xhtml" />
                     </li>

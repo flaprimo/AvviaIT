@@ -13,7 +13,7 @@
         <h:form>
             <li class="has-form show-for-small-only" style="color: white">Login</li>
             <li class="has-form">
-                <h:inputText value='#{startupperLoginController.email}'
+                <h:inputText value='#{startupperSessionController.email}'
                          id="email"
                          name="email"
                          required="true"
@@ -21,7 +21,7 @@
                          style="#{component.valid ? '' : 'border-color: #DE2D0F;'}" />
             </li>
             <li class="has-form">
-                <h:inputSecret value='#{startupperLoginController.password}'
+                <h:inputSecret value='#{startupperSessionController.password}'
                              id="password"
                              name="password"
                              required="true"
@@ -29,7 +29,7 @@
                              style="#{component.valid ? '' : 'border-color: #DE2D0F;'}" />
             </li>
             <li class="has-form">
-                <h:commandButton action="#{startupperLoginController.loginStartupper}"
+                <h:commandButton action="#{startupperSessionController.loginStartupper}"
                                  class="button"
                                  value="Login" />
             </li>

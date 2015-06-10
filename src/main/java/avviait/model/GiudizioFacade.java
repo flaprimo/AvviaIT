@@ -83,4 +83,8 @@ public class GiudizioFacade {
             e.printStackTrace();
         }
     }
+
+    public boolean isAutoreGiudizio(Startupper startupper, Giudizio giudizio) {
+        return giudizio.getAutore().getId().equals(startupper.getId());
+    }
 }
