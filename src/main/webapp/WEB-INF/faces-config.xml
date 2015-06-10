@@ -83,6 +83,22 @@
         </navigation-case>
     </navigation-rule>
 
+    <!-- Update Giudizio -->
+    <navigation-rule>
+        <from-view-id>/giudizio/update.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{giudizioUpdateController.updateGiudizio}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{startupperSessionController.startupper.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
     <!-- Redirect after logout -->
     <navigation-rule>
         <from-view-id>/*</from-view-id>

@@ -13,7 +13,7 @@
         <h2>Aggiungi Giudizio</h2>
         <h:form>
             <label>Titolo
-                <h:inputText value='#{giudizioAddController.titolo}'
+                <h:inputText value='#{giudizioCreateController.titolo}'
                              id="titolo"
                              name="titolo"
                              required="true"
@@ -24,7 +24,7 @@
             </label>
 
             <label>Testo
-                <h:inputTextarea value='#{giudizioAddController.testo}'
+                <h:inputTextarea value='#{giudizioCreateController.testo}'
                                  name="testo"
                                  id="testo"
                                  placeholder="Inserisci il testo"
@@ -33,7 +33,7 @@
             </label>
 
             <label>Valutazione
-                <h:selectOneRadio value="#{giudizioAddController.voto}"
+                <h:selectOneRadio value="#{giudizioCreateController.voto}"
                                   required="true">
                     <f:selectItem itemValue="5" />
                     <f:selectItem itemValue="4" />
@@ -43,7 +43,7 @@
                 </h:selectOneRadio>
             </label>
 
-            <h:commandButton action="#{giudizioAddController.createGiudizio}"
+            <h:commandButton action="#{giudizioCreateController.createGiudizio}"
                              class="button"
                              value="Aggiungi Giudizio"/>
         </h:form>

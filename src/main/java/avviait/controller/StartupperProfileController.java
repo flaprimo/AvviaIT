@@ -33,7 +33,7 @@ public class StartupperProfileController {
     private List skill;
 
     @PostConstruct
-    public void initStartupper() {
+    private void initStartupper() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
             id = Long.valueOf(req.getParameter("id"));

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+<ui:composition>
+
+    <f:subview id="updateGiudizioForm">
+        <h:form>
+            <label>Titolo
+                <h:inputText value='#{giudizioUpdateController.titolo}'
+                             id="titolo"
+                             name="titolo"
+                             required="true"
+                             requiredMessage="Il titolo è necessario!"
+                             placeholder="Inserisci il titolo"
+                             class="#{component.valid ? '' : 'error'}" />
+                <h:message for="titolo" class="error" />
+            </label>
+
+            <label>Testo
+                <h:inputTextarea value='#{giudizioUpdateController.testo}'
+                                 name="testo"
+                                 id="testo"
+                                 placeholder="Inserisci il testo"
+                                 class="#{component.valid ? '' : 'error'}" />
+                <h:message for="testo" class="error" />
+            </label>
+
+            <label>Valutazione
+                <h:selectOneRadio value="#{giudizioUpdateController.voto}"
+                                  required="true">
+                    <f:selectItem itemValue="5" />
+                    <f:selectItem itemValue="4" />
+                    <f:selectItem itemValue="3" />
+                    <f:selectItem itemValue="2" />
+                    <f:selectItem itemValue="1" />
+                </h:selectOneRadio>
+            </label>
+
+            <input type="hidden" name="id" value="#{param['id']}" />
+
+            <h:commandButton action="#{giudizioUpdateController.updateGiudizio}"
+                             class="button"
+                             value="Modifica Giudizio"/>
+        </h:form>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

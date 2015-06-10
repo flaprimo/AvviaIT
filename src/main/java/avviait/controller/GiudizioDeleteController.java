@@ -1,5 +1,6 @@
 package avviait.controller;
 
+import avviait.model.Giudizio;
 import avviait.model.GiudizioFacade;
 
 import javax.faces.context.FacesContext;
@@ -21,9 +22,11 @@ public class GiudizioDeleteController {
 
         try {
             id = Long.valueOf(idString);
+            Giudizio giudizio = giudizioFacade.getGiudizio(id);
 
-            if (giudizioFacade.isAutoreGiudizio(startupperSessionController.getStartupper(),
-                    giudizioFacade.getGiudizio(id))) {
+            if (giudizio != null &&
+                    giudizioFacade.isAutoreGiudizio(startupperSessionController.getStartupper(), giudizio)) {
+
                 giudizioFacade.deleteGiudizio(id);
                 flash.put("notification", "Giudizio cancellato con successo");
                 flash.put("notificationType", "success");

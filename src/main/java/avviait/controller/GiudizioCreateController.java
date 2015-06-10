@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-public class GiudizioAddController {
+public class GiudizioCreateController {
     @Inject
     private GiudizioFacade giudizioFacade;
     @Inject
