@@ -87,21 +87,57 @@ public class SkillFacadeTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void getAllSkillForStartupperTest() {
-        Startupper user = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+        Startupper user1 = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+        Startupper user2 = startupperFacade.createStartupper("Luigi", "Verdi", "luigi.verdi@gmail.com", "def");
+
         Skill[] skills = new Skill[] {
                 skillFacade.createSkill("JPA"),
                 skillFacade.createSkill("JSP"),
                 skillFacade.createSkill("EJB")
         };
 
-        user.getSkillApprese().add(skills[0]);
-        user.getSkillApprese().add(skills[2]);
+        startupperFacade.addSkillAppresa(user1, skills[0]);
+        startupperFacade.addSkillAppresa(user1, skills[2]);
+        startupperFacade.addSkillAppresa(user2, skills[1]);
+        startupperFacade.addSkillAppresa(user2, skills[2]);
 
-        List<Skill> returned = skillFacade.getAllSkillOfStartupper(user);
+        List<Skill> returnedUser1 = skillFacade.getAllSkillOfStartupper(user1);
+        List<Skill> returnedUser2 = skillFacade.getAllSkillOfStartupper(user2);
 
-        assertTrue(searchSkill(returned, skills[0]));
-        assertFalse(searchSkill(returned, skills[1]));
-        assertTrue(searchSkill(returned, skills[2]));
+        assertTrue(searchSkill(returnedUser1, skills[0]));
+        assertFalse(searchSkill(returnedUser1, skills[1]));
+        assertTrue(searchSkill(returnedUser1, skills[2]));
+        assertFalse(searchSkill(returnedUser2, skills[0]));
+        assertTrue(searchSkill(returnedUser2, skills[1]));
+        assertTrue(searchSkill(returnedUser2, skills[2]));
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void getAllSkillNotAcquiredTest() {
+        Startupper user1 = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+        Startupper user2 = startupperFacade.createStartupper("Luigi", "Verdi", "luigi.verdi@gmail.com", "def");
+
+        Skill[] skills = new Skill[] {
+                skillFacade.createSkill("JPA"),
+                skillFacade.createSkill("JSP"),
+                skillFacade.createSkill("EJB")
+        };
+
+        startupperFacade.addSkillAppresa(user1, skills[0]);
+        startupperFacade.addSkillAppresa(user1, skills[2]);
+        startupperFacade.addSkillAppresa(user2, skills[1]);
+        startupperFacade.addSkillAppresa(user2, skills[2]);
+
+        List<Skill> returnedUser1 = skillFacade.getAllSkillNotAcquired(user1);
+        List<Skill> returnedUser2 = skillFacade.getAllSkillNotAcquired(user2);
+
+        assertFalse(searchSkill(returnedUser1, skills[0]));
+        assertTrue(searchSkill(returnedUser1, skills[1]));
+        assertFalse(searchSkill(returnedUser1, skills[2]));
+        assertTrue(searchSkill(returnedUser2, skills[0]));
+        assertFalse(searchSkill(returnedUser2, skills[1]));
+        assertFalse(searchSkill(returnedUser2, skills[2]));
     }
 
     private Startupper startupper;
