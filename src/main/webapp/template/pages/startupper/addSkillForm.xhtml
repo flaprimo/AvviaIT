@@ -11,18 +11,8 @@
 <ui:composition>
 
     <f:subview id="addSkillForm">
-        <h2>Aggiungi Skill</h2>
+        <h2>Seleziona la skill dalla lista</h2>
         <h:form>
-            <label id="nomeSkillLabel">Nome
-                <h:inputText value='#{startupperSkillController.nomeSkill}'
-                             id="nomeSkill"
-                             name="titolo"
-                             required="true"
-                             requiredMessage="Il titolo è necessario!"
-                             placeholder="Inserisci il titolo"
-                             class="#{component.valid ? '' : 'error'}" />
-                <h:message for="titolo" class="error" />
-            </label>
 
             <div id="skillSchooser">
                 <ul>
@@ -31,6 +21,17 @@
                     </c:forEach>
                 </ul>
             </div>
+
+            <label id="nomeSkillLabel">Oppure digita qui un nome personalizzato
+                <h:inputText value='#{startupperSkillController.nomeSkill}'
+                             id="nomeSkill"
+                             name="titolo"
+                             required="true"
+                             requiredMessage="Il titolo è necessario!"
+                             placeholder="Nome skill"
+                             class="#{component.valid ? '' : 'error'}" />
+                <h:message for="nomeSkill" class="error" />
+            </label>
 
             <h:commandButton action="#{startupperSkillController.addSkill}"
                              class="button"

@@ -1,20 +1,31 @@
 /* Lista Skill */
 #skillSchooser {
-    border: 1px solid black;
-    border-radius: 3px;
-    height: 300px;
+    /*border: 1px solid black;
+    border-radius: 3px;*/
+    height: 400px;
     overflow: auto;
+    /*margin: 0 -30px 16px -30px;*/
+    margin-bottom: 16px;
+    padding: 0 0;
+    background: #eee;
 }
 #skillSchooser ul {
     margin: 0;
+    list-style-type: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D8D8D8;
 }
 #skillSchooser li {
     cursor: pointer;
-    line-height: 2em;
-    margin: 3px 0;
+    line-height: 2.1em;
+    padding: 0 42px;
     padding: 0 12px;
 }
-#skillSchooser li:nth-child(even) {
+#skillSchooser li:nth-child(odd) {
     background: #ccc;
 }
-
+#skillSchooser li:HOVER {
+    background-color: #008CBA;
+    color: white;
+}

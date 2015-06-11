@@ -8,7 +8,7 @@ import java.util.List;
         @NamedQuery(name="findAllSkill", query="SELECT s FROM Skill s"),
         @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id "),
         @NamedQuery(name = "findSkillNotAcquired", query = "SELECT s FROM Skill s " +
-                "WHERE :startupper NOT MEMBER OF s.appresaDa"),
+                "WHERE :startupper NOT MEMBER OF s.appresaDa ORDER BY s.nome"),
         @NamedQuery(name="findSkillOfAnnuncio", query="SELECT s FROM Skill s " +
                 "WHERE s.richiestaDaAnnuncioMembri.id = :id"),
         @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE LOWER(s.nome) = LOWER(:nome)")
