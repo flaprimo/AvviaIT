@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <body>
 <ui:composition>
@@ -12,9 +13,9 @@
     <f:subview id="addSkillForm">
         <h2>Aggiungi Skill</h2>
         <h:form>
-            <label>Nome
+            <label id="nomeSkillLabel">Nome
                 <h:inputText value='#{startupperSkillController.nomeSkill}'
-                             id="titolo"
+                             id="nomeSkill"
                              name="titolo"
                              required="true"
                              requiredMessage="Il titolo è necessario!"
@@ -22,6 +23,14 @@
                              class="#{component.valid ? '' : 'error'}" />
                 <h:message for="titolo" class="error" />
             </label>
+
+            <div id="skillSchooser">
+                <ul>
+                    <c:forEach var="skill" items="#{startupperProfileController.listaCompletaSkill}">
+                        <li>${skill.nome}</li>
+                    </c:forEach>
+                </ul>
+            </div>
 
             <h:commandButton action="#{startupperSkillController.addSkill}"
                              class="button"

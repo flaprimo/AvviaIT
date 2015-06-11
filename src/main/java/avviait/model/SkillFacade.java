@@ -21,7 +21,7 @@ public class SkillFacade implements Serializable {
     public Skill createSkill(String nome){
         Skill skill = null;
         try {
-            skill = new Skill(nome);
+            skill = new Skill(nome.toLowerCase());
             em.persist(skill);
         } catch (Exception e) {
             System.out.println("ERRORE: Persistenza nuova Skill fallita");

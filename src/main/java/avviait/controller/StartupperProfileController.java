@@ -1,5 +1,7 @@
 package avviait.controller;
 
+import avviait.model.Skill;
+import avviait.model.SkillFacade;
 import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
 
@@ -18,6 +20,8 @@ public class StartupperProfileController {
     private StartupperFacade startupperFacade;
     @Inject
     private StartupperSessionController startupperSessionController;
+    @Inject
+    private SkillFacade skillFacade;
 
     private Long id;
     private String nome;
@@ -31,6 +35,8 @@ public class StartupperProfileController {
     private List giudiziRicevuti;
 
     private List skill;
+
+    private List<Skill> listaCompletaSkill;
 
     @PostConstruct
     private void initStartupper() {
@@ -50,9 +56,15 @@ public class StartupperProfileController {
         if (id == null) {
             // initialize logged Startupper
             startupper = startupperSessionController.getStartupper();
+            id = startupper.getId();
         } else {
             // initialize other Startupper
             startupper = startupperFacade.getStartupper(id);
+        }
+
+        if (startupperSessionController.isLoggedStartupper(id)) {
+            listaCompletaSkill = skillFacade.getAllSkill();
+            System.out.println(listaCompletaSkill);
         }
 
         if (startupper != null) {
@@ -135,5 +147,9 @@ public class StartupperProfileController {
 
     public List getSkill() {
         return skill;
+    }
+
+    public List<Skill> getListaCompletaSkill() {
+        return listaCompletaSkill;
     }
 }
