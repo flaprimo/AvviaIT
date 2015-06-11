@@ -6,10 +6,12 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name="findAllSkill", query="SELECT s FROM Skill s"),
-        @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id"),
+        @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id "),
+        @NamedQuery(name = "findSkillNotAcquired", query = "SELECT s FROM Skill s " +
+                "WHERE :startupper NOT MEMBER OF s.appresaDa"),
         @NamedQuery(name="findSkillOfAnnuncio", query="SELECT s FROM Skill s " +
                 "WHERE s.richiestaDaAnnuncioMembri.id = :id"),
-        @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE LOWER(s.nome) = :nome")
+        @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE LOWER(s.nome) = LOWER(:nome)")
 
 })
 public class Skill {

@@ -9,6 +9,9 @@
             var value = $(this).html();
             $nomeSkillLabel.val(value);
         });
+        $("#addSkillShow").click(function() {
+            $nomeSkillLabel.val("");
+        });
     }
 
     $(window).ready(onDocumentLoad);

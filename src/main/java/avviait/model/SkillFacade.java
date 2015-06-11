@@ -21,7 +21,7 @@ public class SkillFacade implements Serializable {
     public Skill createSkill(String nome){
         Skill skill = null;
         try {
-            skill = new Skill(nome.toLowerCase());
+            skill = new Skill(nome);
             em.persist(skill);
         } catch (Exception e) {
             System.out.println("ERRORE: Persistenza nuova Skill fallita");
@@ -75,6 +75,14 @@ public class SkillFacade implements Serializable {
             System.out.println("ERRORE: Query \"findSkillOfStartupper\" fallita");
             e.printStackTrace();
         }
+        return skillList;
+    }
+
+    public List<Skill> getAllSkillNotAcquired(Startupper startupper) {
+        List<Skill> skillList = null;
+        Query query = em.createNamedQuery("findSkillNotAcquired");
+        query.setParameter("startupper", startupper);
+        skillList = query.getResultList();
         return skillList;
     }
 

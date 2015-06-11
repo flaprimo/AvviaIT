@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 @Named
@@ -34,7 +35,7 @@ public class StartupperProfileController {
     private List giudiziDati;
     private List giudiziRicevuti;
 
-    private List skill;
+    private List<Skill> skill;
 
     private List<Skill> listaCompletaSkill;
 
@@ -62,11 +63,6 @@ public class StartupperProfileController {
             startupper = startupperFacade.getStartupper(id);
         }
 
-        if (startupperSessionController.isLoggedStartupper(id)) {
-            listaCompletaSkill = skillFacade.getAllSkill();
-            System.out.println(listaCompletaSkill);
-        }
-
         if (startupper != null) {
             id = startupper.getId();
             nome = startupper.getNome();
@@ -78,6 +74,10 @@ public class StartupperProfileController {
             giudiziDati = startupperFacade.getGiudiziDati(startupper);
             giudiziRicevuti = startupperFacade.getGiudiziRicevuti(startupper);
             skill = startupperFacade.getSkillApprese(startupper);
+        }
+
+        if (startupperSessionController.isLoggedStartupper(id)) {
+            listaCompletaSkill = skillFacade.getAllSkillNotAcquired(startupper);
         }
     }
 
