@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import avviait.exceptions.AlreadyExists;
 import avviait.helper.StringHashing;
 
 @Stateless
@@ -140,9 +141,11 @@ public class StartupperFacade  implements Serializable {
         return startupper.getSkillApprese();
     }
 
-    public void addSkillAppresa(Startupper startupper, Skill s) {
+    public void addSkillAppresa(Startupper startupper, Skill s) throws AlreadyExists {
         startupper = getStartupper(startupper.getId());
-        startupper.getSkillApprese().add(s);
+        List<Skill> list = startupper.getSkillApprese();
+        if (list.contains(s)) throw new AlreadyExists();
+        list.add(s);
         updateStartupper(startupper);
     }
 }
