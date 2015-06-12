@@ -1,4 +1,6 @@
-package avviait.controller;
+package avviait.filter;
+
+import avviait.controller.StartupperSessionController;
 
 import javax.inject.Inject;
 import javax.servlet.*;

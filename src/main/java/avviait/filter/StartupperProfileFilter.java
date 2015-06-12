@@ -1,4 +1,4 @@
-package avviait.controller;
+package avviait.filter;
 
 import avviait.model.StartupperFacade;
 

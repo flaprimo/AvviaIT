@@ -30,7 +30,7 @@
                         <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperProfileController.id) and
                         startupperProfileController.attivo}">
                             <li>
-                                <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">
+                                <a href="#" data-reveal-id="createGiudizioModal" class="button tiny">
                                     <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
                                 </a>
                             </li>
@@ -59,7 +59,9 @@
     </ui:define>
 
     <ui:define name="modal">
-        <ui:include src="/template/pages/startupper/createGiudizioModal.xhtml" />
+        <c:if test="#{not startupperSessionController.isLoggedStartupper(startupperProfileController.id)}">
+            <ui:include src="/template/pages/startupper/createGiudizioModal.xhtml" />
+        </c:if>
         <ui:include src="/template/pages/startupper/addSkillModal.xhtml" />
     </ui:define>
 

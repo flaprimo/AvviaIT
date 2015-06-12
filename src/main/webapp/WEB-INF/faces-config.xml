@@ -67,11 +67,11 @@
         </navigation-case>
     </navigation-rule>
 
-    <!-- Delete Giudizio -->
+    <!-- Giudizio -->
     <navigation-rule>
         <from-view-id>/giudizio/delete.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{giudizioDeleteController.deleteGiudizio}</from-action>
+            <from-action>#{giudizioController.deleteGiudizio}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
@@ -83,11 +83,10 @@
         </navigation-case>
     </navigation-rule>
 
-    <!-- Update Giudizio -->
     <navigation-rule>
         <from-view-id>/giudizio/update.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{giudizioUpdateController.updateGiudizio}</from-action>
+            <from-action>#{giudizioController.updateGiudizio}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
@@ -105,6 +104,7 @@
         <navigation-case>
             <if>#{!startupperSessionController.isStartupperLoggedIn()}</if>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
     </navigation-rule>
 </faces-config>
