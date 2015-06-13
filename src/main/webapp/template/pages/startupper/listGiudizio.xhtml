@@ -11,12 +11,12 @@
 
     <f:subview id="listGiudizio">
         <h4 class="subheader">Giudizi Ricevuti</h4>
-        <c:if test="#{empty startupperProfileController.giudiziRicevuti}">
+        <c:if test="#{empty startupperController.giudiziRicevuti}">
             <p>Non sono ancora presenti giudizi ricevuti</p>
         </c:if>
-        <c:if test="#{not empty startupperProfileController.giudiziRicevuti}">
+        <c:if test="#{not empty startupperController.giudiziRicevuti}">
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                <c:forEach var="giudizio" items="#{startupperProfileController.giudiziRicevuti}">
+                <c:forEach var="giudizio" items="#{startupperController.giudiziRicevuti}">
                     <li>
                         <div class="panel">
                             <h3>${giudizio.titolo}</h3>
@@ -52,7 +52,7 @@
 
                             <p>
                                 giudizio espresso da:
-                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.autore.id}">
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?startupper=${giudizio.autore.id}">
                                     ${giudizio.autore.nome} ${giudizio.autore.cognome}
                                 </a>
                             </p>
@@ -63,12 +63,12 @@
         </c:if>
 
         <h4 class="subheader">Giudizi Dati</h4>
-        <c:if test="#{empty startupperProfileController.giudiziDati}">
+        <c:if test="#{empty startupperController.giudiziDati}">
             <p>Non sono ancora presenti giudizi dati</p>
         </c:if>
-        <c:if test="#{not empty startupperProfileController.giudiziDati}">
+        <c:if test="#{not empty startupperController.giudiziDati}">
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                <c:forEach var="giudizio" items="#{startupperProfileController.giudiziDati}">
+                <c:forEach var="giudizio" items="#{startupperController.giudiziDati}">
                     <li>
                         <div class="panel">
                             <h3>${giudizio.titolo}</h3>
@@ -104,7 +104,7 @@
 
                             <p>
                                 giudizio riferito a:
-                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${giudizio.giudicato.id}">
+                                <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?startupper=${giudizio.giudicato.id}">
                                     ${giudizio.giudicato.nome} ${giudizio.giudicato.cognome}
                                 </a>
                             </p>

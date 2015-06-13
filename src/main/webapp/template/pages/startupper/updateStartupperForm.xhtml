@@ -9,13 +9,13 @@
 <body>
 <ui:composition>
 
-    <f:subview id="settingsStartupper">
+    <f:subview id="updateStartupperForm">
         <h:form>
             <div class="row">
                 <div class="small-12 medium-8 medium-offset-2 columns">
 
                     <label>Email
-                        <h:inputText value='#{startupperSettingsController.email}'
+                        <h:inputText value='#{startupperController.email}'
                                      name="email"
                                      id="email"
                                      required="true"
@@ -27,7 +27,7 @@
                     </label>
 
                     <label>Descrizione
-                        <h:inputTextarea value='#{startupperSettingsController.descrizione}'
+                        <h:inputTextarea value='#{startupperController.descrizione}'
                                          name="descrizione"
                                          id="descrizione"
                                          class="#{component.valid ? '' : 'error'}" />
@@ -35,7 +35,7 @@
                     </label>
 
                     <label>Password
-                        <h:inputSecret value='#{startupperSettingsController.password}'
+                        <h:inputSecret value='#{startupperController.plainPassword}'
                                        name="password"
                                        id="password"
                                        class="#{component.valid ? '' : 'error'}" />
@@ -44,13 +44,13 @@
 
                     <label>Attivo</label>
                     <div class="switch">
-                        <h:selectBooleanCheckbox value="#{startupperSettingsController.attivo}"
+                        <h:selectBooleanCheckbox value="#{startupperController.attivo}"
                                                  id="attivo"
                                                  name="attivo"/>
                         <h:outputLabel value="" for="attivo" />
                     </div>
 
-                    <h:commandButton action="#{startupperSettingsController.updateStartupper}"
+                    <h:commandButton action="#{startupperController.updateStartupper}"
                                      class="button"
                                      value="Salva modifiche" />
                 </div>

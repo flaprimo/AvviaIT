@@ -34,12 +34,12 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{startupperRegistrationController.createStartupper}</from-action>
+            <from-action>#{startupperController.createStartupper}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
                 <view-param>
-                    <name>id</name>
+                    <name>startupper</name>
                     <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>
@@ -50,7 +50,7 @@
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
                 <view-param>
-                    <name>id</name>
+                    <name>startupper</name>
                     <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>
@@ -61,7 +61,7 @@
     <navigation-rule>
         <from-view-id>/startupper/settings.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{startupperSettingsController.updateStartupper}</from-action>
+            <from-action>#{startupperController.updateStartupper}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/startupper/profile.xhtml</to-view-id>
         </navigation-case>
@@ -76,7 +76,7 @@
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
                 <view-param>
-                    <name>id</name>
+                    <name>startupper</name>
                     <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>
@@ -91,7 +91,7 @@
             <to-view-id>/startupper/profile.xhtml</to-view-id>
             <redirect>
                 <view-param>
-                    <name>id</name>
+                    <name>startupper</name>
                     <value>#{startupperSessionController.startupper.id}</value>
                 </view-param>
             </redirect>

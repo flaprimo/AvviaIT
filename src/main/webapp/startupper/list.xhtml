@@ -12,9 +12,9 @@
         </div>
         <div class="row">
             <div class="small-12 columns">
-                <c:forEach var="startupper" items="#{startupperListController.startupperList}">
+                <c:forEach var="startupper" items="#{startupperController.startupperList}">
                     <div class="panel">
-                        <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?id=${startupper.id}">
+                        <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?startupper=${startupper.id}">
                             <h3>${startupper.nome} ${startupper.cognome}</h3>
                         </a>
                         <span>${startupper.descrizione}</span>

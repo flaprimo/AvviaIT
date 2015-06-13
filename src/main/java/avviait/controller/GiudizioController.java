@@ -11,7 +11,6 @@ import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @Named
 public class GiudizioController {
@@ -30,29 +29,19 @@ public class GiudizioController {
     private int voto;
 
     @PostConstruct
-    private void initGiudizioControllerByRequest() {
+    private void initGiudizioController() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        Map reqParameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
-        // check for giudizio in url (GET)
+        // check for giudizio in request
         try {
             id = Long.valueOf(req.getParameter("giudizio"));
-        } catch (NumberFormatException e1) {
 
-            // check for giudizio in html form
-            try {
-                id = Long.valueOf((String) reqParameterMap.get("id"));
-            } catch (NumberFormatException e2) {
-                e2.printStackTrace();
-            }
-        }
-
-        if (id != null) {
             giudizio = giudizioFacade.getGiudizio(id);
 
             titolo = giudizio.getTitolo();
             testo = giudizio.getTesto();
             voto = giudizio.getVoto();
+        } catch (NumberFormatException e) {
         }
     }
 
