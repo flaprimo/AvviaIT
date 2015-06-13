@@ -29,3 +29,19 @@
     background-color: #008CBA;
     color: white;
 }
+#listSkill li {
+    height: auto;
+    padding-bottom: 0;
+    margin-bottom: 12px;
+}
+#listSkill .panel {
+    padding: 0 10px;
+    margin: 0;
+}
+#listSkill .panel span {
+    line-height: 2em;
+}
+#listSkill .panel span.right {
+    line-height: 2em;
+    float: right;
+}

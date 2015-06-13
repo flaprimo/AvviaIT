@@ -1,10 +1,12 @@
 package avviait.model;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -16,6 +18,9 @@ import avviait.helper.StringHashing;
 public class StartupperFacade  implements Serializable {
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;
+
+    @Inject
+    private StartupperSkillFacade startupperSkillFacade;
 
     public StartupperFacade() {
     }
@@ -136,17 +141,27 @@ public class StartupperFacade  implements Serializable {
         return startupper.getGiudiziRicevuti();
     }
 
-    public List getSkillApprese(Startupper startupper) {
+    public List<StartupperSkill> getSkillApprese(Startupper startupper) {
         startupper = em.merge(startupper);
-        return startupper.getSkillApprese();
+        return startupper.getSkillPossedute();
     }
 
-    public void addSkillAppresa(Startupper startupper, Skill s) throws AlreadyExists {
+    public void addSkillAppresa(Startupper startupper, Skill skill) throws AlreadyExists {
         startupper = getStartupper(startupper.getId());
-        List<Skill> list = startupper.getSkillApprese();
-        if (list.contains(s)) throw new AlreadyExists();
-        list.add(s);
+        List<StartupperSkill> list = startupper.getSkillPossedute();
+
+        for (StartupperSkill startupperSkill : list)
+            if (startupperSkill.getSkillAssociata().getId() == skill.getId())
+                throw new AlreadyExists();
+
+        StartupperSkill startupperSkill = startupperSkillFacade.createStartupperSkill(startupper, skill);
+        list.add(startupperSkill);
         updateStartupper(startupper);
+    }
+
+    public List<StartupperSkill> getSkillVotate(Startupper startupper) {
+        startupper = getStartupper(startupper.getId());
+        return startupper.getSkillVotate();
     }
 }
 

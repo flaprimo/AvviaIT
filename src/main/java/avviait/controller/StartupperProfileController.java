@@ -1,21 +1,19 @@
 package avviait.controller;
 
-import avviait.model.Skill;
-import avviait.model.SkillFacade;
-import avviait.model.Startupper;
-import avviait.model.StartupperFacade;
+import avviait.model.*;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 @Named
+@RequestScoped
 public class StartupperProfileController {
     @Inject
     private StartupperFacade startupperFacade;
@@ -35,7 +33,7 @@ public class StartupperProfileController {
     private List giudiziDati;
     private List giudiziRicevuti;
 
-    private List<Skill> skill;
+    private List<StartupperSkill> startupperSkills;
 
     private List<Skill> listaCompletaSkill;
 
@@ -73,7 +71,7 @@ public class StartupperProfileController {
             attivo = startupper.getAttivo();
             giudiziDati = startupperFacade.getGiudiziDati(startupper);
             giudiziRicevuti = startupperFacade.getGiudiziRicevuti(startupper);
-            skill = startupperFacade.getSkillApprese(startupper);
+            startupperSkills = startupperFacade.getSkillApprese(startupper);
         }
 
         if (startupperSessionController.isLoggedStartupper(id)) {
@@ -145,8 +143,8 @@ public class StartupperProfileController {
         return giudiziRicevuti;
     }
 
-    public List getSkill() {
-        return skill;
+    public List getStartupperSkills() {
+        return startupperSkills;
     }
 
     public List<Skill> getListaCompletaSkill() {

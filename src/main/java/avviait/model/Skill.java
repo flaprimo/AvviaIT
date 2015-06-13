@@ -6,12 +6,22 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name="findAllSkill", query="SELECT s FROM Skill s"),
-        @NamedQuery(name="findSkillOfStartupper", query="SELECT s FROM Skill s WHERE s.appresaDa.id = :id "),
-        @NamedQuery(name = "findSkillNotAcquired", query = "SELECT s FROM Skill s " +
-                "WHERE :startupper NOT MEMBER OF s.appresaDa ORDER BY s.nome"),
+        @NamedQuery(name="findSkillOfStartupper", query=
+                "SELECT s " +
+                "FROM Skill s, Startupper startupper " +
+                "WHERE startupper.id = :startupper " +
+                "AND s.startupperSkillAssociate MEMBER OF startupper.skillPossedute"),
         @NamedQuery(name="findSkillOfAnnuncio", query="SELECT s FROM Skill s " +
                 "WHERE s.richiestaDaAnnuncioMembri.id = :id"),
-        @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE LOWER(s.nome) = LOWER(:nome)")
+        @NamedQuery(name="getNamedSkill", query = "SELECT s FROM Skill s WHERE LOWER(s.nome) = LOWER(:nome)"),
+        @NamedQuery(name = "findSkillNotAcquired", query =
+            "SELECT s " +
+            "FROM Skill s " +
+            "WHERE (SELECT count(startupperSkill) " +
+                    "FROM StartupperSkill startupperSkill " +
+                    "WHERE startupperSkill.skillAssociata = s " +
+                    "AND startupperSkill.startupperProprietario = :startupper) = 0 " +
+            "ORDER BY s.nome"),
 
 })
 public class Skill {
@@ -23,8 +33,8 @@ public class Skill {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @ManyToMany(mappedBy = "skillApprese")
-    private List<Startupper> appresaDa;
+    @OneToMany(mappedBy = "skillAssociata")
+    private List<StartupperSkill> startupperSkillAssociate;
 
     @ManyToMany(mappedBy = "skillRichieste")
     private List<AnnuncioMembri> richiestaDaAnnuncioMembri;
@@ -46,10 +56,6 @@ public class Skill {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Startupper> getAppresaDa() {
-        return appresaDa;
     }
 
     public List<AnnuncioMembri> getRichiestaDaAnnuncioMembri() {
