@@ -88,4 +88,16 @@ public class StartupFacadeTest {
         List<Startupper> membri = startupFacade.getMembri(startup);
         assertFalse(membri.isEmpty());
     }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testUpdateStartup() throws Exception {
+        setUp();
+        startup.setDescrizione("nuova descrizione");
+        startup.setAttiva(false);
+        startupFacade.updateStartup(startup);
+        Startup startupAggiornata = startupFacade.getStartup("AvviaIT");
+        assertTrue(startupAggiornata.getDescrizione().equals("nuova descrizione"));
+        assertFalse(startupAggiornata.isAttiva());
+    }
 }

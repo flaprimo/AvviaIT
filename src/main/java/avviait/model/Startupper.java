@@ -48,13 +48,13 @@ public class Startupper {
 	@OneToMany(mappedBy = "giudicato")
 	private List<Giudizio> giudiziRicevuti;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Startup> startupAmministrate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Startup> startupAttuali;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Startup> startupPassate;
 
 	// Skill e voti skill
@@ -202,4 +202,14 @@ public class Startupper {
 				'}';
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		Startupper s = (Startupper)o;
+		return this.getEmail().equals(s.getEmail());
+	}
+
+	@Override
+	public int hashCode() {
+		return this.getEmail().hashCode();
+	}
 }

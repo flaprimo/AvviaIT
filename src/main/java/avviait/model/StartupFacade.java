@@ -34,7 +34,7 @@ public class StartupFacade {
         return startup;
     }
 
-    public Startup getStartup(Long id){
+    public Startup getStartup(Long id) {
         Startup startup = null;
         try {
             startup = em.find(Startup.class, id);
@@ -45,7 +45,19 @@ public class StartupFacade {
         return startup;
     }
 
-    public List<Startup> getAllStartup(){
+    public Startup getStartup(String nome) {
+        Startup startup = null;
+        try {
+            Query query = em.createNamedQuery("findStartupByName").setParameter("nome", nome);
+            startup = (Startup) query.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("ERRORE: Query \"findStartupByName\" fallita");
+            e.printStackTrace();
+        }
+        return startup;
+    }
+
+    public List<Startup> getAllStartup() {
         List<Startup> startupList = null;
         try {
             Query query = em.createNamedQuery("findAllStartup");
@@ -81,6 +93,15 @@ public class StartupFacade {
             e.printStackTrace();
         }
         return  membri;
+    }
+
+    public void updateStartup(Startup startup) {
+        try {
+            em.merge(startup);
+        } catch (Exception e ) {
+            System.out.println("ERRORE: Aggiornamento Startup fallito.");
+            e.printStackTrace();
+        }
     }
 
 }

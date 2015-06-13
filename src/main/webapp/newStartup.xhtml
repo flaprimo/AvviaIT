@@ -1,0 +1,68 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <ui:define name="content">
+        <f:subview id="createStartup">
+            <div class="row">
+                <div class="column">
+                    <h1>Registra la tua Startup</h1>
+                </div>
+            </div>
+            <h:form>
+                <div class="row">
+                    <div class="large-3 column">
+                        <label>Nome
+                            <h:inputText value="#{startupRegistrationController.nome}"
+                                         id="nome"
+                                         name="nome"
+                                         required="true"
+                                         requiredMessage="Il nome è necessario"
+                                         placeholder="Inserisci il nome della Startup"
+                                         class="#{component.valid ? '' : 'error'}" />
+                            <h:message for="nome" class="error" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 medium-9 column">
+                        <label>Descrizione
+                            <h:inputTextarea value="#{startupRegistrationController.descrizione}"
+                                             id="descrizione"
+                                             name="descrizione"
+                                             required="true" height="100px"
+                                             requiredMessage="La descrizione è necessaria"
+                                             placeholder="Inserisci la descrizione della Startup"
+                                             class="#{component.valid ? '' : 'error'}" />
+                            <h:message for="descrizione" class="error" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 medium-9 column">
+                        <label>Data di fondazione
+                            <!--<t:inputCalendar value="#{startupRegistrationController.data}"
+                                                id="datafondazione"
+                                             required="true"
+                                             renderAsPopup ="true"
+                                            popupDateFormat="dd/mm/yyyy"/>-->
+                            <h:inputText value="#{startupRegistrationController.data}"
+                                         id="data"
+                                         name="data"
+                                         required="true"
+                                         placeholder="gg/mm/aaaa" >
+                                <f:convertDateTime pattern="d/M/yyyy"/>
+                            </h:inputText>
+                            <h:message for="data" class="error" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h:commandButton action="#{startupRegistrationController.createStartup}" class="button"/>
+                    </div>
+                </div>
+            </h:form>
+        </f:subview>
+    </ui:define>
+</ui:composition>

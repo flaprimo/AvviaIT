@@ -57,7 +57,23 @@
         </navigation-case>
     </navigation-rule>
 
-    <!-- Settings -->
+    <!-- New Startup -->
+    <navigation-rule>
+        <from-view-id>/newStartup.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupRegistrationController.createStartup}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupRegistrationController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Startupper Settings -->
     <navigation-rule>
         <from-view-id>/startupper/settings.xhtml</from-view-id>
         <navigation-case>
@@ -94,6 +110,22 @@
                 <view-param>
                     <name>id</name>
                     <value>#{startupperSessionController.startupper.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Startupper Settings -->
+    <navigation-rule>
+        <from-view-id>/startup/settings.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupSettingsController.update}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupSettingsController.startup.nome}</value>
                 </view-param>
             </redirect>
         </navigation-case>

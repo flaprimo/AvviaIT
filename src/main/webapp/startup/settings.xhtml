@@ -1,0 +1,45 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="content">
+        <c:if test="#{startupperSessionController.startupper.getStartupAmministrate().contains(startupSettingsController.startup)}">
+        <div class="row">
+            <div class="small-12 medium-8 medium-offset-2 columns">
+                <ui:include src="/template/notification.xhtml" />
+
+                <h1>Impostazioni</h1>
+                <hr />
+            </div>
+        </div>
+        <f:subview id="startupSettings">
+            <h:form>
+                <div class="row">
+                    <div class="small-12 medium-8 medium-offset-2 columns">
+                        <label> Descrizione
+                            <h:inputTextarea value="#{startupSettingsController.descrizione}"
+                                             name="descrizione"
+                                             id="descrizione"
+                                             class="#{component.valid ? '' : 'error'}"/>
+                            <h:message for="descrizione" class="error" />
+                        </label>
+                        <label>Attiva</label>
+                        <div class="switch">
+                            <h:selectBooleanCheckbox value="#{startupSettingsController.attiva}"
+                                                     name="attiva"
+                                                     id="attiva" />
+                            <h:outputLabel value="" for="attiva" />
+                        </div>
+                        <h:commandButton action="#{startupSettingsController.update}"
+                                         class="button"
+                                         value="Salva" >
+                            <f:param name="name" value="#{startupSettingsController.startup.nome}"/>
+                        </h:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </f:subview>
+        </c:if>
+    </ui:define>
+</ui:composition>

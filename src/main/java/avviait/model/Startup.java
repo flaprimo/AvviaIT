@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -11,7 +12,8 @@ import java.util.List;
         @NamedQuery(name = "findAllAmministratori", query = "SELECT s FROM Startupper s " +
                 "JOIN s.startupAmministrate sa WHERE sa = :startup"),
         @NamedQuery(name = "findAllMembri", query = "SELECT s FROM Startupper s " +
-                "JOIN s.startupAttuali sa WHERE sa = :startup")
+                "JOIN s.startupAttuali sa WHERE sa = :startup"),
+        @NamedQuery(name = "findStartupByName", query = "SELECT s FROM Startup s WHERE s.nome = :nome")
 })
 public class Startup {
 
@@ -19,17 +21,17 @@ public class Startup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String descrizione;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar dataFondazione;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Boolean attiva;
 
     @ManyToMany(mappedBy = "startupAmministrate")
@@ -108,4 +110,14 @@ public class Startup {
         this.attiva = attiva;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Startup s = (Startup) o;
+        return this.getNome().equals(s.getNome());
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getNome().hashCode();
+    }
 }
