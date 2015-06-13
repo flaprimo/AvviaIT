@@ -9,28 +9,28 @@
             <div class="small-12 columns">
                 <ui:include src="/template/notification.xhtml" />
 
-                <h1>${startupperProfileController.nome} ${startupperProfileController.cognome}</h1>
-                <h3 class="subheader">${startupperProfileController.descrizione}</h3>
+                <h1>${startupperController.nome} ${startupperController.cognome}</h1>
+                <h3 class="subheader">${startupperController.descrizione}</h3>
                 <hr />
 
                 <c:if test="#{startupperSessionController.startupper.attivo}">
                     <ul class="button-group">
-                        <c:if test="#{startupperSessionController.isLoggedStartupper(startupperProfileController.id)}">
+                        <c:if test="#{startupperSessionController.isLoggedStartupper(startupperController.id)}">
                             <li>
                                 <a href="${pageContext.request.contextPath}/startupper/settings.xhtml" class="button tiny">
                                     <i class="fa fa-cog"></i> Impostazioni profilo
                                 </a>
                             </li>
                             <li>
-                                <a href="#" data-reveal-id="addSkillModal" class="button tiny">
+                                <a href="#" data-reveal-id="addSkillModal" class="button tiny" id="addSkillShow">
                                     <i class="fa fa-book"></i> Aggiungi skill
                                 </a>
                             </li>
                         </c:if>
-                        <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperProfileController.id) and
-                        startupperProfileController.attivo}">
+                        <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperController.id) and
+                        startupperController.attivo}">
                             <li>
-                                <a href="#" data-reveal-id="addGiudizioModal" class="button tiny">
+                                <a href="#" data-reveal-id="createGiudizioModal" class="button tiny">
                                     <i class="fa fa-pencil-square-o"></i> Aggiungi giudizio
                                 </a>
                             </li>
@@ -38,12 +38,12 @@
                     </ul>
                 </c:if>
                 <ul class="no-bullet">
-                    <li><strong>Nome:</strong> ${startupperProfileController.nome}</li>
-                    <li><strong>Cognome:</strong> ${startupperProfileController.cognome}</li>
-                    <li><strong>Email:</strong> ${startupperProfileController.email}</li>
-                    <li><strong>Descrizione:</strong> ${startupperProfileController.descrizione}</li>
-                    <li><strong>Data Iscrizione:</strong> ${startupperProfileController.dataIscrizione.time}</li>
-                    <li><strong>Account Attivo:</strong> ${startupperProfileController.attivo}</li>
+                    <li><strong>Nome:</strong> ${startupperController.nome}</li>
+                    <li><strong>Cognome:</strong> ${startupperController.cognome}</li>
+                    <li><strong>Email:</strong> ${startupperController.email}</li>
+                    <li><strong>Descrizione:</strong> ${startupperController.descrizione}</li>
+                    <li><strong>Data Iscrizione:</strong> ${startupperController.dataIscrizione.time}</li>
+                    <li><strong>Account Attivo:</strong> ${startupperController.attivo}</li>
                 </ul>
 
                 <h3>Startup</h3>
@@ -59,7 +59,9 @@
     </ui:define>
 
     <ui:define name="modal">
-        <ui:include src="/template/pages/startupper/createGiudizioModal.xhtml" />
+        <c:if test="#{not startupperSessionController.isLoggedStartupper(startupperController.id)}">
+            <ui:include src="/template/pages/startupper/createGiudizioModal.xhtml" />
+        </c:if>
         <ui:include src="/template/pages/startupper/addSkillModal.xhtml" />
     </ui:define>
 

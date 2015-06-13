@@ -58,20 +58,11 @@ public class Startupper {
     private List<Startup> startupPassate;
 
 	// Skill e voti skill
-	@ManyToMany
-    @JoinTable(
-            name = "Startupper_Skill",
-            joinColumns = {@JoinColumn(name="Startupper_id", referencedColumnName="id")},
-            inverseJoinColumns={@JoinColumn(name="Skill_id", referencedColumnName="id")},
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"Startupper_id", "Skill_id"})}
-    )
-	private List<Skill> skillApprese;
+	@OneToMany(mappedBy = "startupperProprietario")
+	private List<StartupperSkill> skillPossedute;
 
-	@OneToMany(mappedBy = "autore")
-	private List<VotoSkill> votiSkillDati;
-
-	@OneToMany(mappedBy = "giudicato")
-	private List<VotoSkill> votiSkillRicevuti;
+	@ManyToMany(mappedBy = "startupperVotanti")
+	private List<StartupperSkill> skillVotate;
 
 	public Startupper() {
 	}
@@ -89,9 +80,8 @@ public class Startupper {
         this.startupAttuali = new LinkedList<Startup>();
 		this.giudiziDati = new LinkedList<Giudizio>();
 		this.giudiziRicevuti = new LinkedList<Giudizio>();
-        this.skillApprese = new LinkedList<Skill>();
-        this.votiSkillDati = new LinkedList<VotoSkill>();
-        this.votiSkillRicevuti = new LinkedList<VotoSkill>();
+        this.skillPossedute = new LinkedList<StartupperSkill>();
+        this.skillVotate = new LinkedList<StartupperSkill>();
 	}
 
 	public Long getId() {
@@ -170,16 +160,12 @@ public class Startupper {
         return startupPassate;
     }
 
-    public List<Skill> getSkillApprese() {
-        return skillApprese;
-    }
+	public List<StartupperSkill> getSkillPossedute() {
+		return skillPossedute;
+	}
 
-    public List<VotoSkill> getVotiSkillDati() {
-        return votiSkillDati;
-    }
-
-    public List<VotoSkill> getVotiSkillRicevuti() {
-        return votiSkillRicevuti;
+    public List<StartupperSkill> getSkillVotate() {
+        return skillVotate;
     }
 
     @Override
