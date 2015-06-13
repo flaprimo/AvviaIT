@@ -1,5 +1,6 @@
 package avviait.controller;
 
+import avviait.exceptions.AlreadyExists;
 import avviait.model.Skill;
 import avviait.model.SkillFacade;
 import avviait.model.Startupper;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityExistsException;
 import java.io.Serializable;
 
 @Named
@@ -28,11 +30,18 @@ public class StartupperSkillController implements Serializable {
     public String addSkill() {
         Skill s = skillFacade.getOrCreateSkillNamed(nomeSkill);
         Startupper startupper = startupperSessionController.getStartupper();
-        startupperFacade.addSkillAppresa(startupper, s);
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        flash.put("notification", "Skill aggiunta");
-        flash.put("notificationType", "success");
-        return "addSkillOK";
+        try {
+            startupperFacade.addSkillAppresa(startupper, s);
+            flash.put("notification", "Skill aggiunta");
+            flash.put("notificationType", "success");
+            return "addSkillOK";
+
+        } catch (AlreadyExists alreadyExists) {
+            flash.put("notification", "Skill già aggiunta");
+            flash.put("notificationType", "alert");
+            return "addSkillFAIL";
+        }
     }
 
 

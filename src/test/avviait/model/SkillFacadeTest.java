@@ -1,6 +1,7 @@
 package avviait.model;
 
 
+import avviait.exceptions.AlreadyExists;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
@@ -26,7 +27,7 @@ public class SkillFacadeTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(Skill.class, SkillFacade.class, StartupperFacade.class, Startupper.class,
-                        AnnuncioMembriFacade.class, StartupFacade.class)
+                        AnnuncioMembriFacade.class, StartupFacade.class, StartupperSkillFacade.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("META-INF/resources.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -72,9 +73,9 @@ public class SkillFacadeTest {
     @Transactional(TransactionMode.ROLLBACK)
     public void getAllSkillTest() {
         Skill[] skills = new Skill[] {
-                skillFacade.createSkill("JavaScript"),
-                skillFacade.createSkill("WebGL"),
-                skillFacade.createSkill("jQuery")
+                skillFacade.createSkill("test JavaScript"),
+                skillFacade.createSkill("test WebGL"),
+                skillFacade.createSkill("test jQuery")
         };
 
         List<Skill> skillList = skillFacade.getAllSkill();
@@ -86,22 +87,66 @@ public class SkillFacadeTest {
 
     @Test
     @Transactional(TransactionMode.ROLLBACK)
-    public void getAllSkillForStartupperTest() {
-        Startupper user = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+    public void getAllSkillForStartupperTest() throws AlreadyExists {
+        Startupper user1 = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+        Startupper user2 = startupperFacade.createStartupper("Luigi", "Verdi", "luigi.verdi@gmail.com", "def");
+
         Skill[] skills = new Skill[] {
                 skillFacade.createSkill("JPA"),
                 skillFacade.createSkill("JSP"),
                 skillFacade.createSkill("EJB")
         };
 
-        user.getSkillApprese().add(skills[0]);
-        user.getSkillApprese().add(skills[2]);
+        startupperFacade.addSkillAppresa(user1, skills[0]);
+        startupperFacade.addSkillAppresa(user1, skills[2]);
+        startupperFacade.addSkillAppresa(user2, skills[1]);
+        startupperFacade.addSkillAppresa(user2, skills[2]);
 
-        List<Skill> returned = skillFacade.getAllSkillOfStartupper(user);
+        List<Skill> returnedUser1 = skillFacade.getAllSkillOfStartupper(user1);
+        List<Skill> returnedUser2 = skillFacade.getAllSkillOfStartupper(user2);
 
-        assertTrue(searchSkill(returned, skills[0]));
-        assertFalse(searchSkill(returned, skills[1]));
-        assertTrue(searchSkill(returned, skills[2]));
+        assertTrue(searchSkill(returnedUser1, skills[0]));
+        assertFalse(searchSkill(returnedUser1, skills[1]));
+        assertTrue(searchSkill(returnedUser1, skills[2]));
+        assertFalse(searchSkill(returnedUser2, skills[0]));
+        assertTrue(searchSkill(returnedUser2, skills[1]));
+        assertTrue(searchSkill(returnedUser2, skills[2]));
+
+        boolean exceptionFound = false;
+        try {
+            startupperFacade.addSkillAppresa(user2, skills[2]);
+        } catch(AlreadyExists e) {
+            exceptionFound = true;
+        }
+        assertTrue(exceptionFound);
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void getAllSkillNotAcquiredTest() throws AlreadyExists {
+        Startupper user1 = startupperFacade.createStartupper("Mario", "Rossi", "mario.rossi@gmail.com", "abc");
+        Startupper user2 = startupperFacade.createStartupper("Luigi", "Verdi", "luigi.verdi@gmail.com", "def");
+
+        Skill[] skills = new Skill[] {
+                skillFacade.createSkill("JPA"),
+                skillFacade.createSkill("JSP"),
+                skillFacade.createSkill("EJB")
+        };
+
+        startupperFacade.addSkillAppresa(user1, skills[0]);
+        startupperFacade.addSkillAppresa(user1, skills[2]);
+        startupperFacade.addSkillAppresa(user2, skills[1]);
+        startupperFacade.addSkillAppresa(user2, skills[2]);
+
+        List<Skill> returnedUser1 = skillFacade.getAllSkillNotAcquired(user1);
+        List<Skill> returnedUser2 = skillFacade.getAllSkillNotAcquired(user2);
+
+        assertFalse(searchSkill(returnedUser1, skills[0]));
+        assertTrue(searchSkill(returnedUser1, skills[1]));
+        assertFalse(searchSkill(returnedUser1, skills[2]));
+        assertTrue(searchSkill(returnedUser2, skills[0]));
+        assertFalse(searchSkill(returnedUser2, skills[1]));
+        assertFalse(searchSkill(returnedUser2, skills[2]));
     }
 
     private Startupper startupper;

@@ -4,23 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <body>
 <ui:composition>
 
     <f:subview id="addSkillForm">
-        <h2>Aggiungi Skill</h2>
+        <h2>Seleziona la skill dalla lista</h2>
         <h:form>
-            <label>Nome
+
+            <div id="skillSchooser">
+                <ul>
+                    <c:forEach var="skill" items="#{startupperProfileController.listaCompletaSkill}">
+                        <li>${skill.nome}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+
+            <label id="nomeSkillLabel">Oppure digita qui un nome personalizzato
                 <h:inputText value='#{startupperSkillController.nomeSkill}'
-                             id="titolo"
+                             id="nomeSkill"
                              name="titolo"
                              required="true"
                              requiredMessage="Il titolo è necessario!"
-                             placeholder="Inserisci il titolo"
+                             placeholder="Nome skill"
                              class="#{component.valid ? '' : 'error'}" />
-                <h:message for="titolo" class="error" />
+                <h:message for="nomeSkill" class="error" />
             </label>
 
             <h:commandButton action="#{startupperSkillController.addSkill}"

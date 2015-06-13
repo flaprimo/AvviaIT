@@ -69,12 +69,20 @@ public class SkillFacade implements Serializable {
         List<Skill> skillList = null;
         try {
             Query query = em.createNamedQuery("findSkillOfStartupper");
-            query.setParameter("id", startupper.getId());
+            query.setParameter("startupper", startupper.getId());
             skillList = query.getResultList();
         } catch (Exception e) {
             System.out.println("ERRORE: Query \"findSkillOfStartupper\" fallita");
             e.printStackTrace();
         }
+        return skillList;
+    }
+
+    public List<Skill> getAllSkillNotAcquired(Startupper startupper) {
+        List<Skill> skillList = null;
+        Query query = em.createNamedQuery("findSkillNotAcquired");
+        query.setParameter("startupper", startupper);
+        skillList = query.getResultList();
         return skillList;
     }
 

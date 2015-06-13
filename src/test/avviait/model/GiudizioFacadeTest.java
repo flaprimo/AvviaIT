@@ -21,7 +21,8 @@ public class GiudizioFacadeTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(GiudizioFacade.class, Giudizio.class, StartupperFacade.class, Startupper.class)
+                .addClasses(GiudizioFacade.class, Giudizio.class, StartupperFacade.class, Startupper.class,
+                        StartupperSkillFacade.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("META-INF/resources.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

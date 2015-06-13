@@ -28,7 +28,7 @@ public class AnnuncioMembriFacadeTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(AnnuncioMembriFacade.class, AnnuncioMembri.class,
                         StartupFacade.class, Startup.class, StartupperFacade.class, Startupper.class,
-                        SkillFacade.class, Skill.class)
+                        SkillFacade.class, Skill.class, StartupperSkillFacade.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("META-INF/resources.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
