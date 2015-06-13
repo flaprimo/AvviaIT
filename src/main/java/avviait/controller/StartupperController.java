@@ -1,9 +1,6 @@
 package avviait.controller;
 
-import avviait.model.Giudizio;
-import avviait.model.Skill;
-import avviait.model.Startupper;
-import avviait.model.StartupperFacade;
+import avviait.model.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -34,7 +31,7 @@ public class StartupperController {
 
     private List<Giudizio> giudiziDati;
     private List<Giudizio> giudiziRicevuti;
-    private List<Skill> skill;
+    private List<StartupperSkill> skill;
 
     @PostConstruct
     @SuppressWarnings("unchecked")
@@ -207,11 +204,11 @@ public class StartupperController {
         this.giudiziRicevuti = giudiziRicevuti;
     }
 
-    public List<Skill> getSkill() {
+    public List<StartupperSkill> getSkill() {
         return skill;
     }
 
-    public void setSkill(List<Skill> skill) {
+    public void setSkill(List<StartupperSkill> skill) {
         this.skill = skill;
     }
 }
