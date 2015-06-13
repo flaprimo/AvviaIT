@@ -9,12 +9,12 @@
 <ui:composition>
 
     <f:subview id="listSkill">
-        <c:if test="#{empty startupperProfileController.startupperSkills}">
+        <c:if test="#{empty startupperController.skill}">
             <p>Nessuna skill inserita</p>
         </c:if>
-        <c:if test="#{not empty startupperProfileController.startupperSkills}">
+        <c:if test="#{not empty startupperController.skill}">
             <ul class="small-block-grid-1 medium-block-grid-2">
-                <c:forEach var="startupperSkill" items="#{startupperProfileController.startupperSkills}">
+                <c:forEach var="startupperSkill" items="#{startupperController.skill}">
                     <li>
                         <div class="panel">
                             <span>${startupperSkill.skillAssociata.nome}</span>
