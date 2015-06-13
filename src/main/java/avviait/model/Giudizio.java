@@ -53,7 +53,7 @@ public class Giudizio {
         return id;
     }
 
-    public int getVoto() {
+    public Integer getVoto() {
         return voto;
     }
 

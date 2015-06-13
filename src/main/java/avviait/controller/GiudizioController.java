@@ -142,7 +142,7 @@ public class GiudizioController {
         return voto;
     }
 
-    public void setVoto(int voto) {
+    public void setVoto(Integer voto) {
         this.voto = voto;
     }
 }
