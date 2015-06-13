@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-@Stateless(name = "votoSkillFacade")
+@Stateless
 public class StartupperSkillFacade {
 
     @PersistenceContext(unitName = "avviait-db")

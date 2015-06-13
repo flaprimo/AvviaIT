@@ -9,7 +9,16 @@
             <div class="small-12 columns">
                 <ui:include src="/template/notification.xhtml" />
 
-                <h1>${startupperController.nome} ${startupperController.cognome}</h1>
+                <div class="profile-header">
+                    <h1 class="titolo">${startupperController.nome} ${startupperController.cognome}</h1>
+                    <c:if test="#{startupperController.attivo}">
+                        <i class="fa fa-circle attivo" title="profilo attivo"></i>
+                    </c:if>
+                    <c:if test="#{not startupperController.attivo}">
+                        <i class="fa fa-circle non-attivo" title="profilo non attivo"></i>
+                    </c:if>
+                </div>
+
                 <h3 class="subheader">${startupperController.descrizione}</h3>
                 <hr />
 
@@ -38,12 +47,8 @@
                     </ul>
                 </c:if>
                 <ul class="no-bullet">
-                    <li><strong>Nome:</strong> ${startupperController.nome}</li>
-                    <li><strong>Cognome:</strong> ${startupperController.cognome}</li>
                     <li><strong>Email:</strong> ${startupperController.email}</li>
-                    <li><strong>Descrizione:</strong> ${startupperController.descrizione}</li>
                     <li><strong>Data Iscrizione:</strong> ${startupperController.dataIscrizione.time}</li>
-                    <li><strong>Account Attivo:</strong> ${startupperController.attivo}</li>
                 </ul>
 
                 <h3>Startup</h3>
@@ -62,7 +67,9 @@
         <c:if test="#{not startupperSessionController.isLoggedStartupper(startupperController.id)}">
             <ui:include src="/template/pages/startupper/createGiudizioModal.xhtml" />
         </c:if>
-        <ui:include src="/template/pages/startupper/addSkillModal.xhtml" />
+        <c:if test="#{startupperSessionController.isLoggedStartupper(startupperController.id)}">
+            <ui:include src="/template/pages/startupper/addSkillModal.xhtml" />
+        </c:if>
     </ui:define>
 
 </ui:composition>

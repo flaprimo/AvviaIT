@@ -98,6 +98,22 @@
         </navigation-case>
     </navigation-rule>
 
+    <!-- SkillStartupper -->
+    <navigation-rule>
+        <from-view-id>/startupper/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupperSkillController.addSkill}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>startupper</name>
+                    <value>#{startupperSessionController.startupper.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
     <!-- Redirect after logout -->
     <navigation-rule>
         <from-view-id>/*</from-view-id>
