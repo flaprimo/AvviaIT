@@ -31,6 +31,12 @@ public class StartupperSkill {
     private Skill skillAssociata;
 
     @ManyToMany(cascade={CascadeType.ALL})
+    @JoinTable(
+            name = "Startupper_Skill",
+            joinColumns={@JoinColumn(name="StartupperSkill_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="Startupper_id", referencedColumnName="id")},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"StartupperSkill_id", "Startupper_id"})}
+    )
     private List<Startupper> startupperVotanti;
 
     public StartupperSkill() {

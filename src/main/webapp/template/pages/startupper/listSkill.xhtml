@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://java.sun.com/jsf/html">
 
 <body>
 <ui:composition>
@@ -18,7 +18,16 @@
                     <li>
                         <div class="panel">
                             <span>${startupperSkill.skillAssociata.nome}</span>
-                            <span class="right">vota</span>
+                            <i>[#{startupperSkillController.contaRiscontri(startupperSkill)} riscontri]</i>
+                            <span class="right">
+                                <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperController.id)}">
+                                        <c:if test="#{!startupperSkillController.hasVoted(startupperSessionController.startupper,startupperSkill)}">
+                                            <a href="${pageContext.request.contextPath}/startupper/vota.xhtml?startupperSkill=${startupperSkill.id}">
+                                                vota
+                                            </a>
+                                        </c:if>
+                                </c:if>
+                            </span>
                         </div>
                     </li>
                 </c:forEach>
