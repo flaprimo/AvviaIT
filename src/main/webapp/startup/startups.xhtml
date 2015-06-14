@@ -6,7 +6,7 @@
     <ui:define name="content">
         <div class="row">
             <div class="small-12 columns">
-                <c:forEach var="startup" items="#{startupListController.startupList}">
+                <c:forEach var="startup" items="#{startupController.getStartupsList()}">
                     <div class="panel">
                         <h:link value="${startup.nome}"
                                 outcome="${pageContext.request.contextPath}/startup/profile.xhtml">

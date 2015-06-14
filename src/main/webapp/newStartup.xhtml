@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="large-3 column">
                         <label>Nome
-                            <h:inputText value="#{startupRegistrationController.nome}"
+                            <h:inputText value="#{startupController.nome}"
                                          id="nome"
                                          name="nome"
                                          required="true"
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="large-6 medium-9 column">
                         <label>Descrizione
-                            <h:inputTextarea value="#{startupRegistrationController.descrizione}"
+                            <h:inputTextarea value="#{startupController.descrizione}"
                                              id="descrizione"
                                              name="descrizione"
                                              required="true" height="100px"
@@ -41,12 +41,7 @@
                 <div class="row">
                     <div class="large-6 medium-9 column">
                         <label>Data di fondazione
-                            <!--<t:inputCalendar value="#{startupRegistrationController.data}"
-                                                id="datafondazione"
-                                             required="true"
-                                             renderAsPopup ="true"
-                                            popupDateFormat="dd/mm/yyyy"/>-->
-                            <h:inputText value="#{startupRegistrationController.data}"
+                            <h:inputText value="#{startupController.dataFondazione}"
                                          id="data"
                                          name="data"
                                          required="true"
@@ -59,7 +54,7 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <h:commandButton action="#{startupRegistrationController.createStartup}" class="button"/>
+                        <h:commandButton action="#{startupController.createStartup}" class="button"/>
                     </div>
                 </div>
             </h:form>

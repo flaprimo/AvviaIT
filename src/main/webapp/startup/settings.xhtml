@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="small-12 medium-8 medium-offset-2 columns">
                         <label> Descrizione
-                            <h:inputTextarea value="#{startupSettingsController.descrizione}"
+                            <h:inputTextarea value="#{startupController.descrizione}"
                                              name="descrizione"
                                              id="descrizione"
                                              class="#{component.valid ? '' : 'error'}"/>
@@ -26,15 +26,15 @@
                         </label>
                         <label>Attiva</label>
                         <div class="switch">
-                            <h:selectBooleanCheckbox value="#{startupSettingsController.attiva}"
+                            <h:selectBooleanCheckbox value="#{startupController.attiva}"
                                                      name="attiva"
                                                      id="attiva" />
                             <h:outputLabel value="" for="attiva" />
                         </div>
-                        <h:commandButton action="#{startupSettingsController.update}"
+                        <h:commandButton action="#{startupController.update}"
                                          class="button"
                                          value="Salva" >
-                            <f:param name="name" value="#{startupSettingsController.startup.nome}"/>
+                            <f:param name="name" value="#{startupController.nome}"/>
                         </h:commandButton>
                     </div>
                 </div>

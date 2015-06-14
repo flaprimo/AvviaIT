@@ -7,17 +7,17 @@
     <ui:define name="content">
         <div class="row">
             <ui:include src="/template/notification.xhtml" />
-            <c:if test="#{startupProfileController.isLoggedStartupperAmministratore()}">
+            <c:if test="#{startupController.isLoggedStartupperAmministratore()}">
                 <h:link value="Impostazioni Startup"
                         outcome="${pageContext.request.contextPath}/startup/settings.xhtml"
                         class="button">
                     <i class="fa fa-cog"/>
-                    <f:param name="name" value="#{startupProfileController.nome}"/>
+                    <f:param name="name" value="#{startupController.nome}"/>
                 </h:link>
             </c:if>
-            <h1>#{startupProfileController.nome}</h1>
-            <p>#{startupProfileController.descrizione}</p>
-            <p>#{startupProfileController.data.toString}</p>
+            <h1>#{startupController.nome}</h1>
+            <p>#{startupController.descrizione}</p>
+            <p>#{startupController.dataFondazione.toString()}</p>
         </div>
     </ui:define>
 </ui:composition>
