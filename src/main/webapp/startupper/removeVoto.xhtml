@@ -2,23 +2,26 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    <ui:define name="title">Vota skill | AvviaIT</ui:define>
+    <ui:define name="title">Rimuovi voto skill | AvviaIT</ui:define>
 
     <ui:define name="content">
         <div class="row">
             <div class="small-12 columns">
-                <h1>Vota Skill</h1>
+                <h1>Rimuovi voto Skill</h1>
             </div>
         </div>
         <div class="row">
             <div class="small-12 columns">
+                <p>Sei sicuro di voler rimuovere il tuo voto dal profilo d
+                    <b>#{startupperSkillController.nomeCompleto}</b> ?</p>
+
                 <h:form id="votaForm">
 
                     <input type="hidden" name="startupperSkill" value="#{param['startupperSkill']}" />
 
-                    <h:commandButton action="#{startupperSkillController.votaSkill}"
-                                     class="button"
-                                     value="Aggiungi voto"/>
+                    <h:commandButton action="#{startupperSkillController.removeVotoSkill}"
+                                     class="button alert"
+                                     value="Rimuovi voto"/>
                 </h:form>
             </div>
         </div>

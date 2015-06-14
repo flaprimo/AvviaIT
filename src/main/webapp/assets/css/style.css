@@ -34,13 +34,23 @@
 #listSkill .panel {
     padding: 0 10px;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 #listSkill .panel span {
     line-height: 2em;
 }
+#listSkill .panel span.grow {
+    flex-grow: 3;
+    margin-right: 10px;
+}
 #listSkill .panel span.right {
     line-height: 2em;
     float: right;
+    flex-shrink: 0;
+}
+#listSkill .panel a.riscontro {
+    display: none;
 }
 
 /* Profile header */

@@ -2,6 +2,7 @@ package avviait.model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Calendar;
@@ -45,6 +46,15 @@ public class StartupperSkillFacade {
         return startupperSkill;
     }
 
+    public StartupperSkill removeVoto(Startupper da, Startupper a, Skill skillAssociata) {
+        StartupperSkill startupperSkill = getStartupperSkill(a, skillAssociata);
+        startupperSkill.getStartupperVotanti().remove(da);
+        updateStartupperSkillFacade(startupperSkill);
+        em.merge(da);
+        em.merge(a);
+        return startupperSkill;
+    }
+
     private StartupperSkill getStartupperSkill(Startupper da, Skill skillAssociata) {
         Query query = em.createNamedQuery("findStartupperSkillSingleResult");
         query.setParameter("startupper", da);
@@ -59,5 +69,10 @@ public class StartupperSkillFacade {
     public List<Startupper> getVotanti(StartupperSkill startupperSkill) {
         startupperSkill = getStartupperSkill(startupperSkill.getId());
         return startupperSkill.getStartupperVotanti();
+    }
+
+    public void deleteStartupperSkill(Startupper startupper, Skill skill) {
+        StartupperSkill startupperSkill = getStartupperSkill(startupper, skill);
+        em.remove(startupperSkill);
     }
 }
