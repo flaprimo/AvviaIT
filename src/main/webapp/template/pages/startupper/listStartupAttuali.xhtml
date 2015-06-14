@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+<ui:composition>
+
+    <f:subview id="listStartupAttuali">
+        <c:choose>
+            <c:when test="#{empty startupperController.startupAttuali}">
+                <p>Nessuna startup</p>
+            </c:when>>
+            <c:otherwise>
+                <ul class="small-block-grid-1 medium-block-grid-2">
+                    <c:forEach var="startup" items="#{startupperController.startupAttuali}">
+                        <li>
+                            <div class="panel">
+                                <h4>
+                                    <h:link value="${startup.nome}"
+                                            outcome="${pageContext.request.contextPath}/startup/profile.xhtml?name=${startup.nome}">
+                                        <!--<f:param name="name" value="${startup.nome}" />-->
+                                    </h:link>
+                                </h4>
+                                <p>${startup.descrizione}</p>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:otherwise>
+        </c:choose>
+    </f:subview>
+
+</ui:composition>
+</body>
+</html>

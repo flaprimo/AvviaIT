@@ -56,9 +56,21 @@ public class StartupFacadeTest {
 
     @Test
     @Transactional(TransactionMode.ROLLBACK)
-    public void testGetStartup() throws Exception {
+    public void testGetStartupById() throws Exception {
         setUp();
         Startup persistedStartup = startupFacade.getStartup(startup.getId());
+        assertNotNull(persistedStartup);
+        assertEquals(persistedStartup.getNome(), startup.getNome());
+        assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
+        assertEquals(persistedStartup.getDataFondazione(), startup.getDataFondazione());
+        assertTrue(persistedStartup.isAttiva());
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testGetStartupByName() throws Exception {
+        setUp();
+        Startup persistedStartup = startupFacade.getStartup(startup.getNome());
         assertNotNull(persistedStartup);
         assertEquals(persistedStartup.getNome(), startup.getNome());
         assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
