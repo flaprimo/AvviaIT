@@ -14,9 +14,17 @@
             <div class="small-12 columns">
                 <c:forEach var="startupper" items="#{startupperController.startupperList}">
                     <div class="panel">
-                        <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?startupper=${startupper.id}">
-                            <h3>${startupper.nome} ${startupper.cognome}</h3>
-                        </a>
+                        <div class="profile-header">
+                            <a href="${pageContext.request.contextPath}/startupper/profile.xhtml?startupper=${startupper.id}">
+                                <h3 class="titolo">${startupper.nome} ${startupper.cognome}</h3>
+                            </a>
+                            <c:if test="#{startupper.attivo}">
+                                <i class="fa fa-circle attivo" title="profilo attivo"></i>
+                            </c:if>
+                            <c:if test="#{not startupper.attivo}">
+                                <i class="fa fa-circle non-attivo" title="profilo non attivo"></i>
+                            </c:if>
+                        </div>
                         <span>${startupper.descrizione}</span>
                     </div>
                 </c:forEach>

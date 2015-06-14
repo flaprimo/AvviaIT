@@ -6,6 +6,7 @@ import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 @Named
+@RequestScoped
 public class GiudizioController {
     @Inject
     private GiudizioFacade giudizioFacade;
@@ -26,7 +28,7 @@ public class GiudizioController {
     private Long id;
     private String titolo;
     private String testo;
-    private int voto;
+    private Integer voto;
 
     @PostConstruct
     private void initGiudizioController() {
@@ -136,11 +138,11 @@ public class GiudizioController {
         this.testo = testo;
     }
 
-    public int getVoto() {
+    public Integer getVoto() {
         return voto;
     }
 
-    public void setVoto(int voto) {
+    public void setVoto(Integer voto) {
         this.voto = voto;
     }
 }

@@ -16,7 +16,7 @@
 
             <div id="skillSchooser">
                 <ul>
-                    <c:forEach var="skill" items="#{startupperProfileController.listaCompletaSkill}">
+                    <c:forEach var="skill" items="#{skillController.allSkillNotAcquired}">
                         <li>${skill.nome}</li>
                     </c:forEach>
                 </ul>

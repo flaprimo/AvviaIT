@@ -12,14 +12,11 @@
 #skillSchooser ul {
     margin: 0;
     list-style-type: none;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #D8D8D8;
+    border: solid 1px #D8D8D8;
 }
 #skillSchooser li {
     cursor: pointer;
     line-height: 2.1em;
-    padding: 0 42px;
     padding: 0 12px;
 }
 #skillSchooser li:nth-child(odd) {
@@ -44,4 +41,28 @@
 #listSkill .panel span.right {
     line-height: 2em;
     float: right;
+}
+
+/* Profile header */
+.profile-header {
+    display: table;
+    width: 100%;
+}
+
+.profile-header .titolo,
+.profile-header i {
+    display: table-cell;
+}
+
+.profile-header i {
+    text-align: right;
+    vertical-align: middle;
+    cursor: default;
+}
+
+.profile-header .attivo {
+    color: #43AC6A;
+}
+.profile-header .non-attivo {
+    color: #f04124;
 }

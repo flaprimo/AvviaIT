@@ -6,17 +6,15 @@ import avviait.model.SkillFacade;
 import avviait.model.Startupper;
 import avviait.model.StartupperFacade;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityExistsException;
-import java.io.Serializable;
 
 @Named
-@SessionScoped
-public class StartupperSkillController implements Serializable {
+@RequestScoped
+public class StartupperSkillController {
 
     @Inject
     private SkillFacade skillFacade;
@@ -35,12 +33,12 @@ public class StartupperSkillController implements Serializable {
             startupperFacade.addSkillAppresa(startupper, s);
             flash.put("notification", "Skill aggiunta");
             flash.put("notificationType", "success");
-            return "addSkillOK";
+            return "success";
 
         } catch (AlreadyExists alreadyExists) {
             flash.put("notification", "Skill già aggiunta");
             flash.put("notificationType", "alert");
-            return "addSkillFAIL";
+            return "failure";
         }
     }
 

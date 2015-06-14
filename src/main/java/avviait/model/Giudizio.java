@@ -19,7 +19,7 @@ public class Giudizio {
     private Long id;
 
     @Column(nullable = false)
-    private int voto;
+    private Integer voto;
 
     @Column(nullable = false)
     private String titolo;
@@ -40,7 +40,7 @@ public class Giudizio {
     public Giudizio() {
     }
 
-    public Giudizio(int voto, String titolo, String testo, Calendar dataCreazione, Startupper autore, Startupper giudicato) {
+    public Giudizio(Integer voto, String titolo, String testo, Calendar dataCreazione, Startupper autore, Startupper giudicato) {
         this.voto = voto;
         this.titolo = titolo;
         this.testo = testo;
@@ -53,11 +53,11 @@ public class Giudizio {
         return id;
     }
 
-    public int getVoto() {
+    public Integer getVoto() {
         return voto;
     }
 
-    public void setVoto(int voto) {
+    public void setVoto(Integer voto) {
         this.voto = voto;
     }
 

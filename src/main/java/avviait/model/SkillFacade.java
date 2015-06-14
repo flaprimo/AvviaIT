@@ -5,12 +5,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.io.Serializable;
-import java.util.Calendar;
 import java.util.List;
 
-@Stateless(name = "skillFacade")
-public class SkillFacade implements Serializable {
+@Stateless
+public class SkillFacade {
 
     @PersistenceContext(unitName = "avviait-db")
     private EntityManager em;

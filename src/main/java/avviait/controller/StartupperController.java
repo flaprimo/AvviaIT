@@ -3,6 +3,7 @@ package avviait.controller;
 import avviait.model.*;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Named
+@RequestScoped
 public class StartupperController {
     @Inject
     private StartupperFacade startupperFacade;

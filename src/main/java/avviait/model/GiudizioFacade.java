@@ -17,7 +17,7 @@ public class GiudizioFacade {
     public GiudizioFacade() {
     }
 
-    public Giudizio createGiudizio(int voto, String titolo, String testo, Startupper autore, Startupper giudicato)
+    public Giudizio createGiudizio(Integer voto, String titolo, String testo, Startupper autore, Startupper giudicato)
             throws PersistenceException {
         Calendar dataCreazione = new GregorianCalendar();
 
