@@ -57,6 +57,7 @@
 .profile-header i {
     text-align: right;
     vertical-align: middle;
+    cursor: default;
 }
 
 .profile-header .attivo {
