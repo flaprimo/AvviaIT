@@ -4,42 +4,52 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="content">
-        <c:if test="#{startupperSessionController.startupper.getStartupAmministrate().contains(startupSettingsController.startup)}">
-        <div class="row">
-            <div class="small-12 medium-8 medium-offset-2 columns">
-                <ui:include src="/template/notification.xhtml" />
+        <c:choose>
+            <c:when test="#{startupperSessionController.startupper.getStartupAmministrate()
+            .contains(startupController.startup)}">
+            <div class="row">
+                <div class="small-12 medium-8 medium-offset-2 columns">
+                    <ui:include src="/template/notification.xhtml" />
 
-                <h1>Impostazioni</h1>
-                <hr />
+                    <h1>Impostazioni</h1>
+                    <hr />
+                </div>
             </div>
-        </div>
-        <f:subview id="startupSettings">
-            <h:form>
+            <f:subview id="startupSettings">
+                <h:form>
+                    <div class="row">
+                        <div class="small-12 medium-8 medium-offset-2 columns">
+                            <label> Descrizione
+                                <h:inputTextarea value="#{startupController.descrizione}"
+                                                 name="descrizione"
+                                                 id="descrizione"
+                                                 class="#{component.valid ? '' : 'error'}"/>
+                                <h:message for="descrizione" class="error" />
+                            </label>
+                            <label>Attiva</label>
+                            <div class="switch">
+                                <h:selectBooleanCheckbox value="#{startupController.attiva}"
+                                                         name="attiva"
+                                                         id="attiva" />
+                                <h:outputLabel value="" for="attiva" />
+                            </div>
+                            <h:commandButton action="#{startupController.update}"
+                                             class="button"
+                                             value="Salva" >
+                                <f:param name="name" value="#{startupController.nome}"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </f:subview>
+            </c:when>
+            <c:otherwise>
                 <div class="row">
                     <div class="small-12 medium-8 medium-offset-2 columns">
-                        <label> Descrizione
-                            <h:inputTextarea value="#{startupController.descrizione}"
-                                             name="descrizione"
-                                             id="descrizione"
-                                             class="#{component.valid ? '' : 'error'}"/>
-                            <h:message for="descrizione" class="error" />
-                        </label>
-                        <label>Attiva</label>
-                        <div class="switch">
-                            <h:selectBooleanCheckbox value="#{startupController.attiva}"
-                                                     name="attiva"
-                                                     id="attiva" />
-                            <h:outputLabel value="" for="attiva" />
-                        </div>
-                        <h:commandButton action="#{startupController.update}"
-                                         class="button"
-                                         value="Salva" >
-                            <f:param name="name" value="#{startupController.nome}"/>
-                        </h:commandButton>
+                        <h3>ACCESSO NEGATO: non sei amministratore di questa startup</h3>
                     </div>
                 </div>
-            </h:form>
-        </f:subview>
-        </c:if>
+            </c:otherwise>
+        </c:choose>
     </ui:define>
 </ui:composition>

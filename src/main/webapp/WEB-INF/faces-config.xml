@@ -67,7 +67,7 @@
             <redirect>
                 <view-param>
                     <name>name</name>
-                    <value>#{startupRegistrationController.nome}</value>
+                    <value>#{startupController.nome}</value>
                 </view-param>
             </redirect>
         </navigation-case>
@@ -119,7 +119,7 @@
         </navigation-case>
     </navigation-rule>
 
-    <!-- Startupper Settings -->
+    <!-- Startup Settings -->
     <navigation-rule>
         <from-view-id>/startup/settings.xhtml</from-view-id>
         <navigation-case>

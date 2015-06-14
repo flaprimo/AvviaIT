@@ -37,8 +37,7 @@ public class StartupController {
             descrizione = startup.getDescrizione();
             dataFondazione = startup.getDataFondazione().getTime();
             attiva = startup.isAttiva();
-        } catch (NullPointerException e) {
-        }
+        } catch (Exception e) {}
     }
 
     public String createStartup() {
