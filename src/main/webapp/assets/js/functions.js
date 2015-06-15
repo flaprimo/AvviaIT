@@ -8,7 +8,7 @@
         $("#skillSchooser").on("click", "li", function() {
             var value = $(this).html();
             $nomeSkillLabel.val(value);
-            $("input.button").click();
+            $("#addSkillModal").find("input.button").click();
         });
         $("#addSkillForm").click(function() {
             $nomeSkillLabel.val("");

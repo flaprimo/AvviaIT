@@ -147,7 +147,7 @@ public class StartupperFacade  implements Serializable {
     }
 
     public void addSkillAppresa(Startupper startupper, Skill skill) throws AlreadyExists {
-        startupper = getStartupper(startupper.getId());
+        startupper = em.merge(startupper);
         List<StartupperSkill> list = startupper.getSkillPossedute();
 
         for (StartupperSkill startupperSkill : list)
