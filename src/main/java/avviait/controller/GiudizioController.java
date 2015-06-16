@@ -47,9 +47,10 @@ public class GiudizioController {
         }
     }
 
-    public void createGiudizio() {
+    public String createGiudizio() {
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        Long idGiudicato = (Long) flash.get("idStartupper");
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Long idGiudicato = Long.valueOf(req.getParameter("giudicato"));
 
         Startupper autore = startupperSessionController.getStartupper();
         Startupper giudicato = startupperFacade.getStartupper(idGiudicato);
@@ -63,6 +64,8 @@ public class GiudizioController {
             flash.put("notification", "errore: aggiunta giudizio fallita");
             flash.put("notificationType", "alert");
         }
+
+        return "success";
     }
 
     public String updateGiudizio() {
