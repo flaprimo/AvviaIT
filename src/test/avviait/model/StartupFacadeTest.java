@@ -56,9 +56,21 @@ public class StartupFacadeTest {
 
     @Test
     @Transactional(TransactionMode.ROLLBACK)
-    public void testGetStartup() throws Exception {
+    public void testGetStartupById() throws Exception {
         setUp();
         Startup persistedStartup = startupFacade.getStartup(startup.getId());
+        assertNotNull(persistedStartup);
+        assertEquals(persistedStartup.getNome(), startup.getNome());
+        assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
+        assertEquals(persistedStartup.getDataFondazione(), startup.getDataFondazione());
+        assertTrue(persistedStartup.isAttiva());
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testGetStartupByName() throws Exception {
+        setUp();
+        Startup persistedStartup = startupFacade.getStartup(startup.getNome());
         assertNotNull(persistedStartup);
         assertEquals(persistedStartup.getNome(), startup.getNome());
         assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
@@ -88,5 +100,39 @@ public class StartupFacadeTest {
         setUp();
         List<Startupper> membri = startupFacade.getMembri(startup);
         assertFalse(membri.isEmpty());
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testUpdateStartup() throws Exception {
+        setUp();
+        startup.setDescrizione("nuova descrizione");
+        startup.setAttiva(false);
+        startupFacade.updateStartup(startup);
+        Startup startupAggiornata = startupFacade.getStartup("AvviaIT");
+        assertTrue(startupAggiornata.getDescrizione().equals("nuova descrizione"));
+        assertFalse(startupAggiornata.isAttiva());
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testAddMembro() throws  Exception {
+        setUp();
+        Startupper altroStartupper = startupperFacade.createStartupper("Altro", "Startupper", "altrostartupper@avviait.it", "thjbrty");
+        altroStartupper = startupperFacade.getStartupperByEmail("altrostartupper@avviait.it");
+        assertTrue(startupFacade.addMembro(startup, altroStartupper));
+        assertTrue(startupFacade.getMembri(startup).contains(altroStartupper));
+        assertTrue(altroStartupper.getStartupAttuali().contains(startup));
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testRemoveMembro() throws Exception {
+        setUp();
+        assertTrue(startupFacade.removeMembro(startup, startupper));
+        assertFalse(startup.getMembri().contains(startupper));
+        assertFalse(startupper.getStartupAttuali().contains(startup));
+        assertTrue(startup.getMembriPassati().contains(startupper));
+        assertTrue(startupper.getStartupPassate().contains(startup));
     }
 }

@@ -20,6 +20,7 @@ public class AnnuncioMembriFacade {
         AnnuncioMembri annuncioMembri = null;
         try {
             annuncioMembri = new AnnuncioMembri(mansione, descrizione, skillRichieste);
+            autrice = em.merge(autrice);
             annuncioMembri.setAutrice(autrice);
             autrice.getAnnunci().add(annuncioMembri);
             em.persist(annuncioMembri);

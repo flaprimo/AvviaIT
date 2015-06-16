@@ -34,6 +34,9 @@ public class StartupperController {
     private List<Giudizio> giudiziDati;
     private List<Giudizio> giudiziRicevuti;
     private List<StartupperSkill> skill;
+    private List<Startup> startupAmministrate;
+    private List<Startup> startupAttuali;
+    private List<Startup> startupPassate;
 
     @PostConstruct
     @SuppressWarnings("unchecked")
@@ -63,6 +66,9 @@ public class StartupperController {
             giudiziDati = startupperFacade.getGiudiziDati(startupper);
             giudiziRicevuti = startupperFacade.getGiudiziRicevuti(startupper);
             skill = startupperFacade.getSkillApprese(startupper);
+            startupAmministrate = startupperFacade.getStartupAmministrate(startupper);
+            startupAttuali = startupperFacade.getStartupAttuali(startupper);
+            startupPassate = startupperFacade.getStartupPassate(startupper);
 
             // da usare per operazioni su startupper del profilo visualizzato
             Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -212,5 +218,29 @@ public class StartupperController {
 
     public void setSkill(List<StartupperSkill> skill) {
         this.skill = skill;
+    }
+
+    public List<Startup> getStartupAmministrate() {
+        return startupAmministrate;
+    }
+
+    public void setStartupAmministrate(List<Startup> startupAmministrate) {
+        this.startupAmministrate = startupAmministrate;
+    }
+
+    public List<Startup> getStartupAttuali() {
+        return startupAttuali;
+    }
+
+    public void setStartupAttuali(List<Startup> startupAttuali) {
+        this.startupAttuali = startupAttuali;
+    }
+
+    public List<Startup> getStartupPassate() {
+        return startupPassate;
+    }
+
+    public void setStartupPassate(List<Startup> startupPassate) {
+        this.startupPassate = startupPassate;
     }
 }

@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import avviait.exceptions.AlreadyExists;
 import avviait.helper.StringHashing;
+import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 
 @Stateless
 public class StartupperFacade  implements Serializable {
@@ -84,6 +84,45 @@ public class StartupperFacade  implements Serializable {
         }
 
         return startupperList;
+    }
+
+    public List<Startup> getStartupAmministrate(Startupper startupper) {
+        List<Startup> startupAmministrate =null;
+        try {
+            Query query = em.createNamedQuery("findAllStartupAmministrate");
+            query.setParameter("startupper" , startupper);
+            startupAmministrate = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("ERRORE: Query \"findAllStartupAmministrate\" fallita");
+            e.printStackTrace();
+        }
+        return startupAmministrate;
+    }
+
+    public List<Startup> getStartupAttuali(Startupper startupper) {
+        List<Startup> startupAttuali =null;
+        try {
+            Query query = em.createNamedQuery("findAllStartupAttuali");
+            query.setParameter("startupper" , startupper);
+            startupAttuali = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("ERRORE: Query \"findAllStartupAttuali\" fallita");
+            e.printStackTrace();
+        }
+        return startupAttuali;
+    }
+
+    public List<Startup> getStartupPassate(Startupper startupper) {
+        List<Startup> startupPassate =null;
+        try {
+            Query query = em.createNamedQuery("findAllStartupPassate");
+            query.setParameter("startupper" , startupper);
+            startupPassate = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("ERRORE: Query \"findAllStartupPassate\" fallita");
+            e.printStackTrace();
+        }
+        return startupPassate;
     }
 
     public String getNomeCompleto(Startupper startupper) {

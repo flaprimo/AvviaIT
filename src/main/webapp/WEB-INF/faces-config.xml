@@ -57,7 +57,28 @@
         </navigation-case>
     </navigation-rule>
 
-    <!-- Settings -->
+    <!-- New Startup -->
+    <navigation-rule>
+        <from-view-id>/newStartup.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupController.createStartup}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{startupController.createStartup}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Startupper Settings -->
     <navigation-rule>
         <from-view-id>/startupper/settings.xhtml</from-view-id>
         <navigation-case>
@@ -93,6 +114,33 @@
                 <view-param>
                     <name>startupper</name>
                     <value>#{startupperSessionController.startupper.id}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Startup Settings -->
+    <navigation-rule>
+        <from-view-id>/startup/settings.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupController.update}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{startupController.addMembro}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/settings.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
                 </view-param>
             </redirect>
         </navigation-case>
@@ -148,6 +196,22 @@
             <if>#{!startupperSessionController.isStartupperLoggedIn()}</if>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect />
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Annuncio -->
+    <navigation-rule>
+        <from-view-id>/annuncio/new.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{annuncioMembriController.createAnnuncio}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{annuncioMembriController.autrice.nome}</value>
+                </view-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
 </faces-config>
