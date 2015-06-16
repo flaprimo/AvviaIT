@@ -23,15 +23,19 @@
                         <a href="${pageContext.request.contextPath}/startup/startups.xhtml">
                             Le Startup
                         </a>
-                        <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
+                    </li>
+                    <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
+                        <li>
                             <a href="${pageContext.request.contextPath}/startupper/list.xhtml">
                                 Startuppers
                             </a>
+                        </li>
+                        <li>
                             <a href="${pageContext.request.contextPath}/annuncio/list.xhtml">
                                 Annunci
                             </a>
-                        </c:if>
-                    </li>
+                        </li>
+                    </c:if>
                 </ul>
 
 
