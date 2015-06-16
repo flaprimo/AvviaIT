@@ -53,7 +53,7 @@ public class StartupController {
         if (startupFacade.getStartup(nome) == null) {
             Startupper startupper = startupperSessionController.getStartupper();
             Calendar data = Calendar.getInstance();
-            data.setTime(new Date());
+            data.setTime(dataFondazione);
             startup = startupFacade.createStartup(nome, descrizione, data, startupper);
             flash.put("notification", "Startup registrata con successo");
             flash.put("notificationType", "success");

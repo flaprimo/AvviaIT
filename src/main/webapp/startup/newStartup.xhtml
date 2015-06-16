@@ -39,6 +39,20 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="large-6 medium-9 column">
+                        <label>Data di fondazione
+                            <h:inputText value="#{startupController.dataFondazione}"
+                                         id="data"
+                                         name="data"
+                                         required="true"
+                                         placeholder="gg/mm/aaaa" >
+                                <f:convertDateTime pattern="d/M/yyyy"/>
+                            </h:inputText>
+                            <h:message for="data" class="error" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="column">
                         <h:commandButton action="#{startupController.createStartup}" class="button"/>
                     </div>
