@@ -77,7 +77,7 @@ public class Startup {
         return descrizione;
     }
 
-    public Boolean isAttiva() {
+    public Boolean getAttiva() {
         return attiva;
     }
 

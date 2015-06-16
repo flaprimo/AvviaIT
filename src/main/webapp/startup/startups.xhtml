@@ -1,17 +1,25 @@
 <ui:composition template="/template/commonLayout.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="title">Startups | AvviaIT</ui:define>
+
     <ui:define name="content">
         <div class="row">
             <div class="small-12 columns">
                 <c:forEach var="startup" items="#{startupController.getStartupsList()}">
                     <div class="panel">
-                        <h:link value="${startup.nome}"
-                                outcome="${pageContext.request.contextPath}/startup/profile.xhtml">
-                            <f:param name="name" value="${startup.nome}"/>
-                        </h:link>
+                        <div class="profile-header">
+                            <a href="${pageContext.request.contextPath}/startup/profile.xhtml?nome=${startup.nome}">
+                                <h3 class="titolo">${startup.nome}</h3>
+                            </a>
+                            <c:if test="#{startup.attiva}">
+                                <i class="fa fa-circle attivo" title="profilo attivo"></i>
+                            </c:if>
+                            <c:if test="#{not startup.attiva}">
+                                <i class="fa fa-circle non-attivo" title="profilo non attivo"></i>
+                            </c:if>
+                        </div>
                         <p>${startup.descrizione}</p>
                     </div>
                 </c:forEach>

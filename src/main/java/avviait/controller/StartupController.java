@@ -42,7 +42,7 @@ public class StartupController {
             nome = startup.getNome();
             descrizione = startup.getDescrizione();
             dataFondazione = startup.getDataFondazione().getTime();
-            attiva = startup.isAttiva();
+            attiva = startup.getAttiva();
             membri = startupFacade.getMembri(startup);
             amministratori = startupFacade.getAmministratori(startup);
         } catch (Exception e) {}
