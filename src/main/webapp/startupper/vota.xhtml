@@ -1,0 +1,27 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Vota skill | AvviaIT</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>Vota Skill</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <h:form id="votaForm">
+
+                    <input type="hidden" name="startupperSkill" value="#{param['startupperSkill']}" />
+
+                    <h:commandButton action="#{startupperSkillController.votaSkill}"
+                                     class="button"
+                                     value="Aggiungi voto"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

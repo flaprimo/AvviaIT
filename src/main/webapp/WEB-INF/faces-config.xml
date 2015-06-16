@@ -162,6 +162,33 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>selfRedirect</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>startupper</name>
+                    <value>#{startupperSkillController.idStartupperProfile}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- MyProfile reindirizza sempre al profilo -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>MyProfile</from-outcome>
+            <to-view-id>/startupper/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>startupper</name>
+                    <value>#{startupperSessionController.startupper}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
     <!-- Redirect after logout -->
     <navigation-rule>
         <from-view-id>/*</from-view-id>

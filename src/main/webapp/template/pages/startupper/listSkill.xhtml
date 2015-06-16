@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <body>
 <ui:composition>
@@ -17,8 +18,35 @@
                 <c:forEach var="startupperSkill" items="#{startupperController.skill}">
                     <li>
                         <div class="panel">
-                            <span>${startupperSkill.skillAssociata.nome}</span>
-                            <span class="right">vota</span>
+                            <span class="grow">
+                                <b>${startupperSkill.skillAssociata.nome}</b>
+                                <c:if test="#{startupperSkillController.contaRiscontri(startupperSkill)!=0}">
+                                    <a class="showRiscontri">[#{startupperSkillController.contaRiscontri(startupperSkill)} riscontri]</a>
+                                    <c:forEach var="value" items="#{startupperSkillController.riscontri(startupperSkill)}">
+                                        <a href="${pageContext.request.contextPath}/startupper/profile?startupper=#{value.id}"
+                                           class="riscontro">[#{value.nome} #{value.cognome}]</a>
+                                    </c:forEach>
+                                </c:if>
+                            </span>
+                            <span class="right">
+                                <c:if test="#{!startupperSessionController.isLoggedStartupper(startupperController.id)}">
+                                    <c:if test="#{!startupperSkillController.hasVoted(startupperSessionController.startupper,startupperSkill)}">
+                                        <a href="${pageContext.request.contextPath}/startupper/vota.xhtml?startupperSkill=${startupperSkill.id}">
+                                            vota
+                                        </a>
+                                    </c:if>
+                                    <c:if test="#{startupperSkillController.hasVoted(startupperSessionController.startupper,startupperSkill)}">
+                                        <a href="${pageContext.request.contextPath}/startupper/removeVoto.xhtml?startupperSkill=${startupperSkill.id}">
+                                            rimuovi voto
+                                        </a>
+                                    </c:if>
+                                </c:if>
+                                <c:if test="#{startupperSessionController.isLoggedStartupper(startupperController.id)}">
+                                    <a href="${pageContext.request.contextPath}/startupper/deleteSkill.xhtml?skill=${startupperSkill.skillAssociata.id}">
+                                        cancella
+                                    </a>
+                                </c:if>
+                            </span>
                         </div>
                     </li>
                 </c:forEach>

@@ -4,13 +4,17 @@
 
     function onDocumentLoad() {
         // Lista Skill
-        $nomeSkillLabel = $("#nomeSkillLabel").find("input")
+        $nomeSkillLabel = $("#nomeSkillLabel").find("input");
         $("#skillSchooser").on("click", "li", function() {
             var value = $(this).html();
             $nomeSkillLabel.val(value);
+            $("#addSkillModal").find("input.button").click();
         });
-        $("#addSkillShow").click(function() {
+        $("#addSkillForm").click(function() {
             $nomeSkillLabel.val("");
+        });
+        $(".showRiscontri").click(function() {
+            $(this).hide().parent().find('.riscontro').show();
         });
     }
 

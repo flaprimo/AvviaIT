@@ -203,12 +203,17 @@ public class Startupper {
 
 	@Override
 	public boolean equals(Object o) {
-		Startupper s = (Startupper)o;
-		return this.getEmail().equals(s.getEmail());
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Startupper that = (Startupper) o;
+
+		return !(email != null ? !email.equals(that.email) : that.email != null);
+
 	}
 
 	@Override
 	public int hashCode() {
-		return this.getEmail().hashCode();
+		return email != null ? email.hashCode() : 0;
 	}
 }

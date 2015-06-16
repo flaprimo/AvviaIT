@@ -1,0 +1,26 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Modifica skill | AvviaIT</ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>Rimuovi skill</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <p>Sei sicuro di voler rimuovere la skill <b>#{skillController.skill.nome}</b>?</p>
+                <h:form>
+                    <input type="hidden" name="skill" value="#{param['skill']}" />
+                    <h:commandButton action="#{skillController.deleteSkill}"
+                                     class="button alert"
+                                     value="Cancella skill"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

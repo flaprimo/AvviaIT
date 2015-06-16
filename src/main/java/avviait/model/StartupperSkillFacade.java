@@ -2,6 +2,7 @@ package avviait.model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Calendar;
@@ -29,10 +30,25 @@ public class StartupperSkillFacade {
         return startupperSkill;
     }
 
+    public StartupperSkill getStartupperSkill(Long id) {
+        StartupperSkill startupper = null;
+        startupper = em.find(StartupperSkill.class, id);
+        return startupper;
+    }
+
     public StartupperSkill vota(Startupper da, Startupper a, Skill skillAssociata) {
         StartupperSkill startupperSkill = getStartupperSkill(a, skillAssociata);
-        //startupperSkill.getStartupperVotanti().add(da);
-        da.getSkillVotate().add(startupperSkill);
+        startupperSkill.getStartupperVotanti().add(da);
+        //da.getSkillVotate().add(startupperSkill);
+        updateStartupperSkillFacade(startupperSkill);
+        em.merge(da);
+        em.merge(a);
+        return startupperSkill;
+    }
+
+    public StartupperSkill removeVoto(Startupper da, Startupper a, Skill skillAssociata) {
+        StartupperSkill startupperSkill = getStartupperSkill(a, skillAssociata);
+        startupperSkill.getStartupperVotanti().remove(da);
         updateStartupperSkillFacade(startupperSkill);
         em.merge(da);
         em.merge(a);
@@ -46,29 +62,17 @@ public class StartupperSkillFacade {
         return (StartupperSkill) query.getSingleResult();
     }
 
-    public List<StartupperSkill> getAllVotoSkillForAutore(Startupper autore){
-        List<StartupperSkill> ret = null;
-        try {
-            Query query = em.createNamedQuery("findAllVotoSkillForAutore");
-            query.setParameter("id", autore.getId());
-            ret = query.getResultList();
-        } catch (Exception e) {
-            System.out.println("ERRORE: Query \"findAllVotoSkillForAutore\" fallita");
-            e.printStackTrace();
-        }
-        return ret;
+    public boolean hasVoted(Startupper startupper, StartupperSkill startupperSkill) {
+        startupperSkill = getStartupperSkill(startupperSkill.getId());
+        return startupperSkill.getStartupperVotanti().contains(startupper);
+    }
+    public List<Startupper> getVotanti(StartupperSkill startupperSkill) {
+        startupperSkill = getStartupperSkill(startupperSkill.getId());
+        return startupperSkill.getStartupperVotanti();
     }
 
-    public List<StartupperSkill> getAllVotoSkillForGiudicato(Startupper giudicato) {
-        List<StartupperSkill> ret = null;
-        try {
-            Query query = em.createNamedQuery("findAllVotoSkillForGiudicato");
-            query.setParameter("id", giudicato.getId());
-            ret = query.getResultList();
-        } catch (Exception e) {
-            System.out.println("ERRORE: Query \"findAllVotoSkillForGiudicato\" fallita");
-            e.printStackTrace();
-        }
-        return ret;
+    public void deleteStartupperSkill(Startupper startupper, Skill skill) {
+        StartupperSkill startupperSkill = getStartupperSkill(startupper, skill);
+        em.remove(startupperSkill);
     }
 }

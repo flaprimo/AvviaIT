@@ -29,13 +29,14 @@
                              required="true"
                              requiredMessage="Il titolo è necessario!"
                              placeholder="Nome skill"
-                             class="#{component.valid ? '' : 'error'}" />
+                             class="nomeSkill #{component.valid ? '' : 'error'}" />
                 <h:message for="nomeSkill" class="error" />
             </label>
 
             <h:commandButton action="#{startupperSkillController.addSkill}"
-                             class="button"
-                             value="Aggiungi Skill"/>
+                            class="button"
+                            value="Aggiungi Skill"
+                            id="skillAddConfirm"/>
         </h:form>
     </f:subview>
 
