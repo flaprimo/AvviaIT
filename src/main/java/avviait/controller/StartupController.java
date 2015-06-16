@@ -37,7 +37,7 @@ public class StartupController {
     @PostConstruct
     private void init() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        try {
+        if (request.getParameter("name") != null) {
             startup = startupFacade.getStartup(request.getParameter("name"));
             nome = startup.getNome();
             descrizione = startup.getDescrizione();
@@ -45,7 +45,7 @@ public class StartupController {
             attiva = startup.isAttiva();
             membri = startupFacade.getMembri(startup);
             amministratori = startupFacade.getAmministratori(startup);
-        } catch (Exception e) {}
+        }
     }
 
     public String createStartup() {
