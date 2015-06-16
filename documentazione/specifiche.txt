@@ -1,0 +1,106 @@
+/**
+ * SPECIFICHE PROGETTO "AvviaIT"
+ */
+
+Caso d'uso UC1: REGISTRAZIONE STARTUPPER
+Attore primario: utente
+Scenario principale:
+  - Il sistema presenta all'utente la schermata principale (home) con un form per la registrazione.
+  - L'utente inserisce i propri dati nel form di registrazione.
+  - Il sistema registra l'utente come startupper e lo autentica nel sistema.
+  - Il sistema reindirizza il neo-startupper nella propria schermata del profilo, con un messaggio che informa
+    l'utente dell'avvenuta registrazione al sistema.
+Eccezioni:
+Nel caso esista già uno startupper registrato con la email inserita nel form, questo viene informato con un
+messaggio di errore e non viene registrato nel sistema.
+
+Caso d'uso UC2: LOGIN STARTUPPER
+Attore primario: utente
+Scenario principale:
+  - Il sistema presenta all'utente la schermata principale (home) con un form per il login.
+  - L'utente inserisce le proprie credenziali nel form di registrazione.
+  - Il sistema identifica e autentica l'utente come startupper.
+  - Il sistema reindirizza lo startupper nella propria schermata del profilo, con un messaggio che informa
+    l'utente dell'avvenuto login al sistema.
+Precondizioni:
+L'utente è registrato nel sistema come startupper.
+L'utente non è ancora identificato e autenticato nel sistema.
+Eccezioni:
+Nel caso le credenziali inserite dall'utente non corrispondano ad un utente registrato nel sistema, questo viene
+informato con un messaggio di errore e non viene registrato nel sistema.
+
+Caso d'uso UC3: IMPOSTAZIONI STARTUPPER
+Attore primario: startupper
+Scenario principale:
+  - Lo startupper clicca su un bottone nella pagina del proprio profilo o attraverso un bottone nel menu superiore per
+    arrivare alla schermata di modifica delle proprie impostazioni.
+  - Il sistema reindirizza lo startupper verso la schermata di modifca delle impostazioni.
+  - Lo startupper inserisce i dati nei campi che intende cambiare
+  - Il sistema registra i cambiamenti apportati
+  - Il sistema reindirizza lo startupper nella propria schermata del profilo, con un messaggio che informa
+    l'utente dell'avvenuta modifica dei dati personali.
+Precondizioni:
+Lo startupper è identificato e autenticato nel sistema.
+
+Caso d'uso UC4: VISUALIZZAZIONE LISTA STARTUPPER
+Attore primario: startupper
+Scenario principale:
+  - Lo startupper clicca su un bottone nel menu superiore per arrivare alla schermata dove vengono elencate gli
+    startupper.
+  - Il sistema reindirizza lo startupper verso la schermata di elenco degli startupper.
+  - Lo startupper scegli uno startupper in elenco.
+  - Il sistema reindirizza lo startupper nella schermata del profilo dello startupper scelto
+Precondizioni:
+Lo startupper è identificato e autenticato nel sistema.
+
+Caso d'uso UC5: CREAZIONE GIUDIZIO STARTUPPER
+Attore primario: startupper
+Scenario principale:
+  - Lo startupper segue il caso d'uso UC4 per navigare nella pagina di profilo di uno startupper.
+  - Lo startupper clicca sul bottone di aggiunta giudizi
+  - Il sistema mostra un dialog con un form da compilare per assegnare un giudizio allo startupper scelto.
+  - Lo startupper compila il form.
+  - Il sistema registra il giudizio nel sistema, da ora in poi sarà visibile nella propria pagina di giudizio e su
+    quella dello startupper scelto.
+  - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
+    dell'avvenuta aggiunta del giudizio.
+Precondizioni:
+Lo startupper è identificato e autenticato nel sistema.
+La pagina di profilo startupper scelto non è quella dello startupper loggato.
+Lo startupper non ha espresso altri giudizi sul medesimo startupper.
+Lo startupper deve essere attivo.
+Eccezioni:
+Lo startupper ha già espresso un giudizio sullo startupper scelto, in questo caso l'utente viene reindirizzato alla
+propria pagina profilo e informato del fallimento di aggiunta del giudizio con un messaggio.
+
+Caso d'uso UC6: MODIFICA GIUDIZIO STARTUPPER
+Attore primario: startupper
+Scenario principale:
+  - Lo startupper segue il caso d'uso UC4 per navigare nella pagina di profilo di uno startupper.
+  - Lo startupper clicca sul bottone di modifica sul giudizio da modificare.
+  - Il sistema reindirizza l'utente ad una pagina con un form da compilare per modificare il giudizio scelto.
+  - Lo startupper compila il form.
+  - Il sistema registra le modifiche apportate al giudizio nel sistema.
+  - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
+    dell'avvenuta modifica del giudizio.
+Precondizioni:
+L'autore del giudizio deve corrispondere all'utente loggato.
+Lo startupper è identificato e autenticato nel sistema.
+La pagina di profilo startupper scelto non è quella dello startupper loggato.
+Lo startupper deve essere attivo.
+
+Caso d'uso UC6: CANCELLAZIONE GIUDIZIO STARTUPPER
+Attore primario: startupper
+Scenario principale:
+  - Lo startupper segue il caso d'uso UC4 per navigare nella pagina di profilo di uno startupper.
+  - Lo startupper clicca sul bottone di cancellazione sul giudizio da modificare.
+  - Il sistema reindirizza l'utente ad una pagina con un bottone di conferma per la cancellazione del giudizio scelto.
+  - Lo startupper conferma la scelta.
+  - Il sistema elimina il giudizio dal sistema.
+  - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
+    dell'avvenuta cancellazione del giudizio.
+Precondizioni:
+L'autore del giudizio deve corrispondere all'utente loggato.
+Lo startupper è identificato e autenticato nel sistema.
+La pagina di profilo startupper scelto non è quella dello startupper loggato.
+Lo startupper deve essere attivo.
