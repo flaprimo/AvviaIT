@@ -18,25 +18,26 @@
         <section class="top-bar-section">
             <!-- Left Nav Section -->
 
+            <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
                 <ul class="left">
                     <li>
                         <a href="${pageContext.request.contextPath}/startup/startups.xhtml">
-                            Le Startup
+                            Startups
                         </a>
                     </li>
-                    <c:if test="#{startupperSessionController.isStartupperLoggedIn()}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/startupper/list.xhtml">
-                                Startuppers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/annuncio/list.xhtml">
-                                Annunci
-                            </a>
-                        </li>
-                    </c:if>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/startupper/list.xhtml">
+                            Startuppers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/annuncio/list.xhtml">
+                            Annunci
+                        </a>
+                    </li>
+
                 </ul>
+            </c:if>
 
 
             <!-- Right Nav Section -->

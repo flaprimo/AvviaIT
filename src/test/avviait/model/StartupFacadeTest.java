@@ -63,7 +63,7 @@ public class StartupFacadeTest {
         assertEquals(persistedStartup.getNome(), startup.getNome());
         assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
         assertEquals(persistedStartup.getDataFondazione(), startup.getDataFondazione());
-        assertTrue(persistedStartup.isAttiva());
+        assertTrue(persistedStartup.getAttiva());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class StartupFacadeTest {
         assertEquals(persistedStartup.getNome(), startup.getNome());
         assertEquals(persistedStartup.getDescrizione(), startup.getDescrizione());
         assertEquals(persistedStartup.getDataFondazione(), startup.getDataFondazione());
-        assertTrue(persistedStartup.isAttiva());
+        assertTrue(persistedStartup.getAttiva());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class StartupFacadeTest {
         startupFacade.updateStartup(startup);
         Startup startupAggiornata = startupFacade.getStartup("AvviaIT");
         assertTrue(startupAggiornata.getDescrizione().equals("nuova descrizione"));
-        assertFalse(startupAggiornata.isAttiva());
+        assertFalse(startupAggiornata.getAttiva());
     }
 
     @Test
