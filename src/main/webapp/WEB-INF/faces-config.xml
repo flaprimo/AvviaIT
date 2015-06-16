@@ -59,7 +59,7 @@
 
     <!-- New Startup -->
     <navigation-rule>
-        <from-view-id>/newStartup.xhtml</from-view-id>
+        <from-view-id>/startup/newStartup.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{startupController.createStartup}</from-action>
             <from-outcome>success</from-outcome>
