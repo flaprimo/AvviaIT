@@ -41,7 +41,6 @@ public class SkillController {
             skill = skillFacade.getSkill(idSkill);
         } catch (NumberFormatException e) {
         }
-        System.out.println("idSkill:"+idSkill+" skill:"+skill);
     }
 
     public String deleteSkill() {

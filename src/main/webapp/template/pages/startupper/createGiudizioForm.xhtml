@@ -43,6 +43,8 @@
                 </h:selectOneRadio>
             </label>
 
+            <input type="hidden" name="giudicato" value="#{param['startupper']}" />
+
             <h:commandButton action="#{giudizioController.createGiudizio}"
                              class="button"
                              value="Aggiungi Giudizio"/>

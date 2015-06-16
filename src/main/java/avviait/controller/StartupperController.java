@@ -69,10 +69,6 @@ public class StartupperController {
             startupAmministrate = startupperFacade.getStartupAmministrate(startupper);
             startupAttuali = startupperFacade.getStartupAttuali(startupper);
             startupPassate = startupperFacade.getStartupPassate(startupper);
-
-            // da usare per operazioni su startupper del profilo visualizzato
-            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-            flash.put("idStartupper", id);
         }
     }
 
