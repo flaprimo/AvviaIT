@@ -4,52 +4,54 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="content">
-        <c:choose>
-            <c:when test="#{startupperSessionController.startupper.getStartupAmministrate()
-            .contains(startupController.startup)}">
-            <div class="row">
-                <div class="small-12 medium-8 medium-offset-2 columns">
-                    <ui:include src="/template/notification.xhtml" />
+        <div class="row">
+            <div class="small-12 medium-8 medium-offset-2 columns">
+                <c:choose>
+                    <c:when test="#{startupController.amministratori
+                    .contains(startupperSessionController.startupper)}">
 
-                    <h1>Impostazioni</h1>
-                    <hr />
-                </div>
-            </div>
-            <f:subview id="startupSettings">
-                <h:form>
-                    <div class="row">
-                        <div class="small-12 medium-8 medium-offset-2 columns">
-                            <label> Descrizione
-                                <h:inputTextarea value="#{startupController.descrizione}"
-                                                 name="descrizione"
-                                                 id="descrizione"
-                                                 class="#{component.valid ? '' : 'error'}"/>
-                                <h:message for="descrizione" class="error" />
-                            </label>
-                            <label>Attiva</label>
-                            <div class="switch">
-                                <h:selectBooleanCheckbox value="#{startupController.attiva}"
-                                                         name="attiva"
-                                                         id="attiva" />
-                                <h:outputLabel value="" for="attiva" />
-                            </div>
-                            <h:commandButton action="#{startupController.update}"
-                                             class="button"
-                                             value="Salva" >
-                                <f:param name="name" value="#{startupController.nome}"/>
-                            </h:commandButton>
-                        </div>
-                    </div>
-                </h:form>
-            </f:subview>
-            </c:when>
-            <c:otherwise>
-                <div class="row">
-                    <div class="small-12 medium-8 medium-offset-2 columns">
+                        <ui:include src="/template/notification.xhtml" />
+
+                        <h1>Impostazioni</h1>
+                        <hr />
+                        <a href="#" data-reveal-id="addMembroModal" class="button tiny">Aggiungi Membro</a>
+                        <!--<a href="#" data-reveal-id="addAmministratoreModal" class="button tiny">Nomina Amministratore</a>-->
+
+                        <f:subview id="startupSettings">
+                            <h:form>
+                                <label> Descrizione
+                                    <h:inputTextarea value="#{startupController.descrizione}"
+                                                     name="descrizione"
+                                                     id="descrizione"
+                                                     class="#{component.valid ? '' : 'error'}"/>
+                                    <h:message for="descrizione" class="error" />
+                                </label>
+                                <label>Attiva</label>
+                                <div class="switch">
+                                    <h:selectBooleanCheckbox value="#{startupController.attiva}"
+                                                             name="attiva"
+                                                             id="attiva" />
+                                    <h:outputLabel value="" for="attiva" />
+                                </div>
+                                <h:commandButton action="#{startupController.update}"
+                                                 class="button"
+                                                 value="Salva" >
+                                    <f:param name="name" value="#{startupController.nome}"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:subview>
+                    </c:when>
+                    <c:otherwise>
                         <h3>ACCESSO NEGATO: non sei amministratore di questa startup</h3>
-                    </div>
-                </div>
-            </c:otherwise>
-        </c:choose>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="modal">
+        <ui:include src="/template/pages/startup/addMembroModal.xhtml" />
+        <ui:include src="/template/pages/startup/removeMembroModal.xhtml" />
+        <ui:include src="/template/pages/startup/addAmministratoreModal.xhtml" />
     </ui:define>
 </ui:composition>

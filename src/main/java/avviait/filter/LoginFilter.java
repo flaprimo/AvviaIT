@@ -20,7 +20,8 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String path = ((HttpServletRequest) request).getRequestURI();
 
-        if (!(path.startsWith("/index") || path.startsWith("/assets")) && !startupperSessionController.isStartupperLoggedIn()) {
+        if (!(path.startsWith("/index") || path.startsWith("/assets") || path.startsWith("/startup/startups"))
+                && !startupperSessionController.isStartupperLoggedIn()) {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 

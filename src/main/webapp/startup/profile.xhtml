@@ -3,16 +3,21 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <ui:define name="title">#{startupController.nome} | AvviaIT</ui:define>
+    <ui:define name="title">#{startupController.nome}</ui:define>
     <ui:define name="content">
         <div class="row">
             <ui:include src="/template/notification.xhtml" />
             <c:if test="#{startupController.isLoggedStartupperAmministratore()}">
-                <h:link value="Impostazioni Startup"
+                <h:link value=" Impostazioni Startup"
                         outcome="${pageContext.request.contextPath}/startup/settings.xhtml"
                         class="button">
                     <i class="fa fa-cog"/>
                     <f:param name="name" value="#{startupController.nome}"/>
+                </h:link>
+                <h:link value="Pubblica annuncio"
+                        outcome="${pageContext.request.contextPath}/annuncio/new.xhtml"
+                        class="button">
+                    <f:param name="name" value="#{startupController.nome}" />
                 </h:link>
             </c:if>
             <h1>#{startupController.nome}</h1>

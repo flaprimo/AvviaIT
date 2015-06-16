@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<body>
+<ui:composition>
+    <div id="addMembroModal" class="reveal-modal" data-reveal="true" aria-labelledby="addMembroModal" aria-hidden="true" role="dialog">
+    <f:subview id="addMembro">
+        <h:form>
+            <label>Inserisci l'email dell'utente da aggiungere come membro
+                <h:inputText value='#{startupController.emailStartupper}'
+                             id="emailStartupper"
+                             name="emailStartupper"
+                             required="true"
+                             requiredMessage="L'email è necessaria!"
+                             placeholder="Email"
+                             type="email"
+                             class="#{component.valid ? '' : 'error'}" />
+                <h:message for="emailStartupper" class="error" />
+            </label>
+
+            <h:commandButton action="#{startupController.addMembro}"
+                             class="button"
+                             value="Aggiungi Membro">
+                <f:param name="name" value="#{startupController.nome}"/>
+            </h:commandButton>
+        </h:form>
+    </f:subview>
+    <a class="close-reveal-modal" aria-label="Close"><i class="fa fa-times" /></a>
+</div>
+</ui:composition>
+</body>
+</html>

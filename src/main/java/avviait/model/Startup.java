@@ -13,6 +13,8 @@ import java.util.Objects;
                 "JOIN s.startupAmministrate sa WHERE sa = :startup"),
         @NamedQuery(name = "findAllMembri", query = "SELECT s FROM Startupper s " +
                 "JOIN s.startupAttuali sa WHERE sa = :startup"),
+        @NamedQuery(name = "findAllMembriPassati", query = "SELECT s FROM Startupper s " +
+                "JOIN s.startupPassate sp WHERE sp = :startup"),
         @NamedQuery(name = "findStartupByName", query = "SELECT s FROM Startup s WHERE s.nome = :nome")
 })
 public class Startup {
@@ -55,6 +57,7 @@ public class Startup {
         this.attiva = true;
         this.amministratori = new LinkedList<Startupper>();
         this.membri = new LinkedList<Startupper>();
+        this.membriPassati = new LinkedList<Startupper>();
         this.annunci = new LinkedList<AnnuncioMembri>();
     }
 
@@ -108,6 +111,22 @@ public class Startup {
 
     public void setAttiva(Boolean attiva) {
         this.attiva = attiva;
+    }
+
+    public void setMembri(List<Startupper> membri) {
+        this.membri = membri;
+    }
+
+    public void setAmministratori(List<Startupper> amministratori) {
+        this.amministratori = amministratori;
+    }
+
+    public void setMembriPassati(List<Startupper> membriPassati) {
+        this.membriPassati = membriPassati;
+    }
+
+    public void setAnnunci(List<AnnuncioMembri> annunci) {
+        this.annunci = annunci;
     }
 
     @Override

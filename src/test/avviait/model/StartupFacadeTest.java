@@ -113,4 +113,26 @@ public class StartupFacadeTest {
         assertTrue(startupAggiornata.getDescrizione().equals("nuova descrizione"));
         assertFalse(startupAggiornata.isAttiva());
     }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testAddMembro() throws  Exception {
+        setUp();
+        Startupper altroStartupper = startupperFacade.createStartupper("Altro", "Startupper", "altrostartupper@avviait.it", "thjbrty");
+        altroStartupper = startupperFacade.getStartupperByEmail("altrostartupper@avviait.it");
+        assertTrue(startupFacade.addMembro(startup, altroStartupper));
+        assertTrue(startupFacade.getMembri(startup).contains(altroStartupper));
+        assertTrue(altroStartupper.getStartupAttuali().contains(startup));
+    }
+
+    @Test
+    @Transactional(TransactionMode.ROLLBACK)
+    public void testRemoveMembro() throws Exception {
+        setUp();
+        assertTrue(startupFacade.removeMembro(startup, startupper));
+        assertFalse(startup.getMembri().contains(startupper));
+        assertFalse(startupper.getStartupAttuali().contains(startup));
+        assertTrue(startup.getMembriPassati().contains(startupper));
+        assertTrue(startupper.getStartupPassate().contains(startup));
+    }
 }

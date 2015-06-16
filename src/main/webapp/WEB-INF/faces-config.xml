@@ -133,6 +133,17 @@
                 </view-param>
             </redirect>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{startupController.addMembro}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/settings.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
     </navigation-rule>
 
     <!-- SkillStartupper -->
@@ -158,6 +169,22 @@
             <if>#{!startupperSessionController.isStartupperLoggedIn()}</if>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect />
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Annuncio -->
+    <navigation-rule>
+        <from-view-id>/annuncio/new.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{annuncioMembriController.createAnnuncio}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{annuncioMembriController.autrice.nome}</value>
+                </view-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
 </faces-config>

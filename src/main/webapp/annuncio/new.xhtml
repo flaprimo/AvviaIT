@@ -1,0 +1,50 @@
+<ui:composition template="/template/commonLayout.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="title">Pubblica un annuncio</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="small-12 medium-8 medium-offset-2 columns">
+                <h1>Pubblica un annuncio</h1>
+                <hr />
+                <h:form>
+                    <label>Mansione
+                        <h:inputText value="#{annuncioMembriController.mansione}"
+                                     id="mansione"
+                                     name="mansione"
+                                     required="true"
+                                     requiredMessage="La mansione è necessaria"
+                                     placeholder="Inserisci la mansione"
+                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="mansione" class="error" />
+                    </label>
+                    <label>Descrizione
+                        <h:inputTextarea value="#{annuncioMembriController.descrizione}"
+                                     id="descrizione"
+                                     name="descrizione"
+                                     required="true"
+                                     requiredMessage="La descrizione è necessaria"
+                                     placeholder="Inserisci la descrizione"
+                                     class="#{component.valid ? '' : 'error'}" />
+                        <h:message for="descrizione" class="error" />
+                    </label>
+                    <label>Skill
+                        <h:selectManyCheckbox value="#{annuncioMembriController.skillRichieste}">
+                            <f:selectItems value="#{annuncioMembriController.allSkills}"
+                                           var="skill"
+                                           itemLabel="${skill.nome}"
+                                           itemValue="${skill.nome}" />
+                        </h:selectManyCheckbox>
+                    </label>
+                    <h:commandButton action="#{annuncioMembriController.createAnnuncio}"
+                                     value="Pubblica"
+                                     class="button" >
+                        <f:param name="name" value="#{annuncioMembriController.autrice.nome}" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

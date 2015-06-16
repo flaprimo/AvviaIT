@@ -9,7 +9,13 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 		@NamedQuery(name="findAllStartupper", query="SELECT s FROM Startupper s"),
-		@NamedQuery(name="findStartupperByEmail", query="SELECT s FROM Startupper s WHERE s.email = :email")
+		@NamedQuery(name="findStartupperByEmail", query="SELECT s FROM Startupper s WHERE s.email = :email"),
+		@NamedQuery(name = "findAllStartupAttuali", query = "SELECT s FROM Startup s " +
+				"JOIN s.membri m WHERE m = :startupper"),
+		@NamedQuery(name = "findAllStartupPassate", query = "SELECT s FROM Startup s " +
+				"JOIN s.membriPassati mp WHERE mp = :startupper"),
+		@NamedQuery(name = "findAllStartupAmministrate", query = "SELECT s FROM Startup s " +
+				"JOIN s.amministratori a WHERE a = :startupper")
 })
 public class Startupper {
 
@@ -48,13 +54,19 @@ public class Startupper {
 	@OneToMany(mappedBy = "giudicato")
 	private List<Giudizio> giudiziRicevuti;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+	@JoinTable(name = "amministratori_startupamministrate",
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"amministratori_id", "startupamministrate_id"})})
     private List<Startup> startupAmministrate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+	@JoinTable(name = "membri_startupattuali",
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"membri_id", "startupattuali_id"})})
     private List<Startup> startupAttuali;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+	@JoinTable(name = "membripassati_startuppassate",
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"membripassati_id", "startuppassate_id"})})
     private List<Startup> startupPassate;
 
 	// Skill e voti skill
@@ -78,6 +90,7 @@ public class Startupper {
 		this.dataIscrizione = dataIscrizione;
 		this.startupAmministrate = new LinkedList<Startup>();
         this.startupAttuali = new LinkedList<Startup>();
+		this.startupPassate = new LinkedList<Startup>();
 		this.giudiziDati = new LinkedList<Giudizio>();
 		this.giudiziRicevuti = new LinkedList<Giudizio>();
         this.skillPossedute = new LinkedList<StartupperSkill>();

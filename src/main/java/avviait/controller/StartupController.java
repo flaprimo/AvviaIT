@@ -3,6 +3,7 @@ package avviait.controller;
 import avviait.model.Startup;
 import avviait.model.StartupFacade;
 import avviait.model.Startupper;
+import avviait.model.StartupperFacade;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -20,6 +21,8 @@ public class StartupController {
     private StartupperSessionController startupperSessionController;
     @Inject
     private StartupFacade startupFacade;
+    @Inject
+    private StartupperFacade startupperFacade;
 
     private Long id;
     private String nome;
@@ -27,6 +30,9 @@ public class StartupController {
     private Date dataFondazione;
     private Boolean attiva;
     private Startup startup;
+    private List<Startupper> membri;
+    private List<Startupper> amministratori;
+    private String emailStartupper;
 
     @PostConstruct
     private void init() {
@@ -37,6 +43,8 @@ public class StartupController {
             descrizione = startup.getDescrizione();
             dataFondazione = startup.getDataFondazione().getTime();
             attiva = startup.isAttiva();
+            membri = startupFacade.getMembri(startup);
+            amministratori = startupFacade.getAmministratori(startup);
         } catch (Exception e) {}
     }
 
@@ -46,7 +54,7 @@ public class StartupController {
             Startupper startupper = startupperSessionController.getStartupper();
             Calendar data = Calendar.getInstance();
             data.setTime(dataFondazione);
-            startupFacade.createStartup(nome, descrizione, data, startupper);
+            startup = startupFacade.createStartup(nome, descrizione, data, startupper);
             flash.put("notification", "Startup registrata con successo");
             flash.put("notificationType", "success");
             return "success";
@@ -70,6 +78,39 @@ public class StartupController {
         startupFacade.updateStartup(startup);
         return "success";
     }
+
+    public String addMembro() {
+        Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        if (startupper != null ) {
+            if (!membri.contains(startupper) && startupFacade.addMembro(startup, startupper)) {
+                flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " aggiunto come membro");
+                flash.put("notificationType", "success");
+            } else {
+                flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " è già membro");
+                flash.put("notificationType", "alert");
+            }
+        } else {
+            flash.put("notification", "Nessun utente registrato con " + emailStartupper);
+            flash.put("notificationType", "alert");
+        }
+        return "done";
+    }
+
+    public String removeMembro() {
+        Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        if(startupFacade.removeMembro(startup, startupper)) {
+            flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " rimosso da "
+                    + startup.getNome());
+            flash.put("notificationType", "success");
+        } else {
+            flash.put("notification", "Errore: lo startupper non è stato rimosso");
+            flash.put("notificationType", "alert");
+        }
+        return "done";
+    }
+
 
     public List<Startup> getStartupsList() {
         return startupFacade.getAllStartup();
@@ -121,5 +162,29 @@ public class StartupController {
 
     public void setStartup(Startup startup) {
         this.startup = startup;
+    }
+
+    public String getEmailStartupper() {
+        return emailStartupper;
+    }
+
+    public void setEmailStartupper(String emailStartupper) {
+        this.emailStartupper = emailStartupper;
+    }
+
+    public List<Startupper> getMembri() {
+        return membri;
+    }
+
+    public void setMembri(List<Startupper> membri) {
+        this.membri = membri;
+    }
+
+    public List<Startupper> getAmministratori() {
+        return amministratori;
+    }
+
+    public void setAmministratori(List<Startupper> amministratori) {
+        this.amministratori = amministratori;
     }
 }
