@@ -10,7 +10,7 @@
                 <c:forEach var="startup" items="#{startupController.getStartupsList()}">
                     <div class="panel">
                         <div class="profile-header">
-                            <a href="${pageContext.request.contextPath}/startup/profile.xhtml?nome=${startup.nome}">
+                            <a href="${pageContext.request.contextPath}/startup/profile.xhtml?name=${startup.nome}">
                                 <h3 class="titolo">${startup.nome}</h3>
                             </a>
                             <c:if test="#{startup.attiva}">

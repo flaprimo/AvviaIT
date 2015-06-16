@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <body>
 <ui:composition>
@@ -19,12 +18,17 @@
                     <c:forEach var="startup" items="#{startupperController.startupAttuali}">
                         <li>
                             <div class="panel">
-                                <h4>
-                                    <h:link value="${startup.nome}"
-                                            outcome="${pageContext.request.contextPath}/startup/profile.xhtml?name=${startup.nome}">
-                                        <!--<f:param name="name" value="${startup.nome}" />-->
-                                    </h:link>
-                                </h4>
+                                <div class="profile-header">
+                                    <a href="${pageContext.request.contextPath}/startup/profile.xhtml?name=${startup.nome}">
+                                        <h3 class="titolo">${startup.nome}</h3>
+                                    </a>
+                                    <c:if test="#{startup.attiva}">
+                                        <i class="fa fa-circle attivo" title="profilo attivo"></i>
+                                    </c:if>
+                                    <c:if test="#{not startup.attiva}">
+                                        <i class="fa fa-circle non-attivo" title="profilo non attivo"></i>
+                                    </c:if>
+                                </div>
                                 <p>${startup.descrizione}</p>
                             </div>
                         </li>
