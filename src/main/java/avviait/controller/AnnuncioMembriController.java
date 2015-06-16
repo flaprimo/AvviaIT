@@ -49,10 +49,10 @@ public class AnnuncioMembriController {
 
         } catch (Exception e) {}
         if (request.getParameter("name") != null) {
-            allSkills = skillFacade.getAllSkill();
             autrice = startupFacade.getStartup(request.getParameter("name"));
         }
         allAnnunci = annuncioMembriFacade.getAllAnnuncioMembri();
+        allSkills = skillFacade.getAllSkill();
     }
 
     public String createAnnuncio() {

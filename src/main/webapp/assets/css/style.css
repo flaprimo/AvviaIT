@@ -76,3 +76,8 @@
 .profile-header .non-attivo {
     color: #f04124;
 }
+
+/* Nuovo annuncio */
+#newAnnuncio td {
+    float: left;
+}
