@@ -30,7 +30,7 @@ public class AnnuncioMembriController {
     private String descrizione;
     private Calendar dataCreazione;
     private Startup autrice;
-    private List<Skill> skillRichieste;
+    private List<String> skillRichieste;
     private AnnuncioMembri annuncioMembri;
     private List<Skill> allSkills;
     private List<AnnuncioMembri> allAnnunci;
@@ -45,7 +45,7 @@ public class AnnuncioMembriController {
             descrizione = annuncioMembri.getDescrizione();
             dataCreazione = annuncioMembri.getDataCreazione();
             autrice = annuncioMembri.getAutrice();
-            skillRichieste = annuncioMembri.getSkillRichieste();
+            //skillRichieste = annuncioMembri.getSkillRichieste();
 
         } catch (Exception e) {}
         if (request.getParameter("name") != null) {
@@ -95,11 +95,11 @@ public class AnnuncioMembriController {
         this.autrice = autrice;
     }
 
-    public List<Skill> getSkillRichieste() {
+    public List<String> getSkillRichieste() {
         return skillRichieste;
     }
 
-    public void setSkillRichieste(List<Skill> skillRichieste) {
+    public void setSkillRichieste(List<String> skillRichieste) {
         this.skillRichieste = skillRichieste;
     }
 
