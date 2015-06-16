@@ -22,15 +22,18 @@ public class StartupperSessionController implements Serializable {
     private Startupper startupper;
 
     public String loginStartupper() {
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         Startupper startupperAttempt = startupperFacade.getStartupperByEmail(email);
+
         if (startupperAttempt != null && startupperFacade.checkPassword(startupperAttempt, password)) {
             this.startupper = startupperAttempt;
             // add notification for Profile page
-            Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
             flash.put("notification", "login avvenuto con successo");
             flash.put("notificationType", "success");
             return "success";
         } else {
+            flash.put("notification", "errore: credenziali di accesso errate");
+            flash.put("notificationType", "alert");
             return "failure";
         }
     }
