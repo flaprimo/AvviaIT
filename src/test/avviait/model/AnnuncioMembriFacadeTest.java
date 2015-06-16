@@ -46,9 +46,7 @@ public class AnnuncioMembriFacadeTest {
     private Startupper startupper;
     private Startup startup;
     private AnnuncioMembri annuncioMembri;
-    private Skill skill1;
-    private Skill skill2;
-    private List<Skill> skillRichieste;
+    private List<String> skillRichieste;
 
     public void setUp() {
         startupper = startupperFacade.createStartupper("Licio", "Chismi", "chismi.licio@tp.it","dcr5e6r");
@@ -56,13 +54,11 @@ public class AnnuncioMembriFacadeTest {
                         "nel quale gli studenti possono iscriversi e semplificare la possibilità " +
                         "di associazione per creare progetti innovativi (startup).", new GregorianCalendar(2015,5,4),
                 startupper);
-        skill1 = skillFacade.createSkill("JSF");
-        skill2 = skillFacade.createSkill("JavaEE");
-        skillRichieste = new LinkedList<Skill>();
-        skillRichieste.add(skill1);
-        skillRichieste.add(skill2);
+        skillRichieste = new LinkedList<String>();
+        skillRichieste.add("java");
+        skillRichieste.add("jsf");
         annuncioMembri =
-                annuncioMembriFacade.createAnnuncioMembri("Developer", "conoscenze javaEE", startup, skillRichieste);
+                annuncioMembriFacade.createAnnuncioMembri("Developer", "richieste conoscenze javaEE", startup, skillRichieste);
     }
 
     @Test
@@ -81,8 +77,8 @@ public class AnnuncioMembriFacadeTest {
         assertEquals(persistedAnnuncio.getDescrizione(), annuncioMembri.getDescrizione());
         assertNotNull(persistedAnnuncio.getDataCreazione());
         assertNotNull(persistedAnnuncio.getAutrice());
-        assertEquals(persistedAnnuncio.getSkillRichieste().get(0).getId(),skill1.getId());
-        assertEquals(persistedAnnuncio.getSkillRichieste().get(1).getId(),skill2.getId());
+        assertTrue(persistedAnnuncio.getSkillRichieste().contains(skillFacade.getOrCreateSkillNamed("java")));
+        assertTrue(persistedAnnuncio.getSkillRichieste().contains(skillFacade.getOrCreateSkillNamed("jsf")));
     }
 
     @Test

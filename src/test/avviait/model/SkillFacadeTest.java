@@ -152,17 +152,17 @@ public class SkillFacadeTest {
     private Startupper startupper;
     private Startup startup;
     private AnnuncioMembri annuncioMembri;
-    private Skill skill1;
-    private Skill skill2;
-    private List<Skill> skillRichieste;
+    private String skill1;
+    private String skill2;
+    private List<String> skillRichieste;
     public void setUpAnnuncio() {
         startupper = startupperFacade.createStartupper("Mark", "Zuckerberg", "mark.zuckerberg@fb.com", "wfb");
         startup = startupFacade.createStartup("Facebook", "Facebook ti aiuta a connetterti e" +
                         "rimanere in contatto con le persone della tua vita.", new GregorianCalendar(2004,2,4),
                 startupper);
-        skill1 = skillFacade.createSkill("JSF");
-        skill2 = skillFacade.createSkill("JavaEE");
-        skillRichieste = new LinkedList<Skill>();
+        skill1 = "java";
+        skill2 = "jsf";
+        skillRichieste = new LinkedList<String>();
         skillRichieste.add(skill1);
         skillRichieste.add(skill2);
         annuncioMembri =

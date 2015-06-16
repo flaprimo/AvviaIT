@@ -104,3 +104,37 @@ L'autore del giudizio deve corrispondere all'utente loggato.
 Lo startupper è identificato e autenticato nel sistema.
 La pagina di profilo startupper scelto non è quella dello startupper loggato.
 Lo startupper deve essere attivo.
+
+Caso d'uso UC7: REGISTRAZIONE DI UNA STARTUP
+Attore primario: startupper
+Scenario principale:
+  -Lo startupper clicca sul bottone nel menù superiore per arrivare alla pagina di registrazione di una startup.
+  -Lo startupper compila la form.
+  -Il sistema registra la startup e rende lo startupper sia membro che amministartore della stessa.
+  -Il sistema reindirizza lo startupper alla pagina del profilo della startup.
+Precondizioni:
+Lo startupper è autenticato nel sistema.
+Eccezioni:
+Esiste già una startup con il nome inserito dallo startupper, in questo caso lo startupper viene reindirizzato nella
+pagina di registrazione e lo startupper sarà informato del fatto che non è stato possibile procedere con la
+registrazione.
+
+Caso d'uso UC8: 
+Attore primario: startupper
+Scenario principale:
+  -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
