@@ -122,6 +122,10 @@ public class StartupFacade {
     public boolean addMembro(Startup startup, Startupper startupper) {
         startup = em.merge(startup);
         startupper= em.merge(startupper);
+        if (startup.getMembriPassati().contains(startupper)) {
+            startup.getMembriPassati().remove(startupper);
+            startupper.getStartupPassate().remove(startup);
+        }
         if(startup.getMembri().add(startupper) && startupper.getStartupAttuali().add(startup)) {
             em.merge(startup);
             em.merge(startupper);

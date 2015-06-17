@@ -31,6 +31,7 @@ public class StartupController {
     private Boolean attiva;
     private Startup startup;
     private List<Startupper> membri;
+    private List<Startupper> membriPassati;
     private List<Startupper> amministratori;
     private String emailStartupper;
 
@@ -45,6 +46,7 @@ public class StartupController {
             dataFondazione = startup.getDataFondazione().getTime();
             attiva = startup.getAttiva();
             membri = startupFacade.getMembri(startup);
+            membriPassati = startupFacade.getMembriPassati(startup);
             amministratori = startupFacade.getAmministratori(startup);
         }
     }
@@ -257,5 +259,9 @@ public class StartupController {
 
     public void setAmministratori(List<Startupper> amministratori) {
         this.amministratori = amministratori;
+    }
+
+    public List<Startupper> getMembriPassati() {
+        return membriPassati;
     }
 }

@@ -53,7 +53,11 @@
                     <c:forEach var="membro" items="#{startupController.membri}">
                         <li>
                             <div class="panel">
-                                <h3>${membro.nome} ${membro.cognome}</h3>
+                                <h3>
+                                    <a href="${pageContext.request.contextPath}/startupper/profile?startupper=#{membro.id}">
+                                    ${membro.nome} ${membro.cognome}
+                                    </a>
+                                </h3>
 
                                 <c:if test="#{startupController.isLoggedStartupperAmministratore() and
                             startupperSessionController.startupper.attivo}">
@@ -73,6 +77,28 @@
                                     </ul>
                                 </c:if>
 
+                                <p>${membro.descrizione}</p>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
+
+
+            <h3>Membri passati</h3>
+            <c:if test="#{empty startupController.membriPassati}">
+                <p>Non sono ancora presenti membri</p>
+            </c:if>
+            <c:if test="#{not empty startupController.membriPassati}">
+                <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                    <c:forEach var="membro" items="#{startupController.membriPassati}">
+                        <li>
+                            <div class="panel">
+                                <h3>
+                                    <a href="${pageContext.request.contextPath}/startupper/profile?startupper=#{membro.id}">
+                                        ${membro.nome} ${membro.cognome}
+                                    </a>
+                                </h3>
                                 <p>${membro.descrizione}</p>
                             </div>
                         </li>
