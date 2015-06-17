@@ -136,7 +136,7 @@ public class StartupController {
         if (membri.contains(startupper)) {
             if (!amministratori.contains(startupper)) {
                 if (startupFacade.addAmministratore(startup, startupper)) {
-                    flash.put("notification", startupperFacade.getNomeCompleto(startupper) + "è ora " +
+                    flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " è ora " +
                             "amministratore di " + nome);
                     flash.put("notificationType", "success");
                 } else {

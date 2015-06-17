@@ -1,0 +1,782 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.1
+-- Dumped by pg_dump version 9.4.3
+-- Started on 2015-06-17 19:09:24 CEST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 184 (class 3079 OID 12723)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2968 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 172 (class 1259 OID 16395)
+-- Name: amministratori_startupamministrate; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE amministratori_startupamministrate (
+    amministratori_id bigint,
+    startupamministrate_id bigint
+);
+
+
+ALTER TABLE amministratori_startupamministrate OWNER TO avviait;
+
+--
+-- TOC entry 173 (class 1259 OID 16400)
+-- Name: annunciomembri; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE annunciomembri (
+    id bigint NOT NULL,
+    datacreazione timestamp without time zone NOT NULL,
+    descrizione character varying(255) NOT NULL,
+    mansione character varying(255) NOT NULL,
+    autrice_id bigint
+);
+
+
+ALTER TABLE annunciomembri OWNER TO avviait;
+
+--
+-- TOC entry 174 (class 1259 OID 16408)
+-- Name: annunciomembri_skill; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE annunciomembri_skill (
+    richiestadaannunciomembri_id bigint,
+    skillrichieste_id bigint
+);
+
+
+ALTER TABLE annunciomembri_skill OWNER TO avviait;
+
+--
+-- TOC entry 175 (class 1259 OID 16411)
+-- Name: giudizio; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE giudizio (
+    id bigint NOT NULL,
+    datacreazione timestamp without time zone NOT NULL,
+    testo character varying(255) NOT NULL,
+    titolo character varying(255) NOT NULL,
+    voto integer NOT NULL,
+    autore_id bigint,
+    giudicato_id bigint
+);
+
+
+ALTER TABLE giudizio OWNER TO avviait;
+
+--
+-- TOC entry 177 (class 1259 OID 16426)
+-- Name: membri_startupattuali; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE membri_startupattuali (
+    membri_id bigint,
+    startupattuali_id bigint
+);
+
+
+ALTER TABLE membri_startupattuali OWNER TO avviait;
+
+--
+-- TOC entry 176 (class 1259 OID 16421)
+-- Name: membripassati_startuppassate; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE membripassati_startuppassate (
+    membripassati_id bigint,
+    startuppassate_id bigint
+);
+
+
+ALTER TABLE membripassati_startuppassate OWNER TO avviait;
+
+--
+-- TOC entry 178 (class 1259 OID 16431)
+-- Name: openjpa_sequence_table; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE openjpa_sequence_table (
+    id smallint NOT NULL,
+    sequence_value bigint
+);
+
+
+ALTER TABLE openjpa_sequence_table OWNER TO avviait;
+
+--
+-- TOC entry 179 (class 1259 OID 16436)
+-- Name: skill; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE skill (
+    id bigint NOT NULL,
+    nome character varying(255) NOT NULL
+);
+
+
+ALTER TABLE skill OWNER TO avviait;
+
+--
+-- TOC entry 180 (class 1259 OID 16443)
+-- Name: startup; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE startup (
+    id bigint NOT NULL,
+    attiva boolean NOT NULL,
+    datafondazione date NOT NULL,
+    descrizione character varying(255) NOT NULL,
+    nome character varying(255) NOT NULL
+);
+
+
+ALTER TABLE startup OWNER TO avviait;
+
+--
+-- TOC entry 181 (class 1259 OID 16453)
+-- Name: startupper; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE startupper (
+    id bigint NOT NULL,
+    attivo boolean NOT NULL,
+    cognome character varying(255) NOT NULL,
+    dataiscrizione timestamp without time zone NOT NULL,
+    descrizione character varying(255),
+    email character varying(255) NOT NULL,
+    nome character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    saltpassword character varying(255) NOT NULL
+);
+
+
+ALTER TABLE startupper OWNER TO avviait;
+
+--
+-- TOC entry 183 (class 1259 OID 16470)
+-- Name: startupper_skill; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE startupper_skill (
+    startupperskill_id bigint,
+    startupper_id bigint
+);
+
+
+ALTER TABLE startupper_skill OWNER TO avviait;
+
+--
+-- TOC entry 182 (class 1259 OID 16463)
+-- Name: startupperskill; Type: TABLE; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE TABLE startupperskill (
+    id bigint NOT NULL,
+    datacreazione timestamp without time zone NOT NULL,
+    startupperproprietario_id bigint,
+    skillassociata_id bigint
+);
+
+
+ALTER TABLE startupperskill OWNER TO avviait;
+
+--
+-- TOC entry 2949 (class 0 OID 16395)
+-- Dependencies: 172
+-- Data for Name: amministratori_startupamministrate; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY amministratori_startupamministrate (amministratori_id, startupamministrate_id) FROM stdin;
+1	51
+3	52
+4	52
+2	51
+5	51
+6	54
+7	54
+8	53
+9	55
+10	56
+11	57
+\.
+
+
+--
+-- TOC entry 2950 (class 0 OID 16400)
+-- Dependencies: 173
+-- Data for Name: annunciomembri; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY annunciomembri (id, datacreazione, descrizione, mansione, autrice_id) FROM stdin;
+251	2015-06-17 14:00:10.024	Cercasi Web Designer diplomato che guidi un restyling del portale web (ne abbiamo bisogno).\r\nBuona retribuzione.	Web Designer	51
+252	2015-06-17 16:53:47.615	Cerchiamo 3 web developers che possano occuparsi del nostro motore di ricerca.\r\nZona di lavoro: Roma\r\nPreferibilmente studenti di Roma Tre	Web Developer	52
+253	2015-06-17 17:00:37.144	Cercasi Senior Developer da integrare nel team di sviluppo di Microsoft Office.\r\nSede di lavoro: Redmond\r\nMinimo 6 anni di esperienza in ruolo equivalente.	Senior Developer	56
+254	2015-06-17 17:07:58.375	Richiesta un junior mobile developer appassionato di opensource e linux che ci aiuti a far crescere l'ecosistema mobile di Ubuntu Touch.\r\nSede di lavoro: Londra	Junior Mobile Developer	57
+\.
+
+
+--
+-- TOC entry 2951 (class 0 OID 16408)
+-- Dependencies: 174
+-- Data for Name: annunciomembri_skill; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY annunciomembri_skill (richiestadaannunciomembri_id, skillrichieste_id) FROM stdin;
+251	110
+251	111
+251	112
+252	101
+252	103
+252	104
+253	127
+253	128
+254	105
+254	130
+254	132
+\.
+
+
+--
+-- TOC entry 2952 (class 0 OID 16411)
+-- Dependencies: 175
+-- Data for Name: giudizio; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY giudizio (id, datacreazione, testo, titolo, voto, autore_id, giudicato_id) FROM stdin;
+202	2015-06-17 13:54:09.369	Si applica ma non si impegna.	Piu' impegno!	3	1	3
+203	2015-06-17 13:55:00.651	Si impegna ma non si applica.	Piu' applicazione!	3	1	4
+204	2015-06-17 16:41:10.71	Diffidate di quest'individuo, la mia liberta' d'operare in VKontakte e' stata ridotta da Alisher e dagli altri shareholders.\r\nPersona dalle mille risorse ma copritevi bene ;).	Troppa influenza	1	6	8
+205	2015-06-17 16:43:20.844	Fossi nel professore di questo ragazzo gli darei il massimo per come ha usato i miei servizi.	Bravo!	5	9	1
+206	2015-06-17 16:43:46.772	Fossi nel professore di questo ragazzo gli darei il massimo per come ha usato i miei servizi.	Bravo!	5	9	5
+207	2015-06-17 16:44:00.773	Fossi nel professore di questo ragazzo gli darei il massimo per come ha usato i miei servizi.	Bravo!	5	9	2
+\.
+
+
+--
+-- TOC entry 2954 (class 0 OID 16426)
+-- Dependencies: 177
+-- Data for Name: membri_startupattuali; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY membri_startupattuali (membri_id, startupattuali_id) FROM stdin;
+1	51
+3	52
+4	52
+2	51
+5	51
+6	54
+7	54
+8	53
+9	55
+10	56
+11	57
+\.
+
+
+--
+-- TOC entry 2953 (class 0 OID 16421)
+-- Dependencies: 176
+-- Data for Name: membripassati_startuppassate; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY membripassati_startuppassate (membripassati_id, startuppassate_id) FROM stdin;
+6	53
+\.
+
+
+--
+-- TOC entry 2955 (class 0 OID 16431)
+-- Dependencies: 178
+-- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY openjpa_sequence_table (id, sequence_value) FROM stdin;
+0	351
+\.
+
+
+--
+-- TOC entry 2956 (class 0 OID 16436)
+-- Dependencies: 179
+-- Data for Name: skill; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY skill (id, nome) FROM stdin;
+101	JavaScript
+102	Java
+103	HTML
+104	CSS
+105	C
+106	AWS
+107	Java EE
+108	JSF
+109	SQL
+110	Photoshop
+111	Illustrator
+112	Web Design
+113	Android development
+114	Dart
+115	iOS development
+116	Cinema 4D
+117	Bitwig
+118	OCaml
+119	OpenGL
+120	C++
+121	PHP
+122	Cyber Security
+123	Criptography
+124	C#
+125	Basic
+126	Windows
+127	Microsoft Office
+128	.NET
+129	ASP
+130	Qt
+131	Bash
+132	Mobile Development
+\.
+
+
+--
+-- TOC entry 2957 (class 0 OID 16443)
+-- Dependencies: 180
+-- Data for Name: startup; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY startup (id, attiva, datafondazione, descrizione, nome) FROM stdin;
+51	t	2015-05-13	Network sociale universitario nel quale gli studenti possono iscriversi e semplificare la possibilità di associazione per creare progetti innovativi (startup).	AvviaIT
+52	t	1998-09-04	Don't be evil.	Google
+53	t	2006-09-01	E' la maggiore rete sociale in Russia e in tutta la CSI. Nel primo mese del 2014 raggiunge i 210 milioni di utenti registrati.	VKontakte
+54	t	2013-10-01	Servizio di messaggistica istantanea erogato senza fini di lucro dalla societa' Telegram LLC. I client ufficiali di Telegram sono distribuiti come software libero per diverse piattaforme.	Telegram
+55	t	1994-02-01	Amazon offre un servizio web di accesso al suo catalogo così come l'integrazione con rivenditori come Target e Marks and Spencer. A9.com offre il servizio di motore di ricerca direttamente sul sito Amazon.com.	Amazon
+56	t	1975-04-04	Una delle piu' importanti aziende d'informatica del mondo, ed anche una delle piu' grandi aziende con una capitalizzazione azionaria superiore ai 350 miliardi di dollari. Ha sede a Redmond nello stato di Washington (Stati Uniti).	Microsoft
+57	t	2004-03-05	Societa' privata per la promozione di progetti legati al software libero e creatrice della famosa distribuzione Linux Ubuntu.	Canonical
+\.
+
+
+--
+-- TOC entry 2958 (class 0 OID 16453)
+-- Dependencies: 181
+-- Data for Name: startupper; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY startupper (id, attivo, cognome, dataiscrizione, descrizione, email, nome, password, saltpassword) FROM stdin;
+1	t	Primo	2015-06-17 13:38:24.876	\N	fla.primo@stud.uniroma3.it	Flavio	e05dc1de861886947724e568a941780a5cd6f89a	AO+/ve+/vU/vv73vv73vv73vv73vv71P77+977+9Ou+/vS3vv70=
+2	t	Yacoub	2015-06-17 13:41:57.609	\N	rob.yacoub@stud.uniroma3.it	Roberto	9c35b0daa8c4160bc07b844e5258b87e9e9aa542	77+977+977+9WlDvv71XMGTvv71977+9MT7vv71M
+3	t	Page	2015-06-17 13:44:49.537	\N	larrypage@google.com	Larry	31c51217545b16b8925de5d27793c26d73bb8b83	77+9MAMl77+977+9Nu+/vXfvv73vv73JmgDvv70=
+4	t	Brin	2015-06-17 13:51:22.557	\N	sergeybrin@google.com	Sergey	c1a03d1ba94f3c5b49b6aea47ea6b0d949208384	Z++/ve+/vXRP77+9U++/ve+/vW9977+9VH/vv70g
+5	t	Arcangeli	2015-06-17 14:02:47.914		alessandroarcangeli.rm@gmail.com	Alessandro	88f7fbd1fe6f87c347b516f4b5c61a4bdf6f780c	77+9QSLvv73vv73vv70D77+977+9RWYB77+977+9LA==
+6	t	Durov	2015-06-17 16:07:35.497	\N	pavel.durov@telegram.com	Pavel	8682369efa2d4417fd0b37149084c69292ceb016	Au+/vRkQ77+977+977+977+9RSx377+9Ke+/ve+/vQ==
+7	t	Durov	2015-06-17 16:31:51.409	\N	nik.durov@telegram.com	Nikolai	9148deda1cfc6569f90fec4d8c93a47b7a0f2636	77+977+977+97oib77+9KO+/ve+/vTtKHivvv71D
+8	t	Usmanov	2015-06-17 16:34:35.202	\N	alisher.usmanov@mail.ru	Alisher	836850a4d58cf52fa0384639da6647e26167b732	77+977+9bmbvv71K77+977+9d2RucXYDKHI=
+9	t	Bezos	2015-06-17 16:42:01.6	\N	jeff.bezos@amazon.com	Jeff	15f334dc833c9697000146b6dfeefda0c62a705e	77+9Be+/vd2N77+977+9Sy8we0jvv73vv73vv70=
+10	t	Gates	2015-06-17 16:54:34.543	\N	bill.gates@hotmail.com	Bill	70bccbb18037a84d1ee84cdd660af0d2ed6e0f12	Imrvv73vv705Je+/vSYJ77+9He+/vUjvv73vv70=
+11	t	Shuttleworth	2015-06-17 17:02:14.197	\N	mark.shuttleworth@canonical.com	Mark	525ac228064d15402d28ac36d6880bed6e7e83b2	77+9MRLvv73Cgm3vv70sP++/ve+/vWzvv70677+9
+\.
+
+
+--
+-- TOC entry 2960 (class 0 OID 16470)
+-- Dependencies: 183
+-- Data for Name: startupper_skill; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY startupper_skill (startupperskill_id, startupper_id) FROM stdin;
+157	3
+156	3
+158	3
+154	3
+152	3
+157	2
+152	2
+157	5
+152	5
+170	1
+173	1
+178	1
+171	1
+175	1
+172	1
+177	1
+164	1
+167	1
+163	1
+165	1
+\.
+
+
+--
+-- TOC entry 2959 (class 0 OID 16463)
+-- Dependencies: 182
+-- Data for Name: startupperskill; Type: TABLE DATA; Schema: public; Owner: avviait
+--
+
+COPY startupperskill (id, datacreazione, startupperproprietario_id, skillassociata_id) FROM stdin;
+151	2015-06-17 13:50:33.863	1	101
+152	2015-06-17 13:50:42.822	1	102
+153	2015-06-17 13:50:56.785	1	103
+154	2015-06-17 13:51:05.428	1	104
+155	2015-06-17 13:51:36.487	1	105
+156	2015-06-17 13:51:43.499	1	106
+157	2015-06-17 13:51:53.234	1	107
+158	2015-06-17 13:51:58.695	1	108
+159	2015-06-17 13:52:03.905	1	109
+160	2015-06-17 13:57:14.015	1	110
+163	2015-06-17 13:58:14.363	2	107
+164	2015-06-17 13:58:29.45	2	102
+165	2015-06-17 13:58:35.929	2	108
+166	2015-06-17 13:59:23.061	2	113
+167	2015-06-17 13:59:42.186	2	104
+168	2015-06-17 13:59:45.906	2	105
+169	2015-06-17 13:59:56.998	2	114
+170	2015-06-17 14:03:02.283	5	101
+171	2015-06-17 14:03:06.918	5	102
+172	2015-06-17 14:03:09.118	5	107
+173	2015-06-17 14:03:11.395	5	103
+174	2015-06-17 14:03:15.63	5	110
+175	2015-06-17 14:03:20.216	5	104
+176	2015-06-17 14:03:23.275	5	105
+177	2015-06-17 14:03:31.234	5	109
+178	2015-06-17 14:03:33.378	5	108
+179	2015-06-17 14:03:41.451	5	113
+180	2015-06-17 14:03:51.713	5	115
+181	2015-06-17 14:03:58.434	5	116
+182	2015-06-17 14:04:02.601	5	111
+183	2015-06-17 14:04:19.12	5	117
+184	2015-06-17 14:10:00.142	5	118
+185	2015-06-17 14:10:19.412	5	119
+186	2015-06-17 14:10:24.342	5	120
+187	2015-06-17 16:38:05.457	6	121
+188	2015-06-17 16:38:11.575	6	113
+189	2015-06-17 16:38:16.091	6	115
+190	2015-06-17 16:38:19.543	6	103
+191	2015-06-17 16:38:34.616	6	122
+192	2015-06-17 16:38:43.801	6	123
+193	2015-06-17 16:42:06.423	9	106
+194	2015-06-17 16:57:55.593	10	124
+195	2015-06-17 16:58:01.022	10	125
+196	2015-06-17 16:58:07.537	10	126
+197	2015-06-17 16:58:15.614	10	127
+198	2015-06-17 16:58:27.712	10	128
+199	2015-06-17 16:58:32.306	10	129
+200	2015-06-17 17:05:01.138	11	105
+301	2015-06-17 17:05:31.847	11	130
+302	2015-06-17 17:05:37.791	11	131
+303	2015-06-17 17:06:17.882	11	132
+\.
+
+
+--
+-- TOC entry 2798 (class 2606 OID 16407)
+-- Name: annunciomembri_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY annunciomembri
+    ADD CONSTRAINT annunciomembri_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2803 (class 2606 OID 16418)
+-- Name: giudizio_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY giudizio
+    ADD CONSTRAINT giudizio_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2817 (class 2606 OID 16435)
+-- Name: openjpa_sequence_table_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY openjpa_sequence_table
+    ADD CONSTRAINT openjpa_sequence_table_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2819 (class 2606 OID 16440)
+-- Name: skill_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY skill
+    ADD CONSTRAINT skill_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2823 (class 2606 OID 16450)
+-- Name: startup_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startup
+    ADD CONSTRAINT startup_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2827 (class 2606 OID 16460)
+-- Name: startupper_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startupper
+    ADD CONSTRAINT startupper_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2833 (class 2606 OID 16467)
+-- Name: startupperskill_pkey; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startupperskill
+    ADD CONSTRAINT startupperskill_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2807 (class 2606 OID 16420)
+-- Name: u_gudizio_autore_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY giudizio
+    ADD CONSTRAINT u_gudizio_autore_id UNIQUE (autore_id, giudicato_id);
+
+
+--
+-- TOC entry 2811 (class 2606 OID 16425)
+-- Name: u_mmbrsst_membripassati_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY membripassati_startuppassate
+    ADD CONSTRAINT u_mmbrsst_membripassati_id UNIQUE (membripassati_id, startuppassate_id);
+
+
+--
+-- TOC entry 2815 (class 2606 OID 16430)
+-- Name: u_mmbrttl_membri_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY membri_startupattuali
+    ADD CONSTRAINT u_mmbrttl_membri_id UNIQUE (membri_id, startupattuali_id);
+
+
+--
+-- TOC entry 2796 (class 2606 OID 16399)
+-- Name: u_mmnstrt_amministratori_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY amministratori_startupamministrate
+    ADD CONSTRAINT u_mmnstrt_amministratori_id UNIQUE (amministratori_id, startupamministrate_id);
+
+
+--
+-- TOC entry 2821 (class 2606 OID 16442)
+-- Name: u_skill_nome; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY skill
+    ADD CONSTRAINT u_skill_nome UNIQUE (nome);
+
+
+--
+-- TOC entry 2825 (class 2606 OID 16452)
+-- Name: u_startup_nome; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startup
+    ADD CONSTRAINT u_startup_nome UNIQUE (nome);
+
+
+--
+-- TOC entry 2835 (class 2606 OID 16469)
+-- Name: u_strtkll_startupperproprietario_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startupperskill
+    ADD CONSTRAINT u_strtkll_startupperproprietario_id UNIQUE (startupperproprietario_id, skillassociata_id);
+
+
+--
+-- TOC entry 2839 (class 2606 OID 16474)
+-- Name: u_strtkll_startupperskill_id; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startupper_skill
+    ADD CONSTRAINT u_strtkll_startupperskill_id UNIQUE (startupperskill_id, startupper_id);
+
+
+--
+-- TOC entry 2829 (class 2606 OID 16462)
+-- Name: u_strtppr_email; Type: CONSTRAINT; Schema: public; Owner: avviait; Tablespace: 
+--
+
+ALTER TABLE ONLY startupper
+    ADD CONSTRAINT u_strtppr_email UNIQUE (email);
+
+
+--
+-- TOC entry 2804 (class 1259 OID 16480)
+-- Name: i_gudizio_autore; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_gudizio_autore ON giudizio USING btree (autore_id);
+
+
+--
+-- TOC entry 2805 (class 1259 OID 16481)
+-- Name: i_gudizio_giudicato; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_gudizio_giudicato ON giudizio USING btree (giudicato_id);
+
+
+--
+-- TOC entry 2808 (class 1259 OID 16482)
+-- Name: i_mmbrsst_element; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmbrsst_element ON membripassati_startuppassate USING btree (startuppassate_id);
+
+
+--
+-- TOC entry 2809 (class 1259 OID 16483)
+-- Name: i_mmbrsst_membripassati_id; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmbrsst_membripassati_id ON membripassati_startuppassate USING btree (membripassati_id);
+
+
+--
+-- TOC entry 2812 (class 1259 OID 16484)
+-- Name: i_mmbrttl_element; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmbrttl_element ON membri_startupattuali USING btree (startupattuali_id);
+
+
+--
+-- TOC entry 2813 (class 1259 OID 16485)
+-- Name: i_mmbrttl_membri_id; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmbrttl_membri_id ON membri_startupattuali USING btree (membri_id);
+
+
+--
+-- TOC entry 2793 (class 1259 OID 16475)
+-- Name: i_mmnstrt_amministratori_id; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmnstrt_amministratori_id ON amministratori_startupamministrate USING btree (amministratori_id);
+
+
+--
+-- TOC entry 2794 (class 1259 OID 16476)
+-- Name: i_mmnstrt_element; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_mmnstrt_element ON amministratori_startupamministrate USING btree (startupamministrate_id);
+
+
+--
+-- TOC entry 2800 (class 1259 OID 16478)
+-- Name: i_nnnckll_element; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_nnnckll_element ON annunciomembri_skill USING btree (skillrichieste_id);
+
+
+--
+-- TOC entry 2801 (class 1259 OID 16479)
+-- Name: i_nnnckll_richiestadaannunciomembri_id; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_nnnckll_richiestadaannunciomembri_id ON annunciomembri_skill USING btree (richiestadaannunciomembri_id);
+
+
+--
+-- TOC entry 2799 (class 1259 OID 16477)
+-- Name: i_nnncmbr_autrice; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_nnncmbr_autrice ON annunciomembri USING btree (autrice_id);
+
+
+--
+-- TOC entry 2836 (class 1259 OID 16488)
+-- Name: i_strtkll_element; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_strtkll_element ON startupper_skill USING btree (startupper_id);
+
+
+--
+-- TOC entry 2830 (class 1259 OID 16486)
+-- Name: i_strtkll_skillassociata; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_strtkll_skillassociata ON startupperskill USING btree (skillassociata_id);
+
+
+--
+-- TOC entry 2831 (class 1259 OID 16487)
+-- Name: i_strtkll_startupperproprietario; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_strtkll_startupperproprietario ON startupperskill USING btree (startupperproprietario_id);
+
+
+--
+-- TOC entry 2837 (class 1259 OID 16489)
+-- Name: i_strtkll_startupperskill_id; Type: INDEX; Schema: public; Owner: avviait; Tablespace: 
+--
+
+CREATE INDEX i_strtkll_startupperskill_id ON startupper_skill USING btree (startupperskill_id);
+
+
+--
+-- TOC entry 2967 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: avviait
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM avviait;
+GRANT ALL ON SCHEMA public TO avviait;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-06-17 19:09:50 CEST
+
+--
+-- PostgreSQL database dump complete
+--
+
