@@ -37,6 +37,7 @@
                     <i class="fa fa-bullhorn"></i>
                     <f:param name="name" value="#{startupController.nome}" />
                 </h:link>
+                <a href="#" data-reveal-id="addMembroModal" class="button tiny">Aggiungi Membro</a>
                 <a href="#" data-reveal-id="addAmministratoreModal" class="button tiny">Nomina Amministratore</a>
                 <a href="#" data-reveal-id="removeAmministratoreModal" class="button tiny">Rimuovi Amministratore</a>
             </c:if>
@@ -154,5 +155,7 @@
             </f:subview>
             <a class="close-reveal-modal" aria-label="Close"><i class="fa fa-times" /></a>
         </div>
+
+        <ui:include src="/template/pages/startup/addMembroModal.xhtml" />
     </ui:define>
 </ui:composition>
