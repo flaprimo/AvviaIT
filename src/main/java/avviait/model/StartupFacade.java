@@ -135,6 +135,8 @@ public class StartupFacade {
         startup = em.merge(startup);
         if (startup.getMembri().remove(startupper) && startupper.getStartupAttuali().remove(startup) &&
                 startup.getMembriPassati().add(startupper) && startupper.getStartupPassate().add(startup)) {
+            startup.getMembriPassati().add(startupper);
+            startupper.getStartupPassate().add(startup);
             em.merge(startup);
             em.merge(startupper);
             return true;

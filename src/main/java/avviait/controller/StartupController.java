@@ -111,6 +111,59 @@ public class StartupController {
         return "done";
     }
 
+    public String addAmministratore() {
+        Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        if (membri.contains(startupper)) {
+            if (!amministratori.contains(startupper)) {
+                if (startupFacade.addAmministratore(startup, startupper)) {
+                    flash.put("notification", startupperFacade.getNomeCompleto(startupper) + "è ora " +
+                            "amministratore di " + nome);
+                    flash.put("notificationType", "success");
+                } else {
+                    flash.put("notification", "Errore: non è stato possibile aggiungere " +
+                            startupperFacade.getNomeCompleto(startupper) + " come amministratore");
+                    flash.put("notificationType", "alert");
+                }
+            } else {
+                flash.put("notification", startupperFacade.getNomeCompleto(startupper) +
+                        " è già amministratore di " + nome);
+                flash.put("notificationType", "alert");
+            }
+        } else {
+            flash.put("notification", startupperFacade.getNomeCompleto(startupper) +
+                    " non è membro di " + nome);
+            flash.put("notificationType", "alert");
+        }
+        return "done";
+    }
+
+    public String removeAmministratore() {
+        Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        if (amministratori.size() > 1) {
+            if (amministratori.contains(startupper)) {
+                if (startupFacade.removeAmministratore(startup, startupper)) {
+                    flash.put("notification", startupperFacade.getNomeCompleto(startupper) +
+                            " non è più amministratore di " + nome);
+                    flash.put("notificationType", "success");
+                } else {
+                    flash.put("notification", "Errore: non è stato possibile rimuovere " +
+                            startupperFacade.getNomeCompleto(startupper) + " dal ruolo di amministratore");
+                    flash.put("notificationType", "alert");
+                }
+            } else {
+                flash.put("notification", startupperFacade.getNomeCompleto(startupper) +
+                        " non è amministratore di " + nome);
+                flash.put("notificationType", "alert");
+            }
+        } else {
+            flash.put("notification", "Sei l'ultimo amministratore rimasto, non puoi rimuoverti.");
+            flash.put("notificationType", "alert");
+        }
+        return "done";
+    }
+
 
     public List<Startup> getStartupsList() {
         return startupFacade.getAllStartup();

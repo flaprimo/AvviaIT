@@ -228,4 +228,31 @@
             </redirect>
         </navigation-case>
     </navigation-rule>
+
+    <!-- Startup Profile -->
+    <navigation-rule>
+        <from-view-id>/startup/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{startupController.addAmministratore}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{startupController.removeAmministratore}</from-action>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

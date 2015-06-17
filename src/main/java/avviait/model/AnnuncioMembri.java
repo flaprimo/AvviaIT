@@ -22,7 +22,7 @@ public class AnnuncioMembri {
     private String descrizione;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataCreazione;
 
     @ManyToOne
