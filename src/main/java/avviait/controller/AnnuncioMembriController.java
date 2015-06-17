@@ -34,6 +34,7 @@ public class AnnuncioMembriController {
     private AnnuncioMembri annuncioMembri;
     private List<Skill> allSkills;
     private List<AnnuncioMembri> allAnnunci;
+    private List<AnnuncioMembri> annunciStartup;
 
     @PostConstruct
     public void init() {
@@ -48,9 +49,10 @@ public class AnnuncioMembriController {
             //skillRichieste = annuncioMembri.getSkillRichieste();
 
         } catch (Exception e) {}
-        if (request.getParameter("name") != null) {
+        try {
             autrice = startupFacade.getStartup(request.getParameter("name"));
-        }
+            annunciStartup = startupFacade.getAnnunci(autrice);
+        } catch (Exception e) {}
         allAnnunci = annuncioMembriFacade.getAllAnnuncioMembri();
         allSkills = skillFacade.getAllSkill();
     }
@@ -133,5 +135,13 @@ public class AnnuncioMembriController {
 
     public void setAllAnnunci(List<AnnuncioMembri> allAnnunci) {
         this.allAnnunci = allAnnunci;
+    }
+
+    public List<AnnuncioMembri> getAnnunciStartup() {
+        return annunciStartup;
+    }
+
+    public void setAnnunciStartup(List<AnnuncioMembri> annunciStartup) {
+        this.annunciStartup = annunciStartup;
     }
 }

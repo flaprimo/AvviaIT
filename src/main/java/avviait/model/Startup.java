@@ -15,7 +15,9 @@ import java.util.Objects;
                 "JOIN s.startupAttuali sa WHERE sa = :startup"),
         @NamedQuery(name = "findAllMembriPassati", query = "SELECT s FROM Startupper s " +
                 "JOIN s.startupPassate sp WHERE sp = :startup"),
-        @NamedQuery(name = "findStartupByName", query = "SELECT s FROM Startup s WHERE s.nome = :nome")
+        @NamedQuery(name = "findStartupByName", query = "SELECT s FROM Startup s WHERE s.nome = :nome"),
+        @NamedQuery(name ="findAllAnnunci", query = "SELECT a FROM AnnuncioMembri a " +
+                "WHERE a.autrice = :startup")
 })
 public class Startup {
 

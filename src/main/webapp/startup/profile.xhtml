@@ -41,6 +41,12 @@
                 <a href="#" data-reveal-id="addAmministratoreModal" class="button tiny">Nomina Amministratore</a>
                 <a href="#" data-reveal-id="removeAmministratoreModal" class="button tiny">Rimuovi Amministratore</a>
             </c:if>
+
+            <a href="${pageContext.request.contextPath}/annuncio/list.xhtml?name=#{startupController.nome}"
+               class="tiny button">
+                Annunci di #{startupController.nome}
+            </a>
+
             <ul class="no-bullet">
                 <li><strong>Data creazione:</strong> ${startupController.dataFondazione.toString()}</li>
             </ul>

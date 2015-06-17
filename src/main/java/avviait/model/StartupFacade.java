@@ -1,5 +1,7 @@
 package avviait.model;
 
+import jdk.jfr.events.ExceptionThrownEvent;
+
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
@@ -133,7 +135,6 @@ public class StartupFacade {
         }
         return false;
     }
-
     public boolean removeMembro(Startup startup, Startupper startupper) {
         startupper = em.merge(startupper);
         startup = em.merge(startup);
@@ -174,5 +175,18 @@ public class StartupFacade {
             return true;
         }
         return false;
+    }
+
+    public List<AnnuncioMembri> getAnnunci(Startup startup) {
+        List<AnnuncioMembri> annunci = null;
+        try {
+            Query query = em.createNamedQuery("findAllAnnunci");
+            query.setParameter("startup", startup);
+            annunci = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore: Query \"findAllAnnunci\" fallita");
+            e.printStackTrace();
+        }
+        return annunci;
     }
 }
