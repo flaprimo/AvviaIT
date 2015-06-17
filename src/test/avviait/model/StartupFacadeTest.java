@@ -129,10 +129,12 @@ public class StartupFacadeTest {
     @Transactional(TransactionMode.ROLLBACK)
     public void testRemoveMembro() throws Exception {
         setUp();
-        assertTrue(startupFacade.removeMembro(startup, startupper));
-        assertFalse(startup.getMembri().contains(startupper));
-        assertFalse(startupper.getStartupAttuali().contains(startup));
-        assertTrue(startup.getMembriPassati().contains(startupper));
-        assertTrue(startupper.getStartupPassate().contains(startup));
+        Startupper startupper1 = startupperFacade.createStartupper("Mario", "Rossi", "mrossi@sdfs.it","sdfg");
+        startupFacade.addMembro(startup, startupper1);
+        assertTrue(startupFacade.removeMembro(startup, startupper1));
+        assertFalse(startup.getMembri().contains(startupper1));
+        assertFalse(startupper1.getStartupAttuali().contains(startup));
+        assertTrue(startup.getMembriPassati().contains(startupper1));
+        assertTrue(startupper1.getStartupPassate().contains(startup));
     }
 }
