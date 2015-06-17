@@ -14,25 +14,25 @@
                         <c:forEach var="annuncio" items="#{annuncioMembriController.annunciStartup}">
                             <div class="panel">
                                 <h3>#{annuncio.mansione}</h3>
-                                <h4>Di:
+                                <p>Di:
                                     <h:link value="#{annuncio.autrice.nome}"
                                             outcome="#{pageContext.request.contextPath}/startup/profile.xhtml">
                                         <f:param name="name" value="#{annuncio.autrice.nome}" />
                                     </h:link>
-                                </h4>
-                                <h4>Skill Richieste</h4>
-                                <c:forEach var="skill" items="#{annuncio.skillRichieste}">
-                                    <div class="panel">
-                                        #{skill.nome}
-                                    </div>
-                                </c:forEach>
+                                </p>
+
                                 <p>#{annuncio.descrizione}</p>
+
+                                <h5 class="subheader">Skill Richieste:</h5>
+                                <ul class="inline-list">
+                                    <c:forEach var="skill" items="#{annuncio.skillRichieste}">
+                                            <li class="panel" style="padding: 0.2rem 0.5rem; margin-bottom: 0;">#{skill.nome}</li>
+                                    </c:forEach>
+                                </ul>
+
+                                <hr />
+
                                 <p>Aggiunto il: #{annuncio.dataCreazione.getTime().toString()}</p>
-                                <a href="#{pageContext.request.contextPath}/annuncio/delete.xhtml?id=#{annuncio.id}"
-                                   class="tiny button">
-                                    <i class="fa-trash fa" />
-                                    Cancella
-                                </a>
                             </div>
                         </c:forEach>
                     </c:when>
@@ -40,19 +40,24 @@
                         <c:forEach var="annuncio" items="#{annuncioMembriController.allAnnunci}">
                             <div class="panel">
                                 <h3>#{annuncio.mansione}</h3>
-                                <h4>Di:
+                                <p>Di:
                                     <h:link value="#{annuncio.autrice.nome}"
                                             outcome="#{pageContext.request.contextPath}/startup/profile.xhtml">
                                         <f:param name="name" value="#{annuncio.autrice.nome}" />
                                     </h:link>
-                                </h4>
-                                <h4>Skill Richieste</h4>
-                                <c:forEach var="skill" items="#{annuncio.skillRichieste}">
-                                    <div class="panel">
-                                        #{skill.nome}
-                                    </div>
-                                </c:forEach>
+                                </p>
+
                                 <p>#{annuncio.descrizione}</p>
+
+                                <h5 class="subheader">Skill Richieste:</h5>
+                                <ul class="inline-list">
+                                    <c:forEach var="skill" items="#{annuncio.skillRichieste}">
+                                        <li class="panel" style="padding: 0.2rem 0.5rem; margin-bottom: 0;">#{skill.nome}</li>
+                                    </c:forEach>
+                                </ul>
+
+                                <hr />
+
                                 <p>Aggiunto il: #{annuncio.dataCreazione.getTime().toString()}</p>
                             </div>
                         </c:forEach>
