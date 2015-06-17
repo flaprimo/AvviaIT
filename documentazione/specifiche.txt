@@ -11,8 +11,8 @@ Scenario principale:
   - Il sistema reindirizza il neo-startupper nella propria schermata del profilo, con un messaggio che informa
     l'utente dell'avvenuta registrazione al sistema.
 Eccezioni:
-Nel caso esista già uno startupper registrato con la email inserita nel form, questo viene informato con un
-messaggio di errore e non viene registrato nel sistema.
+  Nel caso esista già uno startupper registrato con la email inserita nel form, questo viene informato con un
+    messaggio di errore e non viene registrato nel sistema.
 
 Caso d'uso UC2: LOGIN STARTUPPER
 Attore primario: utente
@@ -23,11 +23,11 @@ Scenario principale:
   - Il sistema reindirizza lo startupper nella propria schermata del profilo, con un messaggio che informa
     l'utente dell'avvenuto login al sistema.
 Precondizioni:
-L'utente è registrato nel sistema come startupper.
-L'utente non è ancora identificato e autenticato nel sistema.
+  L'utente è registrato nel sistema come startupper.
+  L'utente non è ancora identificato e autenticato nel sistema.
 Eccezioni:
-Nel caso le credenziali inserite dall'utente non corrispondano ad un utente registrato nel sistema, questo viene
-informato con un messaggio di errore e non viene registrato nel sistema.
+  Nel caso le credenziali inserite dall'utente non corrispondano ad un utente registrato nel sistema, questo viene
+    informato con un messaggio di errore e non viene registrato nel sistema.
 
 Caso d'uso UC3: IMPOSTAZIONI STARTUPPER
 Attore primario: startupper
@@ -40,7 +40,7 @@ Scenario principale:
   - Il sistema reindirizza lo startupper nella propria schermata del profilo, con un messaggio che informa
     l'utente dell'avvenuta modifica dei dati personali.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 
 Caso d'uso UC4: VISUALIZZAZIONE LISTA STARTUPPER
 Attore primario: startupper
@@ -51,7 +51,7 @@ Scenario principale:
   - Lo startupper scegli uno startupper in elenco.
   - Il sistema reindirizza lo startupper nella schermata del profilo dello startupper scelto
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 
 Caso d'uso UC5: CREAZIONE GIUDIZIO STARTUPPER
 Attore primario: startupper
@@ -65,13 +65,13 @@ Scenario principale:
   - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
     dell'avvenuta aggiunta del giudizio.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
-La pagina di profilo startupper scelto non è quella dello startupper loggato.
-Lo startupper non ha espresso altri giudizi sul medesimo startupper.
-Lo startupper deve essere attivo.
+  Lo startupper è identificato e autenticato nel sistema.
+  La pagina di profilo startupper scelto non è quella dello startupper loggato.
+  Lo startupper non ha espresso altri giudizi sul medesimo startupper.
+  Lo startupper deve essere attivo.
 Eccezioni:
-Lo startupper ha già espresso un giudizio sullo startupper scelto, in questo caso l'utente viene reindirizzato alla
-propria pagina profilo e informato del fallimento di aggiunta del giudizio con un messaggio.
+  Lo startupper ha già espresso un giudizio sullo startupper scelto, in questo caso l'utente viene reindirizzato alla
+    propria pagina profilo e informato del fallimento di aggiunta del giudizio con un messaggio.
 
 Caso d'uso UC6: MODIFICA GIUDIZIO STARTUPPER
 Attore primario: startupper
@@ -84,10 +84,10 @@ Scenario principale:
   - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
     dell'avvenuta modifica del giudizio.
 Precondizioni:
-L'autore del giudizio deve corrispondere all'utente loggato.
-Lo startupper è identificato e autenticato nel sistema.
-La pagina di profilo startupper scelto non è quella dello startupper loggato.
-Lo startupper deve essere attivo.
+  L'autore del giudizio deve corrispondere all'utente loggato.
+  Lo startupper è identificato e autenticato nel sistema.
+  La pagina di profilo startupper scelto non è quella dello startupper loggato.
+  Lo startupper deve essere attivo.
 
 Caso d'uso UC6: CANCELLAZIONE GIUDIZIO STARTUPPER
 Attore primario: startupper
@@ -100,74 +100,74 @@ Scenario principale:
   - Il sistema reindirizza lo startupper alla propria pagina del profilo, con un messaggio che informa lo startupper
     dell'avvenuta cancellazione del giudizio.
 Precondizioni:
-L'autore del giudizio deve corrispondere all'utente loggato.
-Lo startupper è identificato e autenticato nel sistema.
-La pagina di profilo startupper scelto non è quella dello startupper loggato.
-Lo startupper deve essere attivo.
+  L'autore del giudizio deve corrispondere all'utente loggato.
+  Lo startupper è identificato e autenticato nel sistema.
+  La pagina di profilo startupper scelto non è quella dello startupper loggato.
+  Lo startupper deve essere attivo.
 
 Caso d'uso UC7: REGISTRAZIONE DI UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper clicca sul bottone nel menù superiore per arrivare alla pagina di registrazione di una startup.
-  -Lo startupper compila la form.
-  -Il sistema registra la startup e rende lo startupper sia membro che amministartore della stessa.
-  -Il sistema reindirizza lo startupper alla pagina del profilo della startup.
+  - Lo startupper clicca sul bottone nel menù superiore per arrivare alla pagina di registrazione di una startup.
+  - Lo startupper compila la form.
+  - Il sistema registra la startup e rende lo startupper sia membro che amministartore della stessa.
+  - Il sistema reindirizza lo startupper alla pagina del profilo della startup.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 Eccezioni:
-Esiste già una startup con il nome inserito dallo startupper, in questo caso lo startupper viene reindirizzato nella
-pagina di registrazione e lo startupper viene informato del fatto che non è stato possibile procedere con la
-registrazione.
+  Esiste già una startup con il nome inserito dallo startupper, in questo caso lo startupper viene reindirizzato nella
+    pagina di registrazione e lo startupper viene informato del fatto che non è stato possibile procedere con la
+    registrazione.
 
 Caso d'uso UC8: MODIFICA DI UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
+  - Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
   impostazioni della startup.
-  -Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
-  -Lo startupper modifica i campi che desidera modificare.
-  -Il sistema registra i cambiamenti e reindirizza lo startupper alla pagina del profilo della startup.
+  - Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
+  - Lo startupper modifica i campi che desidera modificare.
+  - Il sistema registra i cambiamenti e reindirizza lo startupper alla pagina del profilo della startup.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 
 Caso d'uso UC9: AGGIUNTA DI MEMBRI AD UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
-  impostazioni della startup.
-  -Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
-  -Lo startupper sceglie l'azione aggiungi membro.
-  -Lo startupper inserisce l'email dello startupper da aggiungere come mebro alla startup.
-  -Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
+  - Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
+      impostazioni della startup.
+  - Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
+  - Lo startupper sceglie l'azione aggiungi membro.
+  - Lo startupper inserisce l'email dello startupper da aggiungere come mebro alla startup.
+  - Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
   del fatto che l'aggiunta del nuovo membro è avvenuta con successo.
 Precondizioni:
 Lo startupper è identificato e autenticato nel sistema.
 Eccezioni:
-  -Lo startupper assocciato alla email inserita è già membro della startup, in questo caso lo startupper viene
-  reindirizzato alla pagina delle impostazioni e notificato del fatto che l'aggiunta del nuovo membro non è avvenuta.
-  -Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
-  sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che l'aggiunta del
-  nuovo membro non è avvenuta.
+  - Lo startupper assocciato alla email inserita è già membro della startup, in questo caso lo startupper viene
+      reindirizzato alla pagina delle impostazioni e notificato del fatto che l'aggiunta del nuovo membro non è avvenuta.
+  - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
+      sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che l'aggiunta del
+      nuovo membro non è avvenuta.
 
 Caso d'uso UC10: RIMOZIONE DI UN MEMBRO DA UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
-  impostazioni della startup.
-  -Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
-  -Lo startupper sceglie l'azione rimuovi membro.
-  -Lo startupper inserisce l'email dello startupper da rimuovere come mebro della startup.
-  -Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
+  - Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
+      impostazioni della startup.
+  - Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
+  - Lo startupper sceglie l'azione rimuovi membro.
+  - Lo startupper inserisce l'email dello startupper da rimuovere come mebro della startup.
+  - Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
   del fatto che la rimozione del membro della startup è avvenuta con successo.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 Eccezioni:
-  -Lo startupper assocciato alla email inserita non è membro della startup, in questo caso lo startupper viene
-  reindirizzato alla pagina delle impostazioni e notificato del fatto che la rimozione del membro della startup
-  non è avvenuta.
-  -Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
-  sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che la rimozione del
-  membro non è avvenuta.
+  - Lo startupper assocciato alla email inserita non è membro della startup, in questo caso lo startupper viene
+      reindirizzato alla pagina delle impostazioni e notificato del fatto che la rimozione del membro della startup
+      non è avvenuta.
+  - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
+      sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che la rimozione del
+      membro non è avvenuta.
 
 Caso d'uso UC11: AGGIUNTA DI UN AMMINISTARTORE AD UNA STARTUP
 
@@ -176,21 +176,21 @@ Caso d'uso UC12: RIMOZIONE DI UN AMMINISTRATORE DA UNA STARTUP
 Caso d'uso UC13: CREAZIONE DI UN ANNUNCIO
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper si trova sul profilo di una startup di cui è amministratore e sceglie l'azione pubblica annuncio.
-  -Il sistema lo reindirizza alla pagina per la pubblicazione di un annuncio.
-  -Lo startupper compila i campi.
-  -Il sistema registra le informazioni, reindirizza lo startupper al profilo della startup per la quale si è
-  creato l'annuncio e lo informa della avvenuta creazione dello stesso.
+  - Lo startupper si trova sul profilo di una startup di cui è amministratore e sceglie l'azione pubblica annuncio.
+  - Il sistema lo reindirizza alla pagina per la pubblicazione di un annuncio.
+  - Lo startupper compila i campi.
+  - Il sistema registra le informazioni, reindirizza lo startupper al profilo della startup per la quale si è
+      creato l'annuncio e lo informa della avvenuta creazione dello stesso.
 Precondizioni:
-Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper è identificato e autenticato nel sistema.
 
 Caso d'uso UC14: CONSULTAZIONE DI TUTTE LE STARTUP
 Attore primario: startupper
 Scenario principale:
-  -Lo startupper consulta l'elenco di tutte le startup.
-  -Il sistema mostra l'elenco di tutte le startup.
-  -Lo startupper chiede il dettaglio di una startup.
-  -Il sistema reindirizza lo startupper sulla pagina della startup corrispondente.
+  - Lo startupper consulta l'elenco di tutte le startup.
+  - Il sistema mostra l'elenco di tutte le startup.
+  - Lo startupper chiede il dettaglio di una startup.
+  - Il sistema reindirizza lo startupper sulla pagina della startup corrispondente.
 
 Caso d'uso UC15: CONSULTAZIONE DI TUTTI GLI ANNUNCI
 
