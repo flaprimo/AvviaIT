@@ -194,12 +194,70 @@ Scenario principale:
 
 Caso d'uso UC15: CONSULTAZIONE DI TUTTI GLI ANNUNCI
 
+Caso d'uso UC16: AGGIUNTA SKILL
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper naviga sul proprio profilo selezionando "profilo" dalla barra di navigazione.
+  2) L'utente seleziona l'attività "Aggiungi Skill".
+  3) Il sistema mostra un'elenco di skill inserite dagli altri utenti.
+  4) L'utente seleziona la skill che vuole aggiungere.
+  5) Il sistema registra l'operazione.
+  6) Il sistema reindirizza l'utente al suo profilo con l'elenco delle skill aggiornato e con un messaggio di conferma.
+Scenari alternativi:
+  4b) L'utente vuole inserire una skill non presente nell'elenco
+    1) L'utente inserisce il nome della skill nella casella di testo e conferma l'immissione
+Precondizioni:
+  Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper loggato deve essere attivo.
+Eccezioni:
+  Nel caso l'utente tenti di inserire una stessa skill una seconda volta il sistema mostra un messaggio di errore.
+  Lo startupper deve essere attivo.
 
+Caso d'uso UC17: RIMOZIONE SKILL
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper naviga sul proprio profilo selezionando "profilo" dalla barra di navigazione.
+  2) Il sistema mostra all'utente l'elenco delle skill apprese.
+  3) L'utente seleziona l'attività "cancella" accanto alla skill che vuole cancellare.
+  4) Il sistema mostra un form di conferma.
+  5) L'utente conferma l'operazione.
+  6) Il sistema registra l'operazione.
+  7) Il sistema reindirizza l'utente al suo profilo con l'elenco delle skill aggiornato e con un messaggio di conferma.
+Precondizioni:
+  Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper loggato deve essere attivo.
+Scenari alternativi:
+  *b) L'utente in qualsiasi momento può annullare l'operazione 
 
+Caso d'uso UC18: AGGIUNTA VOTO SKILL
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper segue il caso d'uso UC4 per navigare nella pagina di profilo di uno startupper.
+  2) Il sistema mostra l'elenco delle skill apprese da quello startupper.
+  3) L'utente seleziona l'attività "vota" accanto alla skill che vuole votare.
+  4) Il sistema mostra un form di conferma
+  5) L'utente conferma l'operazione
+  6) Il sistema registra l'operazione.
+  7) Il sistema reindirizza l'utente al profilo dello startupper selezionato con l'elenco delle skill aggiornato e con un messaggio di conferma.
+Precondizioni:
+  Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper scelto nel passo 1 non deve essere il profilo dello startupper loggato.
+  Lo startupper loggato e quello del profilo selezionato devono essere attivi.
 
-
-
-
+Caso d'uso UC19: RIMOZIONE VOTO SKILL
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper segue il caso d'uso UC4 per navigare nella pagina di profilo di uno startupper.
+  2) Il sistema mostra l'elenco delle skill apprese da quello startupper.
+  3) L'utente seleziona l'attività "rimuovi voto" accanto a una skill precedentemente votata.
+  4) Il sistema mostra un form di conferma.
+  5) L'utente conferma l'operazione.
+  6) Il sistema registra l'operazione.
+  7) Il sistema reindirizza l'utente al profilo dello startupper selezionato con l'elenco delle skill aggiornato e con un messaggio di conferma.
+Precondizioni:
+  Lo startupper è identificato e autenticato nel sistema.
+  Lo startupper scelto nel passo 1 non deve essere il profilo dello startupper loggato.
+  Lo startupper loggato e quello del profilo selezionato devono essere attivi.
 
 
 
