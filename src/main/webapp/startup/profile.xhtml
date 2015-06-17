@@ -9,25 +9,41 @@
     <ui:define name="content">
         <div class="row">
             <ui:include src="/template/notification.xhtml" />
-            <h1>#{startupController.nome}</h1>
+
+            <div class="profile-header">
+                <h1 class="titolo">${startupController.nome}</h1>
+                <c:if test="#{startupController.attiva}">
+                    <i class="fa fa-circle attivo" title="startup attiva"></i>
+                </c:if>
+                <c:if test="#{not startupController.attiva}">
+                    <i class="fa fa-circle non-attivo" title="startup non attiva"></i>
+                </c:if>
+            </div>
+
+            <h3 class="subheader">${startupController.descrizione}</h3>
             <hr />
-            <c:if test="#{startupController.isLoggedStartupperAmministratore()}">
+
+            <c:if test="#{startupController.isLoggedStartupperAmministratore() and
+                            startupperSessionController.startupper.attivo}">
                 <h:link value=" Impostazioni Startup"
                         outcome="${pageContext.request.contextPath}/startup/settings.xhtml"
                         class="button tiny">
                     <i class="fa fa-cog"/>
                     <f:param name="name" value="#{startupController.nome}"/>
                 </h:link>
-                <h:link value="Pubblica annuncio"
+                <h:link value=" Pubblica annuncio"
                         outcome="${pageContext.request.contextPath}/annuncio/new.xhtml"
                         class="button tiny">
+                    <i class="fa fa-bullhorn"></i>
                     <f:param name="name" value="#{startupController.nome}" />
                 </h:link>
             </c:if>
             <ul class="no-bullet">
                 <li><strong>Data creazione:</strong> ${startupController.dataFondazione.toString()}</li>
             </ul>
-            <p>#{startupController.descrizione}</p>
+
+            <h3>Membri</h3>
+            <ui:include src="/template/pages/startup/listMembri.xhtml" />
         </div>
     </ui:define>
 </ui:composition>
