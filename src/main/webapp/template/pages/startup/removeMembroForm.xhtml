@@ -11,10 +11,11 @@
 
     <f:subview id="deleteGiudizio">
         <h:form>
-            <input type="hidden" name="giudizio" value="#{param['giudizio']}" />
-            <h:commandButton action="#{giudizioController.deleteGiudizio}"
+            <input type="hidden" name="startupper" value="#{param['startupper']}" />
+            <input type="hidden" name="startup" value="#{param['startup']}" />
+            <h:commandButton action="#{startupController.removeMembro}"
                              class="button alert"
-                             value="Cancella"/>
+                             value="Rimuovi membro"/>
         </h:form>
     </f:subview>
 

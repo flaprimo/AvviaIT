@@ -39,6 +39,7 @@ public class StartupController {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         if (request.getParameter("name") != null) {
             startup = startupFacade.getStartup(request.getParameter("name"));
+            id = startup.getId();
             nome = startup.getNome();
             descrizione = startup.getDescrizione();
             dataFondazione = startup.getDataFondazione().getTime();
@@ -98,16 +99,33 @@ public class StartupController {
     }
 
     public String removeMembro() {
-        Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        //Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        if(startupFacade.removeMembro(startup, startupper)) {
-            flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " rimosso da "
-                    + startup.getNome());
-            flash.put("notificationType", "success");
-        } else {
-            flash.put("notification", "Errore: lo startupper non è stato rimosso");
+
+        try {
+            Long idStartupper = Long.valueOf(req.getParameter("startupper"));
+            Long idStartup = Long.valueOf(req.getParameter("startup"));
+
+            Startupper startupper = startupperFacade.getStartupper(idStartupper);
+            startup = startupFacade.getStartup(idStartup);
+
+            List<Startupper> membri = startupFacade.getMembri(startup);
+            System.out.println("membri:"+membri);
+
+            if(startupFacade.removeMembro(startup, startupper)) {
+                flash.put("notification", startupperFacade.getNomeCompleto(startupper) + " rimosso da "
+                        + startup.getNome());
+                flash.put("notificationType", "success");
+            } else {
+                flash.put("notification", "Errore: lo startupper non è stato rimosso");
+                flash.put("notificationType", "alert");
+            }
+        } catch (NumberFormatException e) {
+            flash.put("notification", "Errore sconosciuto");
             flash.put("notificationType", "alert");
         }
+
         return "done";
     }
 

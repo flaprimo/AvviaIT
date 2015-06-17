@@ -133,10 +133,16 @@ public class StartupFacade {
     public boolean removeMembro(Startup startup, Startupper startupper) {
         startupper = em.merge(startupper);
         startup = em.merge(startup);
-        if (startup.getMembri().remove(startupper) && startupper.getStartupAttuali().remove(startup) &&
-                startup.getMembriPassati().add(startupper) && startupper.getStartupPassate().add(startup)) {
-            startup.getMembriPassati().add(startupper);
-            startupper.getStartupPassate().add(startup);
+        if (startup.getAmministratori().contains(startupper)) {
+            if (startup.getAmministratori().size()==1) return false;
+            startup.getAmministratori().remove(startupper);
+            startupper.getStartupAmministrate().remove(startup);
+        }
+        if (startup.getMembri().remove(startupper) && startupper.getStartupAttuali().remove(startup)) {
+            if (!startup.getMembriPassati().contains(startupper)) {
+                startup.getMembriPassati().add(startupper);
+                startupper.getStartupPassate().add(startup);
+            }
             em.merge(startup);
             em.merge(startupper);
             return true;

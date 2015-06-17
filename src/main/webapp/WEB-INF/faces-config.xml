@@ -255,4 +255,20 @@
             </redirect>
         </navigation-case>
     </navigation-rule>
+
+    <!-- Rimozione Startup -->
+    <navigation-rule>
+        <from-view-id>/startup/removeMembro.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>done</from-outcome>
+            <to-view-id>/startup/profile.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>name</name>
+                    <value>#{startupController.startup.nome}</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

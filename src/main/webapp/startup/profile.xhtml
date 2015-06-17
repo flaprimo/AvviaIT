@@ -45,7 +45,40 @@
             </ul>
 
             <h3>Membri</h3>
-            <ui:include src="/template/pages/startup/listMembri.xhtml" />
+            <c:if test="#{empty startupController.membri}">
+                <p>Non sono ancora presenti membri</p>
+            </c:if>
+            <c:if test="#{not empty startupController.membri}">
+                <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                    <c:forEach var="membro" items="#{startupController.membri}">
+                        <li>
+                            <div class="panel">
+                                <h3>${membro.nome} ${membro.cognome}</h3>
+
+                                <c:if test="#{startupController.isLoggedStartupperAmministratore() and
+                            startupperSessionController.startupper.attivo}">
+                                    <ul class="button-group">
+                                        <li>
+                                            <h:link value="Rimuovi"
+                                                    outcome="${pageContext.request.contextPath}/startup/removeMembro.xhtml"
+                                                    class="button tiny">
+                                                <i class="fa fa-trash-o"></i>
+                                                <f:param name="startup" value="${startupController.id}" />
+                                                <f:param name="startupper" value="${membro.id}" />
+                                            </h:link>
+                                            <!--<a href="${pageContext.request.contextPath}/startup/removeMembro.xhtml?startupper=${membro.id}&startup=${startupController.id}" class="button tiny">
+                                                <i class="fa fa-trash-o"></i> rimuovi
+                                            </a>-->
+                                        </li>
+                                    </ul>
+                                </c:if>
+
+                                <p>${membro.descrizione}</p>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
         </div>
     </ui:define>
     <ui:define name="modal">
