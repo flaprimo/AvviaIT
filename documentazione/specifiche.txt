@@ -110,7 +110,7 @@ Attore primario: startupper
 Scenario principale:
   1) Lo startupper clicca sul bottone nel menù superiore per arrivare alla pagina di registrazione di una startup.
   2) Lo startupper compila la form.
-  3) Il sistema registra la startup e rende lo startupper sia membro che amministartore della stessa.
+  3) Il sistema registra la startup e rende lo startupper sia membro che amministratore della stessa.
   4) Il sistema reindirizza lo startupper alla pagina del profilo della startup.
 Precondizioni:
   Lo startupper è identificato e autenticato nel sistema.
@@ -133,45 +133,70 @@ Precondizioni:
 Caso d'uso UC9: AGGIUNTA DI MEMBRI AD UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  1) Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
-      impostazioni della startup.
-  2) Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
-  3) Lo startupper sceglie l'azione aggiungi membro.
-  4) Lo startupper inserisce l'email dello startupper da aggiungere come mebro alla startup.
-  5) Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
-     del fatto che l'aggiunta del nuovo membro è avvenuta con successo.
+  1) Lo startupper si trova sul profilo di una startup di cui è amministratore.
+  2) Lo startupper sceglie l'azione aggiungi membro.
+  3) Lo startupper inserisce l'email dello startupper da aggiungere come mebro alla startup.
+  4) Il sistema registra la scelta e informa lo startupper del fatto che l'aggiunta del nuovo membro è
+  avvenuta con successo.
 Precondizioni:
 Lo startupper è identificato e autenticato nel sistema.
 Eccezioni:
   - Lo startupper assocciato alla email inserita è già membro della startup, in questo caso lo startupper viene
-      reindirizzato alla pagina delle impostazioni e notificato del fatto che l'aggiunta del nuovo membro non è avvenuta.
+  notificato del fatto che l'aggiunta del nuovo membro non è avvenuta.
   - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
-      sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che l'aggiunta del
-      nuovo membro non è avvenuta.
+  sistema informa lo startupper del fatto che l'aggiunta del nuovo membro non è avvenuta.
 
 Caso d'uso UC10: RIMOZIONE DI UN MEMBRO DA UNA STARTUP
 Attore primario: startupper
 Scenario principale:
-  1) Lo startupper si trova sul profilo di una startup di cui è amministratore e naviga nella pagina delle
-      impostazioni della startup.
-  2) Il sistema reindirizza lo startupper alla pagina delle impostazioni della startup.
-  3) Lo startupper sceglie l'azione rimuovi membro.
-  4) Lo startupper inserisce l'email dello startupper da rimuovere come mebro della startup.
-  5) Il sistema registra la scelta, reindirizza lo startupper alla pagina delle impostazioni della startup e lo informa
-  del fatto che la rimozione del membro della startup è avvenuta con successo.
+  1) Lo startupper si trova sul profilo di una startup di cui è amministratore.
+  2) Lo startupper sceglie l'azione rimuovi membro.
+  3) Lo startupper inserisce l'email dello startupper da rimuovere come mebro della startup.
+  4) Il sistema registra la scelta informa lo startupper del fatto che la rimozione del membro della
+  startup è avvenuta con successo.
 Precondizioni:
   Lo startupper è identificato e autenticato nel sistema.
 Eccezioni:
   - Lo startupper assocciato alla email inserita non è membro della startup, in questo caso lo startupper viene
-      reindirizzato alla pagina delle impostazioni e notificato del fatto che la rimozione del membro della startup
-      non è avvenuta.
+  notificato del fatto che la rimozione del membro della startup non è avvenuta.
   - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
-      sistema reindirizza lo startupper alla pagina delle impostazioni e lo informa del fatto che la rimozione del
-      membro non è avvenuta.
+      sistema informa  lo startupper del fatto che la rimozione del membro non è avvenuta.
 
-Caso d'uso UC11: AGGIUNTA DI UN AMMINISTARTORE AD UNA STARTUP
+Caso d'uso UC11: AGGIUNTA DI UN AMMINISTRATORE AD UNA STARTUP
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper si trova sul profilo di una startup di cui è amministratore.
+  2) Lo startupper sceglie l'azione aggiungi amministratore.
+  3) Lo startupper inserisce l'email dello startupper da aggiungere come amministratore della startup.
+  4) Il sistema registra la scelta e informa lo startupper del fatto che l'aggiunta del nuovo amministratore
+  è avvenuta con successo.
+Precondizioni:
+Lo startupper è identificato e autenticato nel sistema.
+Eccezioni:
+  - Lo startupper assocciato alla email inserita è già amministratore della startup, in questo caso lo
+  startupper viene notificato del fatto che l'aggiunta del nuovo amministratore non è avvenuta.
+  - Lo startupper assocciato alla email inserita non è membro della startup, in questo caso lo
+  startupper viene notificato del fatto che l'aggiunta del nuovo amministratore non è avvenuta.
+  - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
+  sistema informa lo startupper del fatto che l'aggiunta del nuovo amministratore non è avvenuta.
 
 Caso d'uso UC12: RIMOZIONE DI UN AMMINISTRATORE DA UNA STARTUP
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper si trova sul profilo di una startup di cui è amministratore.
+  2) Lo startupper sceglie l'azione rimuovi amministratore.
+  3) Lo startupper inserisce l'email dello startupper da rimuovere dagli amministratori della startup.
+  4) Il sistema registra la scelta informa lo startupper del fatto che la rimozione dell'amministratore della
+  startup è avvenuta con successo.
+Precondizioni:
+  Lo startupper è identificato e autenticato nel sistema.
+Eccezioni:
+  - Lo startupper assocciato alla email inserita non è amministratore della startup, in questo caso lo startupper
+  viene notificato del fatto che la rimozione dell'amministratore della startup non è avvenuta.
+  - Lo startupper assocciato alla email inserita è l'unico amministratore della startup, in questo caso lo
+  startupper viene notificato del fatto che la rimozione dell'amministratore della startup non è avvenuta.
+  - Non esiste nessuno startupper registrato associato alla email inserita dall'attore primario, in questo caso il
+  sistema informa  lo startupper del fatto che la rimozione dell'amministratore non è avvenuta.
 
 Caso d'uso UC13: CREAZIONE DI UN ANNUNCIO
 Attore primario: startupper
@@ -193,6 +218,10 @@ Scenario principale:
   4) Il sistema reindirizza lo startupper sulla pagina della startup corrispondente.
 
 Caso d'uso UC15: CONSULTAZIONE DI TUTTI GLI ANNUNCI
+Attore primario: startupper
+Scenario principale:
+  1) Lo startupper consulta l'elenco di tutti gli annunci.
+  2) Il sistema mostra l'elenco di tutti gli annunci.
 
 Caso d'uso UC16: AGGIUNTA SKILL
 Attore primario: startupper
