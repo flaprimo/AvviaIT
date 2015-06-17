@@ -1,13 +1,10 @@
 package avviait.model;
 
-import jdk.jfr.events.ExceptionThrownEvent;
-
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 
 @Stateless(name = "startupFacade")

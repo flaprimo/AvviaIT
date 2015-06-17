@@ -101,7 +101,6 @@ public class StartupController {
     }
 
     public String removeMembro() {
-        //Startupper startupper = startupperFacade.getStartupperByEmail(emailStartupper);
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
