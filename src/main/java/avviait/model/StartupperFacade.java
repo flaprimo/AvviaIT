@@ -190,7 +190,7 @@ public class StartupperFacade  implements Serializable {
         List<StartupperSkill> list = startupper.getSkillPossedute();
 
         for (StartupperSkill startupperSkill : list)
-            if (startupperSkill.getSkillAssociata().getId() == skill.getId())
+            if (startupperSkill.getSkillAssociata().getId().equals(skill.getId()))
                 throw new AlreadyExists();
 
         StartupperSkill startupperSkill = startupperSkillFacade.createStartupperSkill(startupper, skill);
