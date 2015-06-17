@@ -23,29 +23,49 @@
             <h3 class="subheader">${startupController.descrizione}</h3>
             <hr />
 
-            <c:if test="#{startupController.isLoggedStartupperAmministratore() and
-                            startupperSessionController.startupper.attivo}">
-                <h:link value=" Impostazioni Startup"
-                        outcome="${pageContext.request.contextPath}/startup/settings.xhtml"
-                        class="button tiny">
-                    <i class="fa fa-cog"/>
-                    <f:param name="name" value="#{startupController.nome}"/>
-                </h:link>
-                <h:link value=" Pubblica annuncio"
-                        outcome="${pageContext.request.contextPath}/annuncio/new.xhtml"
-                        class="button tiny">
-                    <i class="fa fa-bullhorn"></i>
-                    <f:param name="name" value="#{startupController.nome}" />
-                </h:link>
-                <a href="#" data-reveal-id="addMembroModal" class="button tiny">Aggiungi Membro</a>
-                <a href="#" data-reveal-id="addAmministratoreModal" class="button tiny">Nomina Amministratore</a>
-                <a href="#" data-reveal-id="removeAmministratoreModal" class="button tiny">Rimuovi Amministratore</a>
-            </c:if>
 
-            <a href="${pageContext.request.contextPath}/annuncio/list.xhtml?name=#{startupController.nome}"
-               class="tiny button">
-                Annunci di #{startupController.nome}
-            </a>
+                <div class="button-bar">
+                    <c:if test="#{startupController.isLoggedStartupperAmministratore() and
+                            startupperSessionController.startupper.attivo}">
+                        <ul class="button-group">
+                            <li>
+                                <h:link value=" Impostazioni Startup"
+                                    outcome="${pageContext.request.contextPath}/startup/settings.xhtml"
+                                    class="button tiny">
+                                    <i class="fa fa-cog"/>
+                                    <f:param name="name" value="#{startupController.nome}"/>
+                                </h:link>
+                            </li>
+                            <li>
+                                <h:link value=" Pubblica annuncio"
+                                    outcome="${pageContext.request.contextPath}/annuncio/new.xhtml"
+                                    class="button tiny">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <f:param name="name" value="#{startupController.nome}" />
+                                </h:link>
+                            </li>
+                        </ul>
+                        <ul class="button-group">
+                            <li><a href="#" data-reveal-id="addMembroModal" class="button tiny">
+                                <i class="fa fa-plus-circle"/> Aggiungi Membro</a></li>
+                            <li><a href="#" data-reveal-id="addAmministratoreModal" class="button tiny">
+                                <i class="fa fa-plus-circle"/> Nomina Amministratore</a></li>
+                            <li><a href="#" data-reveal-id="removeAmministratoreModal" class="button tiny">
+                                <i class="fa fa-minus-circle"/> Rimuovi Amministratore</a></li>
+                        </ul>
+                    </c:if>
+                    <ul class="button-group">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/annuncio/list.xhtml?name=#{startupController.nome}"
+                               class="tiny button">
+                                <i class="fa fa-bullhorn" /> Annunci di #{startupController.nome}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
 
             <ul class="no-bullet">
                 <li><strong>Data creazione:</strong> ${startupController.dataFondazione.toString()}</li>
